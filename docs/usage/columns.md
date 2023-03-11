@@ -1,0 +1,184 @@
+# Columns
+
+To display your records you need to add columns to your table. You can specify what field to display - including
+relationships. It is also possible to search and sort these columns if you choose to. There is also a variety of
+different column types to make searching work out of the box.
+
+Columns can be registered in the `columns` method of your Livewire Table.
+
+```php
+protected function columns(): array
+{
+    return [
+        //
+    ];
+}
+```
+
+## Column Types
+
+Currently, there are 4 different column types available.
+
+The `Column` is the generic column type for most use cases. This column type is primarily meant for text like a name or
+email address.
+
+```php
+Column::make(__('Name'), 'name')
+```
+
+Booleans can be displayed using the `BooleanColumn`. This column will render a circle to display the current state.
+
+```php
+BooleanColumn::make(__('Published'), 'published')
+```
+
+If you are working with dates, a `DateColumn` should be used. You can also supply a format using the `format` method.
+
+```php
+DateColumn::make(__('Created At'), 'created_at')
+    ->format('d m Y')
+```
+
+When a column can only accept a list of values, you may be interested in the `SelectColumn`. With this column you can
+specify the options that can be used. If the field is searchable, you will get a dropdown of options to choose from.
+
+```php
+SelectColumn::make(__('Favorite Fruit'), 'favorite_fruit')
+    ->options([
+        'Apple' => 'Apple',
+        'Banana' => 'Banana',
+        'Pear' => 'Pear',
+    ])
+```
+
+## Searchable
+
+To quickly find the records you need, you can make your columns searchable. By default, searching is not enabled for any
+column, but it can easily be enabled.
+
+```php
+Column::make(__('Name'), 'name')
+    ->searchable()
+```
+
+It is also possible to pass a callback in order to handle searching yourself.
+
+```php
+use Illuminate\Database\Eloquent\Builder;
+
+Column::make(__('Name'), 'name')
+    ->searchable(function(Builder $builder, mixed $search): void {
+        //
+    })
+```
+
+## Sortable
+
+Records can be sorted by clicking on the title of the column. Just like searching, sorting is not enabled by default.
+
+```php
+Column::make(__('Name'), 'name')
+    ->sortable()
+```
+
+You can also handle sorting yourself by passing a callback.
+
+```php
+use Illuminate\Database\Eloquent\Builder;
+use RamonRietdijk\LivewireTables\Enums\Direction;
+
+Column::make(__('Name'), 'name')
+    ->sortable(function(Builder $builder, Direction $direction): void {
+        //
+    })
+```
+
+## Relations
+
+If you wish to show data from a related model, you can prefix the column with the name of the relations. Always use the
+name of the relations and not of the tables.
+
+::: info
+Currently, only the `BelongsTo` relation is supported.
+:::
+
+```php
+Column::make(__('Company'), 'author.company.name')
+```
+
+Head to [relations](/advanced/relations) to know more about how relations work behind the scenes.
+
+## Display Using
+
+Sometimes you wish to format the data in your table differently from how it's saved in the database. Luckily, this is
+easily done using the method `displayUsing` on your column.
+
+::: info
+This will work for any column and **always** takes priority over a format.
+:::
+
+```php
+Column::make(__('Name'), 'name')
+    ->displayUsing(function(mixed $value, Model $model): string {
+        return ucfirst($value);
+    })
+```
+
+## Computed
+
+In some cases you wish to display values which aren't stored in the database but are rather calculated like the
+aggregate function `COUNT(*)`. This can be the total amount of blogs written by a user, for example.
+
+If you pass a callback as the second argument to a column, it will mark the column as computed. The callback is the same
+as `displayUsing`, documented above.
+
+::: info
+Computed columns **can't** be searched or sorted unless you have supplied a callback.
+:::
+
+::: warning
+In the example below the column will calculate the amount of blogs for each user individually, introducing the N+1
+problem. This can easily be overcome to keep the table efficient. Please see [efficiency](/advanced/efficiency) to see
+the best practices.
+:::
+
+```php
+Column::make(__('Total Blogs'), function(mixed $value, Model $model): int {
+    return $model->author->blogs()->count();
+})
+```
+
+You can also manually mark a column as computed.
+
+```php
+Column::make(__('Name'), 'name')
+    ->computed()
+```
+
+## Footer
+
+To display information in the footer of the column, you can use the `footer` method. Pass a callback to this method
+and the contents will be rendered on the table.
+
+The content in the footer will **not** be escaped in the table.
+
+```php
+Column::make(__('Name'), 'name')
+    ->footer(function(): string {
+        return "Where there's a will, there's a way";
+    })
+```
+
+## As HTML
+
+::: warning
+Always be cautious when using `asHtml()` as this may introduce XSS vulnerabilities.
+:::
+
+You can also choose to render the content of the column directly without any escaping.
+
+```php
+Column::make(__('Badge'), function(mixed $value, Model $model): string {
+    return '<div>...</div>';
+})->asHtml();
+```

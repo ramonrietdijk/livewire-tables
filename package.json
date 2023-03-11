@@ -1,0 +1,16 @@
+{
+    "name": "livewire-tables",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "docs:dev": "vitepress dev docs",
+        "docs:build": "vitepress build docs",
+        "docs:preview": "vitepress preview docs"
+    },
+    "author": "Ramon Rietdijk",
+    "license": "MIT",
+    "devDependencies": {
+        "vitepress": "^1.0.0-alpha.48",
+        "vue": "^3.2.47"
+    }
+}
