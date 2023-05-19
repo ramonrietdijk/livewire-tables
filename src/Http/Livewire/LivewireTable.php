@@ -13,6 +13,7 @@ use RamonRietdijk\LivewireTables\Concerns\HasActions;
 use RamonRietdijk\LivewireTables\Concerns\HasColumns;
 use RamonRietdijk\LivewireTables\Concerns\HasFilters;
 use RamonRietdijk\LivewireTables\Concerns\HasPagination;
+use RamonRietdijk\LivewireTables\Concerns\HasPolling;
 use RamonRietdijk\LivewireTables\Concerns\HasRelations;
 use RamonRietdijk\LivewireTables\Concerns\HasSearch;
 use RamonRietdijk\LivewireTables\Concerns\HasSelect;
@@ -27,6 +28,7 @@ class LivewireTable extends Component
     use HasColumns;
     use HasFilters;
     use HasPagination;
+    use HasPolling;
     use HasRelations;
     use HasSearch;
     use HasSelect;
@@ -46,6 +48,7 @@ class LivewireTable extends Component
         'sortColumn' => ['except' => ''],
         'sortDirection' => ['except' => ''],
         'trashed' => ['except' => 'withoutTrashed'],
+        'polling' => ['except' => ''],
     ];
 
     /** @var array <int|string, string> */
@@ -120,6 +123,7 @@ class LivewireTable extends Component
                 'actions' => $this->resolveActions(),
             ],
             'perPageOptions' => $this->perPageOptions(),
+            'pollingOptions' => $this->pollingOptions(),
         ]);
     }
 }
