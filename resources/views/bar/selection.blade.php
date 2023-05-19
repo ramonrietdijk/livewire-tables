@@ -1,5 +1,5 @@
 @if(count($this->selected) > 0)
-    <div class="w-full" wire:key="{{ $this->id }}-selection">
+    <div class="w-full" wire:key="{{ $this->id }}-selection" wire:loading.remove>
         <div
             class="bg-blue-50 px-3 py-2 text-sm text-blue-800 border border-blue-100 rounded-md shadow-sm flex items-center gap-1 dark:bg-blue-900 dark:text-blue-300 dark:border-blue-600">
             <x-heroicon-o-list-bullet class="w-6 h-6"/>
