@@ -75,6 +75,16 @@ export default {
                 ]
             },
             {
+                text: 'Configuration',
+                collapsed: false,
+                items: [
+                    {
+                        text: 'Query String',
+                        link: '/configuration/query-string'
+                    }
+                ]
+            },
+            {
                 text: 'Advanced',
                 collapsed: false,
                 items: [

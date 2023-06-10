@@ -15,6 +15,25 @@ trait HasPagination
         100,
     ];
 
+    /** @return array<string, mixed> */
+    protected function queryStringHasPagination(): array
+    {
+        if (! $this->useQueryString) {
+            return [];
+        }
+
+        return [
+            'page' => [
+                'except' => 1,
+                'as' => $this->getQueryStringName('page'),
+            ],
+            'perPage' => [
+                'except' => 15,
+                'as' => $this->getQueryStringName('perPage'),
+            ],
+        ];
+    }
+
     public function updatingPage(): void
     {
         $this->selectPage = false;

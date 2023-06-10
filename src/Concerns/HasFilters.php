@@ -12,6 +12,21 @@ trait HasFilters
     /** @var array<string, mixed> */
     public array $filters = [];
 
+    /** @return array<string, mixed> */
+    protected function queryStringHasFilters(): array
+    {
+        if (! $this->useQueryString) {
+            return [];
+        }
+
+        return [
+            'filters' => [
+                'except' => [],
+                'as' => $this->getQueryStringName('filters'),
+            ],
+        ];
+    }
+
     public function updatedFilters(mixed $value, string $key): void
     {
         if (blank($value)) {

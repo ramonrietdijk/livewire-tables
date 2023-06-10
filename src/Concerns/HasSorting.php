@@ -13,6 +13,25 @@ trait HasSorting
 
     public string $sortDirection = '';
 
+    /** @return array<string, mixed> */
+    protected function queryStringHasSorting(): array
+    {
+        if (! $this->useQueryString) {
+            return [];
+        }
+
+        return [
+            'sortColumn' => [
+                'except' => '',
+                'as' => $this->getQueryStringName('sortColumn'),
+            ],
+            'sortDirection' => [
+                'except' => '',
+                'as' => $this->getQueryStringName('sortDirection'),
+            ],
+        ];
+    }
+
     public function sort(string $column): void
     {
         $isEqual = $this->sortColumn === $column;
