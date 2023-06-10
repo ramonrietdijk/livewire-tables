@@ -14,6 +14,7 @@ use RamonRietdijk\LivewireTables\Concerns\HasColumns;
 use RamonRietdijk\LivewireTables\Concerns\HasFilters;
 use RamonRietdijk\LivewireTables\Concerns\HasPagination;
 use RamonRietdijk\LivewireTables\Concerns\HasPolling;
+use RamonRietdijk\LivewireTables\Concerns\HasQueryString;
 use RamonRietdijk\LivewireTables\Concerns\HasRelations;
 use RamonRietdijk\LivewireTables\Concerns\HasSearch;
 use RamonRietdijk\LivewireTables\Concerns\HasSelect;
@@ -29,6 +30,7 @@ class LivewireTable extends Component
     use HasFilters;
     use HasPagination;
     use HasPolling;
+    use HasQueryString;
     use HasRelations;
     use HasSearch;
     use HasSelect;
@@ -37,19 +39,6 @@ class LivewireTable extends Component
     use HasSorting;
 
     protected string $model = Model::class;
-
-    /** @var array <int|string, mixed> */
-    protected $queryString = [
-        'globalSearch' => ['except' => ''],
-        'page' => ['except' => 1],
-        'perPage' => ['except' => 15],
-        'filters' => ['except' => []],
-        'search' => ['except' => []],
-        'sortColumn' => ['except' => ''],
-        'sortDirection' => ['except' => ''],
-        'trashed' => ['except' => 'withoutTrashed'],
-        'polling' => ['except' => ''],
-    ];
 
     /** @var array <int|string, string> */
     protected $listeners = [

@@ -13,6 +13,25 @@ trait HasSearch
     /** @var array<string, mixed> */
     public array $search = [];
 
+    /** @return array<string, mixed> */
+    protected function queryStringHasSearch(): array
+    {
+        if (! $this->useQueryString) {
+            return [];
+        }
+
+        return [
+            'globalSearch' => [
+                'except' => '',
+                'as' => $this->getQueryStringName('globalSearch'),
+            ],
+            'search' => [
+                'except' => [],
+                'as' => $this->getQueryStringName('search'),
+            ],
+        ];
+    }
+
     public function updatedGlobalSearch(): void
     {
         $this->resetPage();

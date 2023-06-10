@@ -12,6 +12,21 @@ trait HasPolling
         '10s' => 'Every 10 seconds',
     ];
 
+    /** @return array<string, mixed> */
+    protected function queryStringHasPolling(): array
+    {
+        if (! $this->useQueryString) {
+            return [];
+        }
+
+        return [
+            'polling' => [
+                'except' => '',
+                'as' => $this->getQueryStringName('polling'),
+            ],
+        ];
+    }
+
     protected function polling(): string
     {
         if (! array_key_exists($this->polling, $this->pollingOptions)) {

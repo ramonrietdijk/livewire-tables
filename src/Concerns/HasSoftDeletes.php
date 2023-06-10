@@ -8,7 +8,22 @@ use RamonRietdijk\LivewireTables\Enums\TrashedMode;
 
 trait HasSoftDeletes
 {
-    public string $trashed = 'withoutTrashed';
+    public string $trashed = TrashedMode::WithoutTrashed->value;
+
+    /** @return array<string, mixed> */
+    protected function queryStringHasSoftDeletes(): array
+    {
+        if (! $this->useQueryString) {
+            return [];
+        }
+
+        return [
+            'trashed' => [
+                'except' => TrashedMode::WithoutTrashed->value,
+                'as' => $this->getQueryStringName('trashed'),
+            ],
+        ];
+    }
 
     protected function hasSoftDeletes(): bool
     {
