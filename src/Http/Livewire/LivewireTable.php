@@ -6,12 +6,15 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator as ConcreteLengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
 use RamonRietdijk\LivewireTables\Columns\BaseColumn;
 use RamonRietdijk\LivewireTables\Concerns\HasActions;
 use RamonRietdijk\LivewireTables\Concerns\HasColumns;
+use RamonRietdijk\LivewireTables\Concerns\HasDeferredLoading;
 use RamonRietdijk\LivewireTables\Concerns\HasFilters;
+use RamonRietdijk\LivewireTables\Concerns\HasInitialization;
 use RamonRietdijk\LivewireTables\Concerns\HasPagination;
 use RamonRietdijk\LivewireTables\Concerns\HasPolling;
 use RamonRietdijk\LivewireTables\Concerns\HasQueryString;
@@ -27,7 +30,9 @@ class LivewireTable extends Component
     use WithPagination;
     use HasActions;
     use HasColumns;
+    use HasDeferredLoading;
     use HasFilters;
+    use HasInitialization;
     use HasPagination;
     use HasPolling;
     use HasQueryString;
@@ -99,6 +104,10 @@ class LivewireTable extends Component
     /** @return LengthAwarePaginator<Model> */
     protected function paginate(): LengthAwarePaginator
     {
+        if ($this->deferLoading && ! $this->initialized) {
+            return new ConcreteLengthAwarePaginator([], 0, $this->perPage());
+        }
+
         return $this->appliedQuery()->paginate($this->perPage());
     }
 

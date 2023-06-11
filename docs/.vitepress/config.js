@@ -79,6 +79,10 @@ export default {
                 collapsed: false,
                 items: [
                     {
+                        text: 'Defer Loading',
+                        link: '/configuration/defer-loading'
+                    },
+                    {
                         text: 'Query String',
                         link: '/configuration/query-string'
                     }
