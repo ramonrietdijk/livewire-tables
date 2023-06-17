@@ -63,7 +63,10 @@
                                     <span
                                         class="relative inline-flex items-center px-2 py-2 text-sm text-neutral-500 bg-white border border-neutral-200 rounded-l-md dark:bg-neutral-800 dark:border-neutral-700"
                                         aria-hidden="true">
-                                        <x-heroicon-o-chevron-left class="w-5 h-5"/>
+                                        <!-- Icon "chevron-left" (outline) from https://heroicons.com -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                        </svg>
                                     </span>
                                 </span>
                             @else
@@ -73,7 +76,10 @@
                                         rel="prev"
                                         class="relative inline-flex items-center px-2 py-2 text-sm text-neutral-800 bg-white border border-neutral-200 rounded-l-md hover:text-neutral-500 focus:z-10 focus:border-blue-300 active:bg-neutral-100 active:text-neutral-500 transition ease-in-out dark:bg-neutral-800 dark:border-neutral-700 dark:focus:border-blue-600 dark:text-neutral-300 dark:hover:text-white dark:focus:border-blue-600 dark:active:bg-neutral-900 dark:active:text-white"
                                         aria-label="@lang('pagination.previous')">
-                                    <x-heroicon-o-chevron-left class="w-5 h-5"/>
+                                    <!-- Icon "chevron-left" (outline) from https://heroicons.com -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                    </svg>
                                 </button>
                             @endif
                         </span>
@@ -120,14 +126,20 @@
                                         rel="next"
                                         class="relative inline-flex items-center px-2 py-2 -ml-px text-sm text-neutral-800 bg-white border border-neutral-200 rounded-r-md hover:text-neutral-500 focus:z-10 focus:border-blue-300 active:bg-neutral-100 active:text-neutral-500 transition ease-in-out dark:bg-neutral-800 dark:border-neutral-700 dark:focus:border-blue-600 dark:text-neutral-300 dark:hover:text-white dark:focus:border-blue-600 dark:active:bg-neutral-900 dark:active:text-white"
                                         aria-label="@lang('pagination.next')">
-                                    <x-heroicon-o-chevron-right class="w-5 h-5"/>
+                                    <!-- Icon "chevron-right" (outline) from https://heroicons.com -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
                                 </button>
                             @else
                                 <span aria-disabled="true" aria-label="@lang('pagination.next')">
                                     <span
                                         class="relative inline-flex items-center px-2 py-2 -ml-px text-sm text-neutral-500 bg-white border border-neutral-200 rounded-r-md dark:bg-neutral-800 dark:border-neutral-700"
                                         aria-hidden="true">
-                                        <x-heroicon-o-chevron-right class="w-5 h-5"/>
+                                        <!-- Icon "chevron-right" (outline) from https://heroicons.com -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                        </svg>
                                     </span>
                                 </span>
                             @endif
