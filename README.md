@@ -1,5 +1,7 @@
 # Livewire Tables
 
+![Tests](https://github.com/ramonrietdijk/livewire-tables/workflows/tests/badge.svg)
+
 Easily create dynamic tables for models with Laravel Livewire.
 
 ![Livewire Table](https://ramonrietdijk.nl/storage/projects/livewire-tables/table.webp)
