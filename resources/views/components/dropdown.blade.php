@@ -9,7 +9,7 @@
         @endif
         x-on:click="show = !show"
     >
-        <x-dynamic-component :component="$icon" class="w-6 h-6"/>
+        {{ $icon ?? '' }}
         @if($count > 0)
             <span class="bg-blue-500 text-white rounded-full px-2">{{ $count }}</span>
         @endif

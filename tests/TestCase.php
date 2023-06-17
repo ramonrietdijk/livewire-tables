@@ -2,8 +2,6 @@
 
 namespace RamonRietdijk\LivewireTables\Tests;
 
-use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
-use BladeUI\Icons\BladeIconsServiceProvider;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
@@ -33,8 +31,6 @@ abstract class TestCase extends BaseTestCase
         return [
             ServiceProvider::class,
             LivewireServiceProvider::class,
-            BladeIconsServiceProvider::class,
-            BladeHeroiconsServiceProvider::class,
         ];
     }
 }
