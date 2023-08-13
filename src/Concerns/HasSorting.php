@@ -57,14 +57,16 @@ trait HasSorting
             return $this;
         }
 
-        $direction = Direction::from($this->sortDirection);
+        $direction = Direction::tryFrom($this->sortDirection);
 
-        /** @var BaseColumn $column */
-        $column = $this->resolveColumns()->firstOrFail(function (BaseColumn $column): bool {
+        /** @var ?BaseColumn $column */
+        $column = $this->resolveColumns()->first(function (BaseColumn $column): bool {
             return $column->isSortable() && $column->code() === $this->sortColumn;
         });
 
-        $column->applySorting($builder, $direction);
+        if ($column !== null && $direction !== null) {
+            $column->applySorting($builder, $direction);
+        }
 
         return $this;
     }
