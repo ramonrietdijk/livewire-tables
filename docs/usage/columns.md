@@ -17,7 +17,9 @@ protected function columns(): array
 
 ## Column Types
 
-Currently, there are 4 different column types available.
+Currently, there are 5 different column types available.
+
+### Column
 
 The `Column` is the generic column type for most use cases. This column type is primarily meant for text like a name or
 email address.
@@ -26,11 +28,15 @@ email address.
 Column::make(__('Name'), 'name'),
 ```
 
+### Boolean Column
+
 Booleans can be displayed using the `BooleanColumn`. This column will render a circle to display the current state.
 
 ```php
 BooleanColumn::make(__('Published'), 'published'),
 ```
+
+### Date Column
 
 If you are working with dates, a `DateColumn` should be used. You can also supply a format using the `format` method.
 
@@ -38,6 +44,8 @@ If you are working with dates, a `DateColumn` should be used. You can also suppl
 DateColumn::make(__('Created At'), 'created_at')
     ->format('d m Y'),
 ```
+
+### Select Column
 
 When a column can only accept a list of values, you may be interested in the `SelectColumn`. With this column you can
 specify the options that can be used. If the field is searchable, you will get a dropdown of options to choose from.
@@ -50,6 +58,25 @@ SelectColumn::make(__('Favorite Fruit'), 'favorite_fruit')
         'Pear' => 'Pear',
     ]),
 ```
+
+### Image Column
+
+Images can easily be displayed using the `ImageColumn`. The value of the field will be the `src` of the image. It is also
+possible to ajust the size of the image by using the `size` method or the `width` and `height` methods individually.
+
+By default, the width and height of images are `32` pixels.
+
+```php
+ImageColumn::make(__('Thumbnail'), 'thumbnail')
+    ->size(75, 75),
+
+ImageColumn::make(__('Banner'), 'banner')
+    ->width(100)
+    ->height(50),
+```
+
+Image columns will disable the title of the column to preserve space. It can be enabled back using the `header`
+method. See the [header](#header) section for more information.
 
 ## Searchable
 
@@ -153,6 +180,19 @@ You can also manually mark a column as computed.
 ```php
 Column::make(__('Name'), 'name')
     ->computed(),
+```
+
+## Header
+
+Sometimes, displaying the title of the column in the header is not required. It can preserve space when showing a
+thumbnail, for example.
+
+Luckily, this is easily done by using the `header` method. If `false` is passed as the first argument, the header
+will not be rendered in the table. The title of the column will always be visible in the column selection.
+
+```php
+Column::make(__('Name'), 'name')
+    ->header(false),
 ```
 
 ## Footer

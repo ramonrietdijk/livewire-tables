@@ -7,6 +7,7 @@ use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Columns\BooleanColumn;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Columns\DateColumn;
+use RamonRietdijk\LivewireTables\Columns\ImageColumn;
 use RamonRietdijk\LivewireTables\Columns\SelectColumn;
 use RamonRietdijk\LivewireTables\Filters\BooleanFilter;
 use RamonRietdijk\LivewireTables\Filters\DateFilter;
@@ -23,6 +24,8 @@ class BlogLivewireTable extends LivewireTable
     protected function columns(): array
     {
         return [
+            ImageColumn::make(__('Thumbnail'), 'thumbnail'),
+
             Column::make(__('Title'), 'title')
                 ->sortable()
                 ->searchable(),

@@ -21,4 +21,16 @@ class HasHeaderTest extends TestCase
 
         $this->assertNotNull($column);
     }
+
+    /** @test */
+    public function it_can_disable_the_header(): void
+    {
+        $column = Column::make('Column', 'column');
+
+        $this->assertTrue($column->hasHeader());
+
+        $column->header(false);
+
+        $this->assertFalse($column->hasHeader());
+    }
 }

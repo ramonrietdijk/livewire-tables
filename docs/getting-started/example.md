@@ -2,7 +2,7 @@
 
 See the example below for a blog table with a relation to the category, author and company.
 
-If you wish to see a more complex example in action, open de [demo](https://livewire-tables.ramonrietdijk.nl)!
+If you wish to see an example in action, open de [demo](https://livewire-tables.ramonrietdijk.nl)!
 
 ```php
 <?php
@@ -10,19 +10,20 @@ If you wish to see a more complex example in action, open de [demo](https://live
 namespace App\Http\Livewire;
 
 use App\Models\Blog;
-use App\Models\User;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Enumerable;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Columns\BooleanColumn;
+use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Columns\DateColumn;
+use RamonRietdijk\LivewireTables\Columns\ImageColumn;
 use RamonRietdijk\LivewireTables\Columns\SelectColumn;
 use RamonRietdijk\LivewireTables\Filters\BooleanFilter;
 use RamonRietdijk\LivewireTables\Filters\DateFilter;
 use RamonRietdijk\LivewireTables\Filters\SelectFilter;
 use RamonRietdijk\LivewireTables\Http\Livewire\LivewireTable;
-use RamonRietdijk\LivewireTables\Columns\Column;
 
 class BlogTable extends LivewireTable
 {
@@ -31,6 +32,8 @@ class BlogTable extends LivewireTable
     protected function columns(): array
     {
         return [
+            ImageColumn::make(__('Thumbnail'), 'thumbnail'),
+
             Column::make(__('Title'), 'title')
                 ->sortable()
                 ->searchable(),
