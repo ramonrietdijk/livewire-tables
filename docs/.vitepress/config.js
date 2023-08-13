@@ -83,6 +83,10 @@ export default {
                         link: '/configuration/defer-loading'
                     },
                     {
+                        text: 'Polling',
+                        link: '/configuration/polling'
+                    },
+                    {
                         text: 'Query String',
                         link: '/configuration/query-string'
                     }
