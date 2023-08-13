@@ -7,10 +7,7 @@ trait HasPolling
     public string $polling = '';
 
     /** @var array<string, string> */
-    protected array $pollingOptions = [
-        '' => 'None',
-        '10s' => 'Every 10 seconds',
-    ];
+    protected array $pollingOptions = [];
 
     /** @return array<string, mixed> */
     protected function queryStringHasPolling(): array
