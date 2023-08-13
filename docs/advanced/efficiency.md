@@ -22,7 +22,7 @@ class BlogTable extends LivewireTable
 
             Column::make(__('Author'), 'author.name'),
 
-            Column::make(__('Total Blogs'), function(mixed $value, Model $model): int {
+            Column::make(__('Total Blogs'), function (mixed $value, Model $model): int {
                 return $model->author->blogs()->count();
             }),
         ];
@@ -54,7 +54,7 @@ protected function applySelect(Builder $builder): static
 Now that the count has been selected manually, we can update our column.
 
 ```php
-Column::make(__('Total Blogs'), function(mixed $value, Model $model): int {
+Column::make(__('Total Blogs'), function (mixed $value, Model $model): int {
     return $model->total_blogs;
 })
 ```

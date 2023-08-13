@@ -20,7 +20,7 @@ Currently, there are 3 different filter types available.
 Booleans can be filtered using the `BooleanFilter`.
 
 ```php
-BooleanFilter::make(__('Published'), 'published')
+BooleanFilter::make(__('Published'), 'published'),
 ```
 
 If you are working with dates, a `DateFilter` should be used. This filter will give you a `from` and `to` date to filter
@@ -39,7 +39,7 @@ SelectFilter::make(__('Category'), 'category_id')
         1 => 'PHP',
         2 => 'Laravel',
         3 => 'Tailwind CSS',
-    ])
+    ]),
 ```
 
 ## Relations
@@ -52,7 +52,7 @@ Currently, only the `BelongsTo` relation is supported.
 :::
 
 ```php
-BooleanFilter::make(__('Active Author'), 'author.active')
+BooleanFilter::make(__('Active Author'), 'author.active'),
 ```
 
 Head to [relations](/advanced/relations) to know more about how relations work behind the scenes.
@@ -68,11 +68,11 @@ yourself in your callback.
 :::
 
 ```php
-BooleanFilter::make(__('Recent Blogs'), function(Builder $builder, mixed $value): void {
+BooleanFilter::make(__('Recent Blogs'), function (Builder $builder, mixed $value): void {
     $builder->when($value, function (Builder $builder) use ($value): void {
         $builder
             ->where('published', '=', true)
             ->whereDate('created_at', '>=', now()->subWeek());
     });
-})
+}),
 ```

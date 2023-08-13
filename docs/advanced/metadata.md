@@ -4,7 +4,7 @@ Metadata is data that can be added to you columns and filters as a key-value pai
 
 ```php
 Column::make(__('Name'), 'name')
-    ->setMeta('key', 'value')
+    ->setMeta('key', 'value'),
 ```
 
 This functionality is not used by the package itself and is exclusively for customizing the views. The metadata can be

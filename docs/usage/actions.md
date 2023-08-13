@@ -15,9 +15,9 @@ protected function actions(): array
 To create an action, simply add a label, code and callback.
 
 ```php
-Action::make(__('My Action'), 'my_action', function(Enumerable $models): void {
+Action::make(__('My Action'), 'my_action', function (Enumerable $models): void {
     //
-});
+}),
 ```
 
 When an action has been executed, it will automatically clear the selection and refresh the table. This can be prevented
@@ -33,7 +33,7 @@ Note that the collection of `$models` is always empty if a standalone action is 
 :::
 
 ```php
-Action::make(__('Import'), 'import', function(Enumerable $models): void {
+Action::make(__('Import'), 'import', function (Enumerable $models): void {
     //
-})->standalone();
+})->standalone(),
 ```
