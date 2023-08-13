@@ -13,6 +13,7 @@ use RamonRietdijk\LivewireTables\Tests\Database\Factories\BlogFactory;
  * @property int $id
  * @property string $title
  * @property string $body
+ * @property string $thumbnail
  * @property int $author_id
  * @property ?int $category_id
  * @property bool $published

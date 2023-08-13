@@ -18,6 +18,7 @@ class BlogFactory extends Factory
         return [
             'title' => fake()->text(100),
             'body' => fake()->paragraph(),
+            'thumbnail' => 'https://picsum.photos/32/32',
             'author_id' => User::factory(),
             'category_id' => Category::factory(),
             'published' => fake()->boolean(),

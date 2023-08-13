@@ -14,6 +14,7 @@ class HasColumnsTest extends TestCase
         Livewire::test(BlogLivewireTable::class)
             ->call('selectAllColumns', true)
             ->assertSet('columns', [
+                'thumbnail',
                 'title',
                 'category_title',
                 'author_name',
