@@ -188,7 +188,7 @@ Sometimes, displaying the title of the column in the header is not required. It 
 thumbnail, for example.
 
 Luckily, this is easily done by using the `header` method. If `false` is passed as the first argument, the header
-will not be rendered in the table. The title of the column will always be visible in the column selection though.
+will not be rendered in the table. The title of the column will always be visible in the column selection.
 
 ```php
 Column::make(__('Name'), 'name')
