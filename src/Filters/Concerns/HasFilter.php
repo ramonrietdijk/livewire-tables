@@ -10,7 +10,7 @@ trait HasFilter
 {
     protected ?Closure $filterUsing = null;
 
-    public function filterUsing(?Closure $filterUsing = null): static
+    public function filterUsing(Closure $filterUsing = null): static
     {
         $this->filterUsing = $filterUsing;
 

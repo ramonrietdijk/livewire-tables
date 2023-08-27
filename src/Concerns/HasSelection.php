@@ -9,17 +9,17 @@ trait HasSelection
     /** @var array<int, string> */
     public array $selected = [];
 
-    public bool $selectPage = false;
+    public bool $selectedPage = false;
 
     public function clearSelection(): void
     {
         $this->selected = [];
-        $this->selectPage = false;
+        $this->selectedPage = false;
     }
 
-    public function updatingSelectPage(bool $selectPage): void
+    public function updatingSelectedPage(bool $selectedPage): void
     {
-        $this->selectPage($selectPage);
+        $this->selectPage($selectedPage);
     }
 
     public function selectItem(string $key): void
@@ -73,6 +73,6 @@ trait HasSelection
             : $selected->diff($table)->values()->toArray();
 
         $this->selected = $newSelection;
-        $this->selectPage = false;
+        $this->selectedPage = false;
     }
 }

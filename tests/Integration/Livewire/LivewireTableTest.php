@@ -1,10 +1,10 @@
 <?php
 
-namespace RamonRietdijk\LivewireTables\Tests\Integration\Http\Livewire;
+namespace RamonRietdijk\LivewireTables\Tests\Integration\Livewire;
 
 use Livewire\Livewire;
-use RamonRietdijk\LivewireTables\Tests\Fakes\Http\Livewire\BlogLivewireTable;
-use RamonRietdijk\LivewireTables\Tests\Fakes\Http\Livewire\EmptyBlogLivewireTable;
+use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
+use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\EmptyBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Company;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;

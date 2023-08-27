@@ -3,7 +3,7 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
-use RamonRietdijk\LivewireTables\Tests\Fakes\Http\Livewire\PollingBlogLivewireTable;
+use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\PollingBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasPollingTest extends TestCase

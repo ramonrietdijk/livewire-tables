@@ -21,7 +21,6 @@ trait HasFilters
 
         return [
             'filters' => [
-                'except' => [],
                 'as' => $this->getQueryStringName('filters'),
             ],
         ];

@@ -23,20 +23,15 @@ trait HasPagination
         }
 
         return [
-            'page' => [
-                'except' => 1,
-                'as' => $this->getQueryStringName('page'),
-            ],
             'perPage' => [
-                'except' => 15,
                 'as' => $this->getQueryStringName('perPage'),
             ],
         ];
     }
 
-    public function updatingPage(): void
+    public function updatingPaginators(): void
     {
-        $this->selectPage = false;
+        $this->selectedPage = false;
     }
 
     public function updatingPerPage(): void

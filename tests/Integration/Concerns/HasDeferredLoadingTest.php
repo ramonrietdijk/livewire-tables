@@ -3,7 +3,7 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
-use RamonRietdijk\LivewireTables\Tests\Fakes\Http\Livewire\DeferredLoadingBlogLivewireTable;
+use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\DeferredLoadingBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasDeferredLoadingTest extends TestCase

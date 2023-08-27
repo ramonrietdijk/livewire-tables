@@ -6,9 +6,9 @@ you can specify what model should be used.
 ```php
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
-use RamonRietdijk\LivewireTables\Http\Livewire\LivewireTable;
+use RamonRietdijk\LivewireTables\Livewire\LivewireTable;
 
 class BlogTable extends LivewireTable
 {

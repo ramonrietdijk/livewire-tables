@@ -18,7 +18,6 @@ trait HasPolling
 
         return [
             'polling' => [
-                'except' => '',
                 'as' => $this->getQueryStringName('polling'),
             ],
         ];

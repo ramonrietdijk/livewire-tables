@@ -3,7 +3,7 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
-use RamonRietdijk\LivewireTables\Tests\Fakes\Http\Livewire\BlogLivewireTable;
+use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
@@ -13,10 +13,10 @@ class HasSelectionTest extends TestCase
     public function it_can_clear_the_selection(): void
     {
         Livewire::test(BlogLivewireTable::class)
-            ->set('selectPage', true)
+            ->set('selectedPage', true)
             ->set('selected', ['1', '2', '3'])
             ->call('clearSelection')
-            ->assertSet('selectPage', false)
+            ->assertSet('selectedPage', false)
             ->assertSet('selected', []);
     }
 

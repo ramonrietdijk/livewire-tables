@@ -1,6 +1,5 @@
 <div>
     @if ($paginator->hasPages())
-        @php(isset($this->numberOfPaginatorsRendered[$paginator->getPageName()]) ? $this->numberOfPaginatorsRendered[$paginator->getPageName()]++ : $this->numberOfPaginatorsRendered[$paginator->getPageName()] = 1)
 
         <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
 
@@ -24,19 +23,19 @@
                         @endif
                     </span>
                     <span>
-                    @if ($paginator->hasMorePages())
+                        @if ($paginator->hasMorePages())
                             <button type="button"
                                     wire:click="nextPage('{{ $paginator->getPageName() }}')"
                                     wire:loading.attr="disabled"
                                     dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.before"
                                     class="relative inline-flex items-center px-4 py-2 text-sm text-neutral-800 bg-white border border-neutral-200 rounded-md hover:text-neutral-500 focus:border-blue-300 active:bg-neutral-100 active:text-neutral-800 transition ease-in-out dark:bg-neutral-800 dark:border-neutral-700 dark:focus:border-blue-600 dark:text-neutral-300 dark:hover:text-white dark:focus:border-blue-600 dark:active:bg-neutral-900 dark:active:text-white">
-                            {!! __('pagination.next') !!}
-                        </button>
+                                {!! __('pagination.next') !!}
+                            </button>
                         @else
                             <span
                                 class="relative inline-flex items-center px-4 py-2 text-sm text-neutral-500 bg-white border border-neutral-200 rounded-md select-none dark:bg-neutral-800 dark:border-neutral-700">
-                            {!! __('pagination.next') !!}
-                        </span>
+                                {!! __('pagination.next') !!}
+                            </span>
                         @endif
                     </span>
                 </div>
@@ -97,8 +96,7 @@
                             {{-- Array Of Links --}}
                             @if (is_array($element))
                                 @foreach ($element as $page => $url)
-                                    <span
-                                        wire:key="paginator-{{ $paginator->getPageName() }}-{{ $this->numberOfPaginatorsRendered[$paginator->getPageName()] }}-page{{ $page }}">
+                                    <span wire:key="paginator-{{ $paginator->getPageName() }}-page{{ $page }}">
                                         @if ($page == $paginator->currentPage())
                                             <span aria-current="page">
                                                 <span
@@ -147,6 +145,7 @@
                     </span>
                 </div>
             </div>
+
         </nav>
     @endif
 </div>

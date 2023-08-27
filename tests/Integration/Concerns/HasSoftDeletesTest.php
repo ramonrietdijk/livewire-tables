@@ -4,8 +4,8 @@ namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
 use RamonRietdijk\LivewireTables\Enums\TrashedMode;
-use RamonRietdijk\LivewireTables\Tests\Fakes\Http\Livewire\BlogLivewireTable;
-use RamonRietdijk\LivewireTables\Tests\Fakes\Http\Livewire\UserLivewireTable;
+use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
+use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\UserLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;

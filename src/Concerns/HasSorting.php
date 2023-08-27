@@ -22,11 +22,9 @@ trait HasSorting
 
         return [
             'sortColumn' => [
-                'except' => '',
                 'as' => $this->getQueryStringName('sortColumn'),
             ],
             'sortDirection' => [
-                'except' => '',
                 'as' => $this->getQueryStringName('sortDirection'),
             ],
         ];

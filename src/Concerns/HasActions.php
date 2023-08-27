@@ -36,7 +36,7 @@ trait HasActions
 
         if ($status !== false) {
             $this->clearSelection();
-            $this->emit('refreshLivewireTable');
+            $this->dispatch('refreshLivewireTable');
         }
     }
 }

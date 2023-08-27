@@ -22,11 +22,9 @@ trait HasSearch
 
         return [
             'globalSearch' => [
-                'except' => '',
                 'as' => $this->getQueryStringName('globalSearch'),
             ],
             'search' => [
-                'except' => [],
                 'as' => $this->getQueryStringName('search'),
             ],
         ];
