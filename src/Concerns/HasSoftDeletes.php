@@ -19,7 +19,6 @@ trait HasSoftDeletes
 
         return [
             'trashed' => [
-                'except' => TrashedMode::WithoutTrashed->value,
                 'as' => $this->getQueryStringName('trashed'),
             ],
         ];

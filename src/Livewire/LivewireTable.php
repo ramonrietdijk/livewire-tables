@@ -1,6 +1,6 @@
 <?php
 
-namespace RamonRietdijk\LivewireTables\Http\Livewire;
+namespace RamonRietdijk\LivewireTables\Livewire;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\View;

@@ -18,7 +18,7 @@
         </span>
         @foreach($table['columns'] as $column)
             <label class="flex items-center gap-2 px-3 py-1 cursor-pointer">
-                <input type="checkbox" class="h-4 w-4" value="{{ $column->code() }}" wire:model="columns">
+                <input type="checkbox" class="h-4 w-4" value="{{ $column->code() }}" wire:model.live="columns">
                 <span class="truncate" title="{{ $column->label() }}">{{ $column->label() }}</span>
             </label>
         @endforeach

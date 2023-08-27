@@ -1,6 +1,6 @@
 <?php
 
-namespace RamonRietdijk\LivewireTables\Tests\Fakes\Http\Livewire;
+namespace RamonRietdijk\LivewireTables\Tests\Fakes\Livewire;
 
 use Illuminate\Support\Enumerable;
 use RamonRietdijk\LivewireTables\Actions\Action;
@@ -12,7 +12,7 @@ use RamonRietdijk\LivewireTables\Columns\SelectColumn;
 use RamonRietdijk\LivewireTables\Filters\BooleanFilter;
 use RamonRietdijk\LivewireTables\Filters\DateFilter;
 use RamonRietdijk\LivewireTables\Filters\SelectFilter;
-use RamonRietdijk\LivewireTables\Http\Livewire\LivewireTable;
+use RamonRietdijk\LivewireTables\Livewire\LivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Category;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;

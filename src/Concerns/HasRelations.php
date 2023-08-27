@@ -72,7 +72,7 @@ trait HasRelations
      * @param  Builder<Model>  $builder
      * @return array<int, mixed>
      */
-    protected function joinRelation(Builder $builder, Model $model, string $name, ?string $parent = null): array
+    protected function joinRelation(Builder $builder, Model $model, string $name, string $parent = null): array
     {
         /** @var Relation<Model> $relation */
         $relation = $model->$name();

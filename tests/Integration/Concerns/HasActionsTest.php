@@ -3,7 +3,7 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
-use RamonRietdijk\LivewireTables\Tests\Fakes\Http\Livewire\BlogLivewireTable;
+use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
@@ -17,7 +17,7 @@ class HasActionsTest extends TestCase
         Livewire::test(BlogLivewireTable::class)
             ->set('selected', ['1', '2', '3'])
             ->call('executeAction', 'publish')
-            ->assertEmitted('refreshLivewireTable')
+            ->assertDispatched('refreshLivewireTable')
             ->assertSet('selected', []);
     }
 
@@ -26,6 +26,6 @@ class HasActionsTest extends TestCase
     {
         Livewire::test(BlogLivewireTable::class)
             ->call('executeAction', 'publish_all')
-            ->assertEmitted('refreshLivewireTable');
+            ->assertDispatched('refreshLivewireTable');
     }
 }

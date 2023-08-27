@@ -3,9 +3,9 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\LivewireManager;
-use RamonRietdijk\LivewireTables\Tests\Fakes\Http\Livewire\BlogLivewireTable;
-use RamonRietdijk\LivewireTables\Tests\Fakes\Http\Livewire\DisabledQueryStringBlogLivewireTable;
-use RamonRietdijk\LivewireTables\Tests\Fakes\Http\Livewire\QueryStringPrefixedBlogLivewireTable;
+use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
+use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\DisabledQueryStringBlogLivewireTable;
+use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\QueryStringPrefixedBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasQueryStringTest extends TestCase

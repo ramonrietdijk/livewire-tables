@@ -2,7 +2,7 @@
     <thead class="border-b border-neutral-200 dark:border-neutral-700">
     <tr class="group">
         <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
-            <input type="checkbox" wire:model="selectPage" class="h-4 w-4 mx-3">
+            <input type="checkbox" wire:model.live="selectedPage" class="h-4 w-4 mx-3">
         </th>
         @foreach($table['columns'] as $column)
             @continue(! in_array($column->code(), $this->columns))
@@ -34,13 +34,13 @@
         </tr>
     @else
         @forelse($paginator->items() as $item)
-            <tr class="group">
+            <tr class="group" wire:key="row-{{ $item->getKey() }}">
                 <td class="p-0"
                     x-bind:class="~selected.indexOf('{{ $item->getKey() }}')
                             ? 'bg-blue-100 group-odd:bg-blue-100 group-hover:bg-blue-200 dark:bg-blue-900 dark:group-odd:bg-blue-900 dark:group-hover:bg-blue-800'
                             : 'bg-neutral-100 group-odd:bg-white group-hover:bg-neutral-200 dark:bg-neutral-800 dark:group-odd:bg-neutral-900 dark:group-hover:bg-neutral-700'">
                     <div class="mx-3">
-                        <input type="checkbox" wire:model="selected" value="{{ $item->getKey() }}" class="h-4 w-4">
+                        <input type="checkbox" wire:model.live="selected" value="{{ $item->getKey() }}" class="h-4 w-4">
                     </div>
                 </td>
                 @foreach($table['columns'] as $column)

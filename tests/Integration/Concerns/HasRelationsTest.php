@@ -4,7 +4,7 @@ namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Exception;
 use Livewire\Livewire;
-use RamonRietdijk\LivewireTables\Tests\Fakes\Http\Livewire\InvalidRelationTypeBlogLivewireTable;
+use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\InvalidRelationTypeBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasRelationsTest extends TestCase

@@ -10,7 +10,7 @@ trait HasFooter
 
     protected ?Closure $footerCallback = null;
 
-    public function footer(?Closure $footerCallback = null): static
+    public function footer(Closure $footerCallback = null): static
     {
         $this->footerCallback = $footerCallback;
 
