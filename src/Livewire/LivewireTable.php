@@ -27,7 +27,6 @@ use RamonRietdijk\LivewireTables\Concerns\HasSorting;
 
 class LivewireTable extends Component
 {
-    use WithPagination;
     use HasActions;
     use HasColumns;
     use HasDeferredLoading;
@@ -42,6 +41,7 @@ class LivewireTable extends Component
     use HasSelection;
     use HasSoftDeletes;
     use HasSorting;
+    use WithPagination;
 
     protected string $model = Model::class;
 

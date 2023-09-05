@@ -59,7 +59,7 @@ trait HasSorting
 
         /** @var ?BaseColumn $column */
         $column = $this->resolveColumns()->first(function (BaseColumn $column): bool {
-            return $column->isSortable() && $column->code() === $this->sortColumn;
+            return $column->isSortable() && $this->sortColumn === $column->code();
         });
 
         if ($column !== null && $direction !== null) {

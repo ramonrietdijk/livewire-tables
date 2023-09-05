@@ -71,6 +71,10 @@ export default {
                     {
                         text: 'Links',
                         link: '/usage/links'
+                    },
+                    {
+                        text: 'Exports',
+                        link: '/usage/exports'
                     }
                 ]
             },

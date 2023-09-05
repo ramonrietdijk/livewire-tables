@@ -20,6 +20,8 @@ Action::make(__('My Action'), 'my_action', function (Enumerable $models): void {
 }),
 ```
 
+Actions can return anything but are not required to. This makes it very simple to redirect the user to another page or to download an [export](/usage/exports) of the records.
+
 When an action has been executed, it will automatically clear the selection and refresh the table. This can be prevented
 if you return `false` from your callback.
 

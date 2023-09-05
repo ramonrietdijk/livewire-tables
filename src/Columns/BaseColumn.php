@@ -19,16 +19,16 @@ use RamonRietdijk\LivewireTables\Concerns\Makeable;
 
 abstract class BaseColumn
 {
+    use CanBeClickable;
     use CanBeComputed;
     use CanBeQualified;
-    use CanBeClickable;
     use CanBeRaw;
     use HasFooter;
     use HasHeader;
+    use HasMetadata;
     use HasSearch;
     use HasSorting;
     use HasValue;
-    use HasMetadata;
     use Makeable;
 
     protected string $code;

@@ -21,10 +21,10 @@ trait HasActions
         return collect($this->actions());
     }
 
-    public function executeAction(string $code): void
+    public function executeAction(string $code): mixed
     {
         /** @var BaseAction $action */
-        $action = $this->resolveActions()->firstOrFail(fn (BaseAction $action): bool => $action->code() === $code);
+        $action = $this->resolveActions()->firstOrFail(fn (BaseAction $action): bool => $code === $action->code());
 
         $models = collect();
 
@@ -32,11 +32,16 @@ trait HasActions
             $models = $this->query()->whereIn($this->model()->getKeyName(), $this->selected)->get();
         }
 
-        $status = $action->execute($models);
+        $response = $action->execute($models);
 
-        if ($status !== false) {
-            $this->clearSelection();
+        if ($response !== false) {
+            if (! $action->isStandalone()) {
+                $this->clearSelection();
+            }
+
             $this->dispatch('refreshLivewireTable');
         }
+
+        return $response;
     }
 }
