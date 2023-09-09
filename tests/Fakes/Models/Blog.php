@@ -17,6 +17,7 @@ use RamonRietdijk\LivewireTables\Tests\Database\Factories\BlogFactory;
  * @property int $author_id
  * @property ?int $category_id
  * @property bool $published
+ * @property int $order
  * @property ?Carbon $created_at
  * @property ?Carbon $updated_at
  * @property ?Carbon $deleted_at

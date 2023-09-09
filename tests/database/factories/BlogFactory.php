@@ -22,6 +22,7 @@ class BlogFactory extends Factory
             'author_id' => User::factory(),
             'category_id' => Category::factory(),
             'published' => fake()->boolean(),
+            'order' => fake()->randomNumber(),
         ];
     }
 
