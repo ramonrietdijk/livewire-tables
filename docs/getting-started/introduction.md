@@ -16,6 +16,8 @@ These are some of the highlights which you will get out of the box:
 - Selection of the columns you wish to see
 - Apply multiple filters at the same time
 - Perform actions on the selected records
+- Reorder the records in the table
+- Export records from the table
 - Works perfectly with the `SoftDeletes` trait
 - Search columns individually
 - Multiple column types supported

@@ -51,7 +51,15 @@ trait HasSorting
     /** @param  Builder<Model>  $builder */
     protected function applySorting(Builder $builder): static
     {
-        if (blank($this->sortColumn) || blank($this->sortDirection)) {
+        $hasSorting = ! blank($this->sortColumn) && ! blank($this->sortDirection);
+
+        if ($this->isReordering() || ($this->useReordering && ! $hasSorting)) {
+            $builder->orderBy($builder->qualifyColumn($this->reorderingColumn));
+
+            return $this;
+        }
+
+        if (! $hasSorting) {
             return $this;
         }
 

@@ -73,6 +73,10 @@ export default {
                         link: '/usage/links'
                     },
                     {
+                        text: 'Reordering',
+                        link: '/usage/reordering'
+                    },
+                    {
                         text: 'Exports',
                         link: '/usage/exports'
                     }

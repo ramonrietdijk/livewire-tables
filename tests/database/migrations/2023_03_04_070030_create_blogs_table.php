@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('author_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->boolean('published');
+            $table->integer('order');
             $table->timestamps();
             $table->softDeletes();
         });

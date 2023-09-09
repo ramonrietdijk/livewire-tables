@@ -19,6 +19,7 @@ use RamonRietdijk\LivewireTables\Concerns\HasPagination;
 use RamonRietdijk\LivewireTables\Concerns\HasPolling;
 use RamonRietdijk\LivewireTables\Concerns\HasQueryString;
 use RamonRietdijk\LivewireTables\Concerns\HasRelations;
+use RamonRietdijk\LivewireTables\Concerns\HasReordering;
 use RamonRietdijk\LivewireTables\Concerns\HasSearch;
 use RamonRietdijk\LivewireTables\Concerns\HasSelect;
 use RamonRietdijk\LivewireTables\Concerns\HasSelection;
@@ -36,6 +37,7 @@ class LivewireTable extends Component
     use HasPolling;
     use HasQueryString;
     use HasRelations;
+    use HasReordering;
     use HasSearch;
     use HasSelect;
     use HasSelection;
