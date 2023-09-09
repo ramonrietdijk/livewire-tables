@@ -95,7 +95,9 @@
     </tbody>
     <tfoot class="border-t border-neutral-200 dark:border-neutral-700">
     <tr class="group">
-        <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800"></th>
+        @if(! $this->isReordering())
+            <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800"></th>
+        @endif
         @foreach($table['columns'] as $column)
             @continue(! in_array($column->code(), $this->columns))
             <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
