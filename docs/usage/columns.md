@@ -17,7 +17,7 @@ protected function columns(): array
 
 ## Column Types
 
-Currently, there are 5 different column types available.
+Currently, there are 6 different column types available.
 
 ### Column
 
@@ -77,6 +77,30 @@ ImageColumn::make(__('Banner'), 'banner')
 
 Image columns will disable the title of the column to preserve space. It can be enabled back using the `header`
 method. See the [header](#header) section for more information.
+
+### View Column
+
+Although columns have an option to display their values [as HTML](#as-html), having a lot of
+markup in your column can be a bit messy.
+
+With a `ViewColumn` you can reference a view to load as the second argument.
+
+::: info
+The model will be passed to the view.
+:::
+
+```php
+ViewColumn::make(__('Actions'), 'actions'),
+```
+
+If you're containing links in your view, it may be helpful to disable the column from being clicked. See [links](/usage/links) for more information about this.
+
+```php
+ViewColumn::make(__('Actions'), 'actions')
+    ->clickable(false),
+```
+
+Just like any other column, the [header](#header) can be disabled as well.
 
 ## Searchable
 

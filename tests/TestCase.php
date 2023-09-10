@@ -19,6 +19,8 @@ abstract class TestCase extends BaseTestCase
             'database' => ':memory:',
             'prefix' => '',
         ]);
+
+        $app['config']->push('view.paths', __DIR__.'/Fakes/views');
     }
 
     protected function defineDatabaseMigrations(): void
