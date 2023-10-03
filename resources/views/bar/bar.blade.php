@@ -9,7 +9,7 @@
         </div>
         @include('livewire-table::bar.selection')
         <div class="flex gap-3 ml-auto">
-            @include('livewire-table::bar.buttons.reordering')
+            @includeWhen($this->useReordering, 'livewire-table::bar.buttons.reordering')
             @include('livewire-table::bar.dropdowns.polling')
             @include('livewire-table::bar.dropdowns.columns')
             @include('livewire-table::bar.dropdowns.filters')
