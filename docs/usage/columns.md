@@ -132,6 +132,14 @@ Column::make(__('Name'), 'name')
     ->sortable(),
 ```
 
+To set the default sort column and direction, use the `$sortColumn` and `$sortDirection` properties of your table.
+
+```php
+public string $sortColumn = 'name';
+
+public string $sortDirection = 'asc';
+```
+
 You can also handle sorting yourself by passing a callback.
 
 ```php
