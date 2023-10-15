@@ -41,6 +41,23 @@ class HasFilterTest extends TestCase
     }
 
     /** @test */
+    public function it_can_filter_with_arrays(): void
+    {
+        User::factory()->create(['name' => 'John Doe']);
+        User::factory()->create(['name' => 'Jane Doe']);
+        User::factory()->create(['name' => 'Richard Doe']);
+
+        $filter = SelectFilter::make('Name', 'name')->multiple();
+
+        /** @var Builder<Model> $builder */
+        $builder = User::query();
+
+        $filter->filter($builder, ['John Doe', 'Jane Doe']);
+
+        $this->assertEquals(2, $builder->count());
+    }
+
+    /** @test */
     public function it_can_apply_filtering(): void
     {
         User::factory()->create(['name' => 'John Doe']);
