@@ -69,7 +69,6 @@ class HasSelectionTest extends TestCase
             ->assertCount('selected', 0);
     }
 
-
     /** @test */
     public function it_can_select_the_table(): void
     {
