@@ -87,6 +87,10 @@ export default {
                 collapsed: false,
                 items: [
                     {
+                        text: 'Selection',
+                        link: '/configuration/selection'
+                    },
+                    {
                         text: 'Defer Loading',
                         link: '/configuration/defer-loading'
                     },
