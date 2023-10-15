@@ -11,19 +11,25 @@ trait HasSelection
 
     public bool $selectedPage = false;
 
-    public function clearSelection(): void
-    {
-        $this->selected = [];
-        $this->selectedPage = false;
-    }
+    protected bool $useSelection = true;
 
     public function updatingSelectedPage(bool $selectedPage): void
     {
         $this->selectPage($selectedPage);
     }
 
+    public function clearSelection(): void
+    {
+        $this->selected = [];
+        $this->selectedPage = false;
+    }
+
     public function selectItem(string $key): void
     {
+        if (! $this->canSelect()) {
+            return;
+        }
+
         $selected = collect($this->selected);
 
         /** @var array<int, string> $newSelection */
@@ -36,6 +42,10 @@ trait HasSelection
 
     public function selectPage(bool $select): void
     {
+        if (! $this->canSelect()) {
+            return;
+        }
+
         /** @var array<int, Model> $items */
         $items = $this->paginate()->items();
 
@@ -58,6 +68,10 @@ trait HasSelection
 
     public function selectTable(bool $select): void
     {
+        if (! $this->canSelect()) {
+            return;
+        }
+
         $table = $this->appliedQuery()->get()->map(function (Model $model): string {
             /** @var int|string $key */
             $key = $model->getKey();
@@ -74,5 +88,10 @@ trait HasSelection
 
         $this->selected = $newSelection;
         $this->selectedPage = false;
+    }
+
+    protected function canSelect(): bool
+    {
+        return $this->useSelection && ! $this->isReordering();
     }
 }

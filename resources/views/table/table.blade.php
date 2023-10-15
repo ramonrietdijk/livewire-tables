@@ -1,7 +1,7 @@
 <table class="w-full relative" x-data="{ selected: @entangle('selected') }">
     <thead class="border-b border-neutral-200 dark:border-neutral-700">
     <tr class="group">
-        @if(! $this->isReordering())
+        @if($this->canSelect())
             <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
                 <input type="checkbox" wire:model.live="selectedPage" class="h-4 w-4 mx-3">
             </th>
@@ -14,7 +14,7 @@
         @endforeach
     </tr>
     <tr class="group">
-        @if(! $this->isReordering())
+        @if($this->canSelect())
             <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800"></th>
         @endif
         @foreach($table['columns'] as $column)
@@ -55,7 +55,7 @@
                     }"
                 @endif
             >
-                @if(! $this->isReordering())
+                @if($this->canSelect())
                     <td class="p-0"
                         x-bind:class="~selected.indexOf('{{ $item->getKey() }}')
                                 ? 'bg-blue-100 group-odd:bg-blue-100 group-hover:bg-blue-200 dark:bg-blue-900 dark:group-odd:bg-blue-900 dark:group-hover:bg-blue-800'
@@ -71,7 +71,7 @@
                         @if($column->isClickable() && ! $this->isReordering())
                             @if(($link = $this->link($item)) !== null)
                                 x-on:click.prevent="window.location.href = '{{ $link }}'"
-                            @else
+                            @elseif($this->canSelect())
                                 x-on:click="$wire.selectItem('{{ $item->getKey() }}')"
                             @endif
                         @endif
@@ -95,7 +95,7 @@
     </tbody>
     <tfoot class="border-t border-neutral-200 dark:border-neutral-700">
     <tr class="group">
-        @if(! $this->isReordering())
+        @if($this->canSelect())
             <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800"></th>
         @endif
         @foreach($table['columns'] as $column)
