@@ -17,11 +17,15 @@ protected function filters(): array
 
 Currently, there are 3 different filter types available.
 
+### Boolean Filter
+
 Booleans can be filtered using the `BooleanFilter`.
 
 ```php
 BooleanFilter::make(__('Published'), 'published'),
 ```
+
+### Date Filter
 
 If you are working with dates, a `DateFilter` should be used. This filter will give you a `from` and `to` date to filter
 your records with.
@@ -29,6 +33,8 @@ your records with.
 ```php
 DateFilter::make(__('Created At'), 'created_at'),
 ```
+
+### Select Filter
 
 When a filter can only accept a list of values, you may be interested in the `SelectFilter`. With this filter you can
 specify the options that can be used. You will get a dropdown of options to choose from to filter your records.
@@ -40,6 +46,13 @@ SelectFilter::make(__('Category'), 'category_id')
         2 => 'Laravel',
         3 => 'Tailwind CSS',
     ]),
+```
+
+By calling the `multiple` method on the filter, it will accept multiple values at a time.
+
+```php
+SelectFilter::make(__('Category'), 'category_id')
+    ->multiple(),
 ```
 
 ## Relations
