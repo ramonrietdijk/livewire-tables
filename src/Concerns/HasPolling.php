@@ -25,7 +25,7 @@ trait HasPolling
 
     protected function polling(): string
     {
-        if (! array_key_exists($this->polling, $this->pollingOptions)) {
+        if (! array_key_exists($this->polling, $this->pollingOptions())) {
             return '';
         }
 
