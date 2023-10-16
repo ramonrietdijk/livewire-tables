@@ -77,7 +77,7 @@ class LivewireTable extends Component
         /** @var Model $model */
         $model = $this->model;
 
-        return new $model;
+        return app($model);
     }
 
     /** @return Builder<Model> */
