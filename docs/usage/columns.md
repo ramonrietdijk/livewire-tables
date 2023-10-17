@@ -100,6 +100,20 @@ ViewColumn::make(__('Actions'), 'actions')
     ->clickable(false),
 ```
 
+By default, only the model will be passed to the view. Any additional data can be passed by using the `with` method.
+
+```php
+ViewColumn::make(__('Actions'), 'actions')
+    ->with([
+        'key' => 'value',
+    ]),
+
+// or
+
+ViewColumn::make(__('Actions'), 'actions')
+    ->with('key', 'value'),
+```
+
 Just like any other column, the [header](#header) can be disabled as well.
 
 ## Searchable

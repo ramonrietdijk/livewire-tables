@@ -3,9 +3,12 @@
 namespace RamonRietdijk\LivewireTables\Columns;
 
 use Illuminate\Database\Eloquent\Model;
+use RamonRietdijk\LivewireTables\Columns\Concerns\HasData;
 
 class ViewColumn extends BaseColumn
 {
+    use HasData;
+
     protected bool $raw = true;
 
     protected bool $computed = true;
@@ -22,8 +25,8 @@ class ViewColumn extends BaseColumn
             return null;
         }
 
-        return view($view, [
-            'model' => $model,
-        ]);
+        return view($view)
+            ->with('model', $model)
+            ->with($this->data);
     }
 }
