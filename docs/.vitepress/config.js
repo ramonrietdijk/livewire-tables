@@ -65,6 +65,10 @@ export default {
                         link: '/usage/actions'
                     },
                     {
+                        text: 'Related Records',
+                        link: '/usage/related-records'
+                    },
+                    {
                         text: 'Soft Deletes',
                         link: '/usage/soft-deletes'
                     },
