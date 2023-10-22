@@ -61,7 +61,9 @@ class LivewireTable extends Component
     {
         /** @var array<int, string> $columns */
         $columns = $this->resolveColumns()
+            ->filter(fn (BaseColumn $column): bool => $column->isVisible())
             ->map(fn (BaseColumn $column): string => $column->code())
+            ->values()
             ->toArray();
 
         $this->columns = $columns;

@@ -12,6 +12,7 @@ use RamonRietdijk\LivewireTables\Columns\Concerns\HasHeader;
 use RamonRietdijk\LivewireTables\Columns\Concerns\HasSearch;
 use RamonRietdijk\LivewireTables\Columns\Concerns\HasSorting;
 use RamonRietdijk\LivewireTables\Columns\Concerns\HasValue;
+use RamonRietdijk\LivewireTables\Columns\Concerns\HasVisibility;
 use RamonRietdijk\LivewireTables\Concerns\CanBeComputed;
 use RamonRietdijk\LivewireTables\Concerns\CanBeQualified;
 use RamonRietdijk\LivewireTables\Concerns\HasMetadata;
@@ -29,6 +30,7 @@ abstract class BaseColumn
     use HasSearch;
     use HasSorting;
     use HasValue;
+    use HasVisibility;
     use Makeable;
 
     protected string $code;
