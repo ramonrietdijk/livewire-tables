@@ -166,6 +166,15 @@ Column::make(__('Name'), 'name')
     }),
 ```
 
+## Visibility
+
+All columns are visible in the table by default. It is possible to hide columns by calling the `hide` method. In that case, they will only be shown when they are enabled via the dropdown.
+
+```php
+Column::make(__('Name'), 'name')
+    ->hide(),
+```
+
 ## Relations
 
 If you wish to show data from a related model, you can prefix the column with the name of the relations. Always use the
