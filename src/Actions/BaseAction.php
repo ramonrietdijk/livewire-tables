@@ -18,7 +18,7 @@ abstract class BaseAction
     public function __construct(
         protected string $label,
         protected string $code,
-        protected Closure $callback
+        protected ?Closure $callback = null
     ) {
     }
 
@@ -32,7 +32,7 @@ abstract class BaseAction
         return $this->code;
     }
 
-    public function callback(): Closure
+    public function callback(): ?Closure
     {
         return $this->callback;
     }
@@ -40,6 +40,12 @@ abstract class BaseAction
     /** @param  Enumerable<int, Model>  $models */
     public function execute(Enumerable $models): mixed
     {
-        return call_user_func($this->callback(), $models);
+        $callback = $this->callback();
+
+        if ($callback === null) {
+            return null;
+        }
+
+        return call_user_func($callback, $models);
     }
 }

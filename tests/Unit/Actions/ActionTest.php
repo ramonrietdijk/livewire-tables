@@ -14,6 +14,7 @@ class ActionTest extends TestCase
 
         $this->assertEquals('Action', $action->label());
         $this->assertEquals('code', $action->code());
+        $this->assertNotNull($action->callback());
     }
 
     /** @test */
@@ -24,5 +25,17 @@ class ActionTest extends TestCase
         $result = $action->execute(collect());
 
         $this->assertTrue($result);
+    }
+
+    /** @test */
+    public function it_can_be_used_as_javascript(): void
+    {
+        $action = Action::make('Action', 'javascript');
+
+        $this->assertNull($action->callback());
+
+        $result = $action->execute(collect());
+
+        $this->assertNull($result);
     }
 }
