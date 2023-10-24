@@ -15,11 +15,23 @@
                         @lang('Standalone Actions')
                     </span>
                     @foreach($standaloneActions as $standaloneAction)
-                        <button class="px-3 py-1 text-left truncate hover:bg-neutral-100 dark:hover:bg-neutral-700"
-                                wire:click="executeAction('{{ $standaloneAction->code() }}')"
-                                x-on:click="show = false">
-                            {{ $standaloneAction->label() }}
-                        </button>
+                        @if($standaloneAction->callback() === null)
+                            <button class="px-3 py-1 text-left truncate hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                                    x-on:click="
+                                        {{ $standaloneAction->code() }}
+                                        show = false
+                                    "
+                                    type="button">
+                                {{ $standaloneAction->label() }}
+                            </button>
+                        @else
+                            <button class="px-3 py-1 text-left truncate hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                                    wire:click="executeAction('{{ $standaloneAction->code() }}')"
+                                    x-on:click="show = false"
+                                    type="button">
+                                {{ $standaloneAction->label() }}
+                            </button>
+                        @endif
                     @endforeach
                 </div>
             @endif
@@ -32,13 +44,27 @@
                         @lang('Actions')
                     </span>
                     @foreach($actions as $action)
-                        <button
-                            class="px-3 py-1 text-left truncate hover:bg-neutral-100 disabled:hover:bg-white disabled:text-neutral-500 dark:hover:bg-neutral-700 dark:disabled:hover:bg-neutral-800"
-                            x-bind:disabled="selected.length === 0"
-                            wire:click="executeAction('{{ $action->code() }}')"
-                            x-on:click="show = false">
-                            {{ $action->label() }}
-                        </button>
+                        @if($action->callback() === null)
+                            <button
+                                class="px-3 py-1 text-left truncate hover:bg-neutral-100 disabled:hover:bg-white disabled:text-neutral-500 dark:hover:bg-neutral-700 dark:disabled:hover:bg-neutral-800"
+                                x-bind:disabled="selected.length === 0"
+                                x-on:click="
+                                    {{ $action->code() }}
+                                    show = false
+                                "
+                                type="button">
+                                {{ $action->label() }}
+                            </button>
+                        @else
+                            <button
+                                class="px-3 py-1 text-left truncate hover:bg-neutral-100 disabled:hover:bg-white disabled:text-neutral-500 dark:hover:bg-neutral-700 dark:disabled:hover:bg-neutral-800"
+                                x-bind:disabled="selected.length === 0"
+                                wire:click="executeAction('{{ $action->code() }}')"
+                                x-on:click="show = false"
+                                type="button">
+                                {{ $action->label() }}
+                            </button>
+                        @endif
                     @endforeach
                 </div>
             @endif

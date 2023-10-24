@@ -39,3 +39,25 @@ Action::make(__('Import'), 'import', function (Enumerable $models): void {
     //
 })->standalone(),
 ```
+
+## JavaScript
+
+Some actions may only require the execution of JavaScript, like triggering a modal for example. In these cases, there is no point in sending a request to Livewire. If a callback is not supplied to an action, it will be treated like a JavaScript action.
+
+::: info
+JavaScript actions work for both normal and standalone actions.
+:::
+
+```php
+Action::make(__('JavaScript'), <<<JS
+    console.log('I\'ve been executed!');
+JS)->standalone(),
+```
+
+Within these actions, you have access to the [$wire](https://livewire.laravel.com/docs/javascript#the-wire-object) property. This means that you can also interact with the selected records in JavaScript.
+
+```php
+Action::make(__('JavaScript'), <<<JS
+    console.log('You have selected ' + \$wire.selected.length + ' record(s)');
+JS),
+```
