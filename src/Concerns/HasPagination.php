@@ -41,8 +41,10 @@ trait HasPagination
 
     protected function perPage(): int
     {
-        if (! in_array($this->perPage, $this->perPageOptions)) {
-            return $this->perPageOptions[0];
+        $options = $this->perPageOptions();
+
+        if (! in_array($this->perPage, $options)) {
+            return $options[0];
         }
 
         return $this->perPage;
