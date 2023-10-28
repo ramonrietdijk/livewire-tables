@@ -41,7 +41,7 @@ export default {
                     {
                         text: 'Example',
                         link: '/getting-started/example'
-                    },
+                    }
                 ]
             },
             {
@@ -105,6 +105,10 @@ export default {
                     {
                         text: 'Query String',
                         link: '/configuration/query-string'
+                    },
+                    {
+                        text: 'Session',
+                        link: '/configuration/session'
                     }
                 ]
             },

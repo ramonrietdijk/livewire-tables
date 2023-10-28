@@ -22,6 +22,8 @@ trait HasSelection
     {
         $this->selected = [];
         $this->selectedPage = false;
+
+        $this->updateSession();
     }
 
     public function selectItem(string $key): void
@@ -38,6 +40,8 @@ trait HasSelection
             : $selected->add($key)->toArray();
 
         $this->selected = $newSelection;
+
+        $this->updateSession();
     }
 
     public function selectPage(bool $select): void
@@ -64,6 +68,8 @@ trait HasSelection
             : $selected->diff($page)->values()->toArray();
 
         $this->selected = $newSelection;
+
+        $this->updateSession();
     }
 
     public function selectTable(bool $select): void
@@ -88,6 +94,8 @@ trait HasSelection
 
         $this->selected = $newSelection;
         $this->selectedPage = false;
+
+        $this->updateSession();
     }
 
     protected function canSelect(): bool

@@ -46,6 +46,8 @@ trait HasSorting
                 $this->sortDirection = '';
             }
         }
+
+        $this->updateSession();
     }
 
     /** @param  Builder<Model>  $builder */

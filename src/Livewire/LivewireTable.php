@@ -14,6 +14,7 @@ use RamonRietdijk\LivewireTables\Concerns\HasActions;
 use RamonRietdijk\LivewireTables\Concerns\HasColumns;
 use RamonRietdijk\LivewireTables\Concerns\HasDeferredLoading;
 use RamonRietdijk\LivewireTables\Concerns\HasFilters;
+use RamonRietdijk\LivewireTables\Concerns\HasIdentifier;
 use RamonRietdijk\LivewireTables\Concerns\HasInitialization;
 use RamonRietdijk\LivewireTables\Concerns\HasPagination;
 use RamonRietdijk\LivewireTables\Concerns\HasPolling;
@@ -23,6 +24,7 @@ use RamonRietdijk\LivewireTables\Concerns\HasReordering;
 use RamonRietdijk\LivewireTables\Concerns\HasSearch;
 use RamonRietdijk\LivewireTables\Concerns\HasSelect;
 use RamonRietdijk\LivewireTables\Concerns\HasSelection;
+use RamonRietdijk\LivewireTables\Concerns\HasSession;
 use RamonRietdijk\LivewireTables\Concerns\HasSoftDeletes;
 use RamonRietdijk\LivewireTables\Concerns\HasSorting;
 
@@ -32,6 +34,7 @@ class LivewireTable extends Component
     use HasColumns;
     use HasDeferredLoading;
     use HasFilters;
+    use HasIdentifier;
     use HasInitialization;
     use HasPagination;
     use HasPolling;
@@ -41,6 +44,7 @@ class LivewireTable extends Component
     use HasSearch;
     use HasSelect;
     use HasSelection;
+    use HasSession;
     use HasSoftDeletes;
     use HasSorting;
     use WithPagination;
@@ -59,14 +63,18 @@ class LivewireTable extends Component
 
     protected function initialize(): void
     {
-        /** @var array<int, string> $columns */
-        $columns = $this->resolveColumns()
-            ->filter(fn (BaseColumn $column): bool => $column->isVisible())
-            ->map(fn (BaseColumn $column): string => $column->code())
-            ->values()
-            ->toArray();
+        $this->restoreSession();
 
-        $this->columns = $columns;
+        if (count($this->columns) === 0) {
+            /** @var array<int, string> $columns */
+            $columns = $this->resolveColumns()
+                ->filter(fn (BaseColumn $column): bool => $column->isVisible())
+                ->map(fn (BaseColumn $column): string => $column->code())
+                ->values()
+                ->toArray();
+
+            $this->columns = $columns;
+        }
     }
 
     protected function link(Model $model): ?string
