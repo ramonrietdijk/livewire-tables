@@ -18,6 +18,8 @@ trait HasColumns
             : [];
 
         $this->columns = $columns;
+
+        $this->updateSession();
     }
 
     /** @return array<int, BaseColumn> */

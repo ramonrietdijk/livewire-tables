@@ -38,6 +38,8 @@ trait HasFilters
     public function clearFilters(): void
     {
         $this->filters = [];
+
+        $this->updateSession();
     }
 
     /** @return array<int, BaseFilter> */
