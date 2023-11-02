@@ -23,19 +23,20 @@ class BlogFactory extends Factory
             'category_id' => Category::factory(),
             'published' => fake()->boolean(),
             'order' => fake()->randomNumber(),
+            'settings' => null,
         ];
     }
 
     public function published(bool $published = true): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state([
             'published' => $published,
         ]);
     }
 
     public function deleted(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn (): array => [
             'deleted_at' => fake()->dateTime(),
         ]);
     }

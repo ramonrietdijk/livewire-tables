@@ -18,19 +18,20 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'company_id' => Company::factory(),
             'is_admin' => false,
+            'preferences' => null,
         ];
     }
 
     public function admin(bool $admin = true): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state([
             'is_admin' => $admin,
         ]);
     }
 
     public function deleted(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn (): array => [
             'deleted_at' => fake()->dateTime(),
         ]);
     }

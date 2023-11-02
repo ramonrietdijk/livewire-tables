@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('company_id')->nullable()->constrained('companies')->nullOnDelete();
             $table->boolean('is_admin')->default(false);
+            $table->json('preferences')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -55,6 +55,14 @@ SelectFilter::make(__('Category'), 'category_id')
     ->multiple(),
 ```
 
+## JSON
+
+The table can also be filtered using a JSON column.
+
+```php
+BooleanFilter::make(__('Enabled'), 'settings->enabled'),
+```
+
 ## Relations
 
 If you wish to filter data from a related model, you can prefix the column with the name of the relations. Always use

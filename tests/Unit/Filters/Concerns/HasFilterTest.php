@@ -58,6 +58,38 @@ class HasFilterTest extends TestCase
     }
 
     /** @test */
+    public function it_can_filter_json_columns(): void
+    {
+        User::factory()->create(['name' => 'John Doe', 'preferences' => ['theme' => 'Light']]);
+        User::factory()->create(['name' => 'Jane Doe', 'preferences' => ['theme' => 'Dark']]);
+
+        $filter = SelectFilter::make('Theme', 'preferences->theme');
+
+        /** @var Builder<Model> $builder */
+        $builder = User::query();
+
+        $filter->filter($builder, 'Dark');
+
+        $this->assertEquals(1, $builder->count());
+    }
+
+    /** @test */
+    public function it_can_filter_json_columns_with_arrays(): void
+    {
+        User::factory()->create(['name' => 'John Doe', 'preferences' => ['theme' => 'Light']]);
+        User::factory()->create(['name' => 'Jane Doe', 'preferences' => ['theme' => 'Dark']]);
+
+        $filter = SelectFilter::make('Theme', 'preferences->theme');
+
+        /** @var Builder<Model> $builder */
+        $builder = User::query();
+
+        $filter->filter($builder, ['Light', 'Dark']);
+
+        $this->assertEquals(2, $builder->count());
+    }
+
+    /** @test */
     public function it_can_apply_filtering(): void
     {
         User::factory()->create(['name' => 'John Doe']);

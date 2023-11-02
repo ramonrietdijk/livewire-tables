@@ -51,6 +51,19 @@ class HasValueTest extends TestCase
     }
 
     /** @test */
+    public function it_can_get_values_from_json_columns(): void
+    {
+        /** @var User $user */
+        $user = User::factory()->create(['name' => 'John Doe', 'preferences' => ['theme' => 'Light']]);
+
+        $column = Column::make('Theme', 'preferences->theme');
+
+        $value = $column->getValue($user);
+
+        $this->assertEquals('Light', $value);
+    }
+
+    /** @test */
     public function it_can_resolve_values(): void
     {
         /** @var User $user */

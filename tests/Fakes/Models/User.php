@@ -14,6 +14,7 @@ use RamonRietdijk\LivewireTables\Tests\Database\Factories\UserFactory;
  * @property string $name
  * @property ?int $company_id
  * @property bool $is_admin
+ * @property ?array $preferences
  * @property ?Carbon $created_at
  * @property ?Carbon $updated_at
  * @property ?Carbon $deleted_at
@@ -24,6 +25,7 @@ class User extends Model
 
     protected $casts = [
         'is_admin' => 'boolean',
+        'preferences' => 'array',
     ];
 
     /** @return BelongsTo<Company, User> */
