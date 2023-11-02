@@ -18,6 +18,7 @@ use RamonRietdijk\LivewireTables\Tests\Database\Factories\BlogFactory;
  * @property ?int $category_id
  * @property bool $published
  * @property int $order
+ * @property ?array $settings
  * @property ?Carbon $created_at
  * @property ?Carbon $updated_at
  * @property ?Carbon $deleted_at
@@ -29,6 +30,7 @@ class Blog extends Model
 
     protected $casts = [
         'published' => 'boolean',
+        'settings' => 'array',
     ];
 
     /** @return BelongsTo<User, Blog> */

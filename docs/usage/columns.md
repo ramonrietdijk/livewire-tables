@@ -116,6 +116,14 @@ ViewColumn::make(__('Actions'), 'actions')
 
 Just like any other column, the [header](#header) can be disabled as well.
 
+## JSON
+
+Data can also be accessed from a JSON column.
+
+```php
+Column::make(__('Color'), 'settings->color'),
+```
+
 ## Searchable
 
 To quickly find the records you need, you can make your columns searchable. By default, searching is not enabled for any

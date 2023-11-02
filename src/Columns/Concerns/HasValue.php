@@ -23,15 +23,11 @@ trait HasValue
 
     public function getValue(Model $model): mixed
     {
-        $value = $model;
-
         if (($column = $this->column()) !== null) {
-            foreach (explode('.', $column) as $segment) {
-                $value = $value?->$segment;
-            }
+            return data_get($model, str_replace('->', '.', $column));
         }
 
-        return $value;
+        return $model;
     }
 
     public function resolveValue(Model $model): mixed

@@ -57,6 +57,21 @@ class HasSearchTest extends TestCase
     }
 
     /** @test */
+    public function it_can_search_json_columns(): void
+    {
+        User::factory()->create(['name' => 'John Doe', 'preferences' => ['theme' => 'Light']]);
+        User::factory()->create(['name' => 'Jane Doe', 'preferences' => ['theme' => 'Dark']]);
+
+        /** @var Builder<Model> $builder */
+        $builder = User::query();
+
+        $column = Column::make('Theme', 'preferences->theme');
+        $column->search($builder, 'Dark');
+
+        $this->assertEquals(1, $builder->count());
+    }
+
+    /** @test */
     public function it_can_apply_searching(): void
     {
         User::factory()->create(['name' => 'John Doe']);

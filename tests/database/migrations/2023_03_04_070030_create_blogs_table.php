@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->boolean('published');
             $table->integer('order');
+            $table->json('settings')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
