@@ -19,7 +19,7 @@ All relations will query the data based on [the existence](https://laravel.com/d
 
 As a `BelongsTo` relationship has already been joined by the table, it can be more performant to add `qualifyUsingAlias()` to any `BelongsTo` columns. This will internally add a `where` clause to the joined table instead of a subquery as described above.
 
-Displaying data from a x-to-many relationship is also possible. If a column of `tags.name` is referenced, the Livewire Table will get the `name` of all associated `tags`. These values will then joined by a comma.
+Displaying data from a x-to-many relationship is also possible. If a column of `tags.name` is referenced, the Livewire Table will get the `name` of all associated `tags`. These values will then be joined by a comma.
 
 Note that for very specific use cases you can always make use of [computed](/usage/columns#computed) columns.
 

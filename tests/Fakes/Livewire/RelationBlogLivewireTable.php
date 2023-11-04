@@ -30,11 +30,9 @@ class RelationBlogLivewireTable extends LivewireTable
                 ->searchable(),
 
             Column::make(__('Employees'), 'author.company.employees.name')
-                ->sortable()
                 ->searchable(),
 
             Column::make(__('Tags'), 'tags.name')
-                ->sortable()
                 ->searchable(),
         ];
     }

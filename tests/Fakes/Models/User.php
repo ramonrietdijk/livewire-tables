@@ -33,7 +33,7 @@ class User extends Model
     public function uppercase(): Attribute
     {
         return Attribute::make(
-            get: fn () => strtoupper($this->name),
+            get: fn (): string => strtoupper($this->name),
         );
     }
 
