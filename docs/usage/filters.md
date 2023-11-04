@@ -65,18 +65,22 @@ BooleanFilter::make(__('Enabled'), 'settings->enabled'),
 
 ## Relations
 
-If you wish to filter data from a related model, you can prefix the column with the name of the relations. Always use
-the name of the relations and not of the tables.
-
-::: info
-Currently, only the `BelongsTo` relation is supported.
-:::
+If you wish to filter data from a related model, you can prefix the column with the name of the relations. Always use the name of the relations and not of the tables.
 
 ```php
 BooleanFilter::make(__('Active Author'), 'author.active'),
 ```
 
-Head to [relations](/advanced/relations) to know more about how relations work behind the scenes.
+You can also use relations with a cardinality greater than one.
+
+```php
+SelectFilter::make(__('Tags'), 'tags.id')
+    ->options(
+        Tag::query()->pluck('name', 'id')->toArray()
+    ),
+```
+
+Head to [relations](/advanced/relations) to know more about relations and how they work behind the scenes.
 
 ## Custom Filtering
 

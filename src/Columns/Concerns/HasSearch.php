@@ -40,7 +40,9 @@ trait HasSearch
     /** @param  Builder<Model>  $builder */
     public function search(Builder $builder, mixed $search): void
     {
-        $builder->where($this->qualify($builder), 'LIKE', '%'.$search.'%');
+        $this->qualifyQuery($builder, function (Builder $builder, string $column) use ($search): void {
+            $builder->where($column, 'LIKE', '%'.$search.'%');
+        });
     }
 
     /** @param  Builder<Model>  $builder */

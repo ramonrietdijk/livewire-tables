@@ -26,11 +26,13 @@ trait HasFilter
     public function filter(Builder $builder, mixed $value): void
     {
         $builder->when(! blank($value), function (Builder $builder) use ($value): void {
-            if (is_array($value)) {
-                $builder->whereIn($this->qualify($builder), $value);
-            } else {
-                $builder->where($this->qualify($builder), '=', $value);
-            }
+            $this->qualifyQuery($builder, function (Builder $builder, string $column) use ($value): void {
+                if (is_array($value)) {
+                    $builder->whereIn($column, $value);
+                } else {
+                    $builder->where($column, '=', $value);
+                }
+            });
         });
     }
 

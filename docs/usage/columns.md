@@ -185,18 +185,19 @@ Column::make(__('Name'), 'name')
 
 ## Relations
 
-If you wish to show data from a related model, you can prefix the column with the name of the relations. Always use the
-name of the relations and not of the tables.
-
-::: info
-Currently, only the `BelongsTo` relation is supported.
-:::
+If you wish to show data from a related model, you can prefix the column with the name of the relations. Always use the name of the relations and not of the tables.
 
 ```php
 Column::make(__('Company'), 'author.company.name'),
 ```
 
-Head to [relations](/advanced/relations) to know more about how relations work behind the scenes.
+You can also use relations with a cardinality greater than one. The values will automatically be joined with a comma.
+
+```php
+Column::make(__('Tags'), 'tags.name'),
+```
+
+Head to [relations](/advanced/relations) to know more about relations and how they work behind the scenes.
 
 ## Display Using
 

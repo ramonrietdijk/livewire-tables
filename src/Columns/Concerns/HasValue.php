@@ -4,6 +4,8 @@ namespace RamonRietdijk\LivewireTables\Columns\Concerns;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
+use RamonRietdijk\LivewireTables\Support\Column;
 
 trait HasValue
 {
@@ -23,11 +25,27 @@ trait HasValue
 
     public function getValue(Model $model): mixed
     {
-        if (($column = $this->column()) !== null) {
-            return data_get($model, str_replace('->', '.', $column));
+        $column = $this->column();
+
+        if ($column === null) {
+            return $model;
         }
 
-        return $model;
+        $segments = Column::make($column)->segments();
+
+        $value = $model;
+
+        foreach ($segments as $segment) {
+            if ($value instanceof Collection) {
+                $value = $value->pluck($segment);
+
+                continue;
+            }
+
+            $value = data_get($value, str_replace('->', '.', $segment));
+        }
+
+        return $value;
     }
 
     public function resolveValue(Model $model): mixed
@@ -36,6 +54,14 @@ trait HasValue
 
         if ($this->displayUsing !== null) {
             return call_user_func($this->displayUsing, $value, $model);
+        }
+
+        if ($value instanceof Collection) {
+            $value = $value->toArray();
+        }
+
+        if (is_array($value)) {
+            $value = implode(', ', $value);
         }
 
         return $value;

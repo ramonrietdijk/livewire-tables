@@ -5,6 +5,7 @@ namespace RamonRietdijk\LivewireTables\Tests\Fakes\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use RamonRietdijk\LivewireTables\Tests\Database\Factories\BlogFactory;
@@ -43,6 +44,12 @@ class Blog extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /** @return BelongsToMany<Tag> */
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class);
     }
 
     protected static function newFactory(): BlogFactory
