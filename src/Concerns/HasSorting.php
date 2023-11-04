@@ -62,6 +62,8 @@ trait HasSorting
         }
 
         if (! $hasSorting) {
+            $builder->orderBy($builder->qualifyColumn($this->model()->getKeyName()));
+
             return $this;
         }
 

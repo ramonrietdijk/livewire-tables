@@ -10,8 +10,8 @@ class BooleanFilter extends BaseFilter
 
     public function filter(Builder $builder, mixed $value): void
     {
-        $builder->when(! blank($value), function (Builder $builder) use ($value): void {
-            $builder->where($this->qualify($builder), '=', (bool) $value);
-        });
+        if (! blank($value)) {
+            parent::filter($builder, (bool) $value);
+        }
     }
 }

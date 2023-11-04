@@ -3,6 +3,7 @@
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns\Concerns;
 
 use RamonRietdijk\LivewireTables\Columns\Column;
+use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Company;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
@@ -64,6 +65,21 @@ class HasValueTest extends TestCase
     }
 
     /** @test */
+    public function it_can_get_values_from_x_to_many_relations(): void
+    {
+        /** @var User $user */
+        $user = User::factory()->create(['name' => 'John Doe']);
+
+        Blog::factory()->count(3)->for($user, 'author')->create(['title' => 'Blog']);
+
+        $column = Column::make('Blogs', 'blogs.title');
+
+        $value = $column->resolveValue($user);
+
+        $this->assertEquals('Blog, Blog, Blog', $value);
+    }
+
+    /** @test */
     public function it_can_resolve_values(): void
     {
         /** @var User $user */
@@ -74,6 +90,28 @@ class HasValueTest extends TestCase
         $value = $column->resolveValue($user);
 
         $this->assertEquals('John Doe', $value);
+    }
+
+    /** @test */
+    public function it_can_implode_resolved_values(): void
+    {
+        /** @var User $user */
+        $user = User::factory()->create([
+            'name' => 'John Doe',
+            'preferences' => [
+                'colors' => [
+                    'Red',
+                    'Green',
+                    'Blue',
+                ],
+            ],
+        ]);
+
+        $column = Column::make('Colors', 'preferences->colors');
+
+        $value = $column->resolveValue($user);
+
+        $this->assertEquals('Red, Green, Blue', $value);
     }
 
     /** @test */

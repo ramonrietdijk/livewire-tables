@@ -2,32 +2,57 @@
 
 namespace RamonRietdijk\LivewireTables\Concerns;
 
-use Exception;
+use Closure;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use RamonRietdijk\LivewireTables\Exceptions\ColumnException;
+use RamonRietdijk\LivewireTables\Support\Column;
 
 trait CanBeQualified
 {
+    protected bool $qualifyUsingAlias = false;
+
+    public function qualifyUsingAlias(bool $qualifyUsingAlias = true): static
+    {
+        $this->qualifyUsingAlias = $qualifyUsingAlias;
+
+        return $this;
+    }
+
+    public function shouldQualifyUsingAlias(): bool
+    {
+        return $this->qualifyUsingAlias;
+    }
+
     /** @param  Builder<Model>  $builder */
     public function qualify(Builder $builder): string
     {
         $column = $this->column();
 
         if ($column === null) {
-            throw new Exception('No column has been set');
+            throw new ColumnException('No column has been set');
         }
 
-        $segments = Str::of($column)->explode('.');
+        return Column::make($column)->qualify($builder);
+    }
 
-        /** @var string $columnName */
-        $columnName = $segments->last();
-        $relations = $segments->slice(0, -1);
+    /** @param  Builder<Model>  $builder */
+    public function qualifyQuery(Builder $builder, Closure $callback): void
+    {
+        $column = $this->column();
 
-        $alias = $relations->implode('_');
+        if ($column === null) {
+            throw new ColumnException('No column has been set');
+        }
 
-        return strlen($alias) > 0
-            ? $alias.'.'.$columnName
-            : $builder->qualifyColumn($columnName);
+        $column = Column::make($column);
+
+        if ($column->hasRelation() && ! $this->shouldQualifyUsingAlias()) {
+            $builder->whereHas($column->relation(), function (Builder $builder) use ($callback, $column): void {
+                call_user_func($callback, $builder, $builder->qualifyColumn($column->name()));
+            });
+        } else {
+            call_user_func($callback, $builder, $column->qualify($builder));
+        }
     }
 }

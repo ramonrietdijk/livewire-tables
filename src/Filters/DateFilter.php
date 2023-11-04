@@ -15,11 +15,15 @@ class DateFilter extends BaseFilter
         $to = $value['to'] ?? null;
 
         $builder->when($from, function (Builder $builder, ?string $from): void {
-            $builder->whereDate($this->qualify($builder), '>=', $from);
+            $this->qualifyQuery($builder, function (Builder $builder, string $column) use ($from): void {
+                $builder->whereDate($column, '>=', $from);
+            });
         });
 
         $builder->when($to, function (Builder $builder, ?string $to): void {
-            $builder->whereDate($this->qualify($builder), '<=', $to);
+            $this->qualifyQuery($builder, function (Builder $builder, string $column) use ($to): void {
+                $builder->whereDate($column, '<=', $to);
+            });
         });
     }
 }

@@ -2,15 +2,14 @@
 
 namespace RamonRietdijk\LivewireTables\Concerns;
 
-use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use RamonRietdijk\LivewireTables\Columns\BaseColumn;
 use RamonRietdijk\LivewireTables\Filters\BaseFilter;
+use RamonRietdijk\LivewireTables\Support\Column;
 
 trait HasRelations
 {
@@ -32,11 +31,11 @@ trait HasRelations
             ->values();
 
         $with = [];
+        $join = [];
         $lookup = [];
 
         foreach ($allColumns as $column) {
-            /** @var Collection<int, string> $relations */
-            $relations = Str::of($column)->explode('.')->slice(0, -1);
+            $segments = Column::make($column)->segments();
 
             /** @var Collection<int, string> $previous */
             $previous = collect();
@@ -45,21 +44,37 @@ trait HasRelations
             $model = $builder->getModel();
 
             $alias = null;
+            $shouldJoin = true;
 
-            foreach ($relations as $relation) {
-                $fullRelation = $previous->push($relation)->implode('.');
+            foreach ($segments as $segment) {
+                $relation = $this->getEloquentRelation($model, $segment);
+
+                if ($relation === null) {
+                    break;
+                }
+
+                $fullRelation = $previous->push($segment)->implode('.');
 
                 if (! in_array($fullRelation, $with)) {
                     $with[] = $fullRelation;
-
-                    $lookup[$fullRelation] = $this->joinRelation($builder, $model, $relation, $alias);
                 }
 
-                /**
-                 * @var Model $model
-                 * @var ?string $alias
-                 */
-                [$model, $alias] = $lookup[$fullRelation];
+                if (! in_array($fullRelation, $join) && $shouldJoin) {
+                    $join[] = $fullRelation;
+
+                    $lookup[$fullRelation] = $this->joinEloquentRelation($builder, $relation, $model, $segment, $alias);
+                }
+
+                if (! isset($lookup[$fullRelation])) {
+                    $shouldJoin = false;
+                }
+
+                if ($shouldJoin) {
+                    /** @var string $alias */
+                    $alias = $lookup[$fullRelation];
+                }
+
+                $model = $relation->getRelated();
             }
         }
 
@@ -68,41 +83,59 @@ trait HasRelations
         return $this;
     }
 
+    /** @return ?Relation<Model> */
+    protected function getEloquentRelation(Model $model, string $relation): ?Relation
+    {
+        if (! method_exists($model, $relation)) {
+            return null;
+        }
+
+        $relation = $model->$relation();
+
+        if (! ($relation instanceof Relation)) {
+            return null;
+        }
+
+        return $relation;
+    }
+
     /**
      * @param  Builder<Model>  $builder
-     * @return array<int, mixed>
+     * @param  Relation<Model>  $relation
      */
-    protected function joinRelation(Builder $builder, Model $model, string $name, string $parent = null): array
+    protected function joinEloquentRelation(Builder $builder, Relation $relation, Model $model, string $name, string $parent = null): ?string
     {
-        /** @var Relation<Model> $relation */
-        $relation = $model->$name();
+        $method = 'join'.class_basename($relation);
 
-        $type = get_class($relation);
-
-        switch ($type) {
-            case BelongsTo::class:
-                /**
-                 * @var BelongsTo<Model, Model> $relation
-                 * @var Model $subModel
-                 */
-                $subModel = $relation->getModel();
-
-                $alias = $parent !== null
-                    ? $parent.'_'.$name
-                    : $name;
-
-                $parentTable = $parent ?? $model->getTable();
-
-                $builder->leftJoin(
-                    $subModel->getTable().' AS '.$alias,
-                    $alias.'.'.$relation->getOwnerKeyName(),
-                    '=',
-                    $parentTable.'.'.$relation->getForeignKeyName()
-                );
-
-                return [$subModel, $alias];
-            default:
-                throw new Exception('Relation "'.$type.'" is not supported');
+        if (! method_exists($this, $method)) {
+            return null;
         }
+
+        return $this->$method($builder, $relation, $model, $name, $parent);
+    }
+
+    /**
+     * @param  Builder<Model>  $builder
+     * @param  BelongsTo<Model, Model>  $relation
+     */
+    protected function joinBelongsTo(Builder $builder, BelongsTo $relation, Model $model, string $name, string $parent = null): string
+    {
+        /** @var Model $subModel */
+        $subModel = $relation->getModel();
+
+        $alias = $parent !== null
+            ? $parent.'_'.$name
+            : $name;
+
+        $parentTable = $parent ?? $model->getTable();
+
+        $builder->leftJoin(
+            $subModel->getTable().' AS '.$alias,
+            $alias.'.'.$relation->getOwnerKeyName(),
+            '=',
+            $parentTable.'.'.$relation->getForeignKeyName()
+        );
+
+        return $alias;
     }
 }

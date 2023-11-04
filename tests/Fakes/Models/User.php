@@ -2,6 +2,7 @@
 
 namespace RamonRietdijk\LivewireTables\Tests\Fakes\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,6 +28,14 @@ class User extends Model
         'is_admin' => 'boolean',
         'preferences' => 'array',
     ];
+
+    /** @return Attribute<string, null> */
+    public function uppercase(): Attribute
+    {
+        return Attribute::make(
+            get: fn (): string => strtoupper($this->name),
+        );
+    }
 
     /** @return BelongsTo<Company, User> */
     public function company(): BelongsTo
