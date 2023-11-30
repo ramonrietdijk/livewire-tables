@@ -3,8 +3,9 @@
 namespace RamonRietdijk\LivewireTables\Columns\Concerns;
 
 use Closure;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use RamonRietdijk\LivewireTables\Columns\SelectColumn;
 
 trait HasSearch
 {
@@ -40,9 +41,15 @@ trait HasSearch
     /** @param  Builder<Model>  $builder */
     public function search(Builder $builder, mixed $search): void
     {
-        $this->qualifyQuery($builder, function (Builder $builder, string $column) use ($search): void {
-            $builder->where($column, 'LIKE', '%'.$search.'%');
-        });
+        if ($this instanceof SelectColumn) {
+            $this->qualifyQuery($builder, function (Builder $builder, string $column) use ($search): void {
+                $builder->where($column, $search);
+            });
+        } else {
+            $this->qualifyQuery($builder, function (Builder $builder, string $column) use ($search): void {
+                $builder->where($column, 'LIKE', '%'.$search.'%');
+            });
+        }
     }
 
     /** @param  Builder<Model>  $builder */
