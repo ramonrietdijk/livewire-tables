@@ -6,7 +6,7 @@ trait HasFormat
 {
     protected ?string $format = null;
 
-    public function format(string $format = null): static
+    public function format(?string $format = null): static
     {
         $this->format = $format;
 

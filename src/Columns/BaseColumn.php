@@ -41,8 +41,8 @@ abstract class BaseColumn
 
     public function __construct(
         protected string $label,
-        string|Closure $column = null,
-        string $code = null
+        string|Closure|null $column = null,
+        ?string $code = null
     ) {
         if (is_string($column)) {
             $this->column = $column;

@@ -103,7 +103,7 @@ trait HasRelations
      * @param  Builder<Model>  $builder
      * @param  Relation<Model>  $relation
      */
-    protected function joinEloquentRelation(Builder $builder, Relation $relation, Model $model, string $name, string $parent = null): ?string
+    protected function joinEloquentRelation(Builder $builder, Relation $relation, Model $model, string $name, ?string $parent = null): ?string
     {
         $method = 'join'.class_basename($relation);
 
@@ -118,7 +118,7 @@ trait HasRelations
      * @param  Builder<Model>  $builder
      * @param  BelongsTo<Model, Model>  $relation
      */
-    protected function joinBelongsTo(Builder $builder, BelongsTo $relation, Model $model, string $name, string $parent = null): string
+    protected function joinBelongsTo(Builder $builder, BelongsTo $relation, Model $model, string $name, ?string $parent = null): string
     {
         /** @var Model $subModel */
         $subModel = $relation->getModel();
