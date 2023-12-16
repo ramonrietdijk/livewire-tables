@@ -20,10 +20,10 @@
         "livewire/livewire": "^3.0"
     },
     "require-dev": {
-        "laravel/pint": "^1.10",
-        "nunomaduro/larastan": "^2.6",
-        "orchestra/testbench": "^8.5",
-        "phpunit/phpunit": "^10.2"
+        "laravel/pint": "^1.13",
+        "larastan/larastan": "^2.7",
+        "orchestra/testbench": "^8.17",
+        "phpunit/phpunit": "^10.5"
     },
     "autoload": {
         "psr-4": {

@@ -11,7 +11,7 @@ trait HasValue
 {
     protected ?Closure $displayUsing = null;
 
-    public function displayUsing(Closure $displayUsing = null): static
+    public function displayUsing(?Closure $displayUsing = null): static
     {
         $this->displayUsing = $displayUsing;
 
