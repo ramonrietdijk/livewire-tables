@@ -1,6 +1,8 @@
 # Livewire Tables
 
-![Tests](https://github.com/ramonrietdijk/livewire-tables/workflows/tests/badge.svg)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ramonrietdijk/livewire-tables/tests.yml?label=tests)](https://github.com/ramonrietdijk/livewire-tables/actions/workflows/tests.yml)
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/ramonrietdijk/livewire-tables.svg)](https://packagist.org/packages/ramonrietdijk/livewire-tables)
 
 Easily create dynamic tables for models with Laravel Livewire.
 
