@@ -3,6 +3,7 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\DisabledSelectionBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
@@ -10,7 +11,7 @@ use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasSelectionTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_clear_the_selection(): void
     {
         Livewire::test(BlogLivewireTable::class)
@@ -21,7 +22,7 @@ class HasSelectionTest extends TestCase
             ->assertSet('selected', []);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_select_a_single_item(): void
     {
         Blog::factory()->count(3)->create();
@@ -34,7 +35,7 @@ class HasSelectionTest extends TestCase
             ->assertSet('selected', ['2', '3']);
     }
 
-    /** @test */
+    #[Test]
     public function it_cant_select_a_single_item_when_selection_is_disabled(): void
     {
         Blog::factory()->count(3)->create();
@@ -46,7 +47,7 @@ class HasSelectionTest extends TestCase
             ->assertCount('selected', 0);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_select_the_page(): void
     {
         Blog::factory()->count(30)->create();
@@ -59,7 +60,7 @@ class HasSelectionTest extends TestCase
             ->assertCount('selected', 0);
     }
 
-    /** @test */
+    #[Test]
     public function it_cant_select_the_page_when_selection_is_disabled(): void
     {
         Blog::factory()->count(30)->create();
@@ -69,7 +70,7 @@ class HasSelectionTest extends TestCase
             ->assertCount('selected', 0);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_select_the_table(): void
     {
         Blog::factory()->count(30)->create();
@@ -82,7 +83,7 @@ class HasSelectionTest extends TestCase
             ->assertCount('selected', 0);
     }
 
-    /** @test */
+    #[Test]
     public function it_cant_select_the_table_when_selection_is_disabled(): void
     {
         Blog::factory()->count(30)->create();

@@ -2,12 +2,13 @@
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Actions;
 
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class ActionTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_get_the_label_and_code(): void
     {
         $action = Action::make('Action', 'code', fn (): bool => true);
@@ -17,7 +18,7 @@ class ActionTest extends TestCase
         $this->assertNotNull($action->callback());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_executed(): void
     {
         $action = Action::make('Action', 'code', fn (): bool => true);
@@ -27,7 +28,7 @@ class ActionTest extends TestCase
         $this->assertTrue($result);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_used_as_javascript(): void
     {
         $action = Action::make('Action', 'javascript');

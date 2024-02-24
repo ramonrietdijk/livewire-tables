@@ -3,12 +3,13 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasSearchTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_reset_the_page_when_searching_globally(): void
     {
         Livewire::test(BlogLivewireTable::class)
@@ -17,7 +18,7 @@ class HasSearchTest extends TestCase
             ->assertSet('paginators.page', 1);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_reset_the_page_when_searching_columns(): void
     {
         Livewire::test(BlogLivewireTable::class)
@@ -26,7 +27,7 @@ class HasSearchTest extends TestCase
             ->assertSet('paginators.page', 1);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_remove_empty_searches(): void
     {
         Livewire::test(BlogLivewireTable::class)

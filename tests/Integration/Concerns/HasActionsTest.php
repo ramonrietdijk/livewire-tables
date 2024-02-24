@@ -3,13 +3,14 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasActionsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_execute_actions(): void
     {
         Blog::factory()->count(3)->create();
@@ -21,7 +22,7 @@ class HasActionsTest extends TestCase
             ->assertSet('selected', []);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_execute_standalone_actions(): void
     {
         Livewire::test(BlogLivewireTable::class)

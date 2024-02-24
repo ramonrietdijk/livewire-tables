@@ -3,12 +3,13 @@
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns\Concerns;
 
 use Illuminate\Contracts\View\View;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasFooterTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_have_a_footer(): void
     {
         $column = Column::make('Column', 'column');
@@ -22,7 +23,7 @@ class HasFooterTest extends TestCase
         $this->assertEquals('footer', $column->getFooterContent());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_render_the_footer(): void
     {
         $column = Column::make('Column', 'column');

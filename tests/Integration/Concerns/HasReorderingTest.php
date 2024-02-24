@@ -3,13 +3,15 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\ReorderingBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasReorderingTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_reset_the_selection(): void
     {
         Blog::factory()->count(3)->create();
@@ -23,12 +25,10 @@ class HasReorderingTest extends TestCase
     }
 
     /**
-     * @test
-     *
-     * @dataProvider cases
-     *
      * @param  array<int, string>  $result
      */
+    #[Test]
+    #[DataProvider('cases')]
     public function it_can_reorder_items(string $from, string $to, bool $above, array $result): void
     {
         Blog::factory()->createMany([

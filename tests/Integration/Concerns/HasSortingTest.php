@@ -3,6 +3,7 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\ReorderingBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
@@ -10,7 +11,7 @@ use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasSortingTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_sort(): void
     {
         Livewire::test(BlogLivewireTable::class)
@@ -27,7 +28,7 @@ class HasSortingTest extends TestCase
             ->assertSet('sortDirection', '');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_sort_by_the_reordering_column_if_no_sorting_is_set(): void
     {
         Blog::factory()->createMany([
@@ -43,7 +44,7 @@ class HasSortingTest extends TestCase
             ->assertSeeTextInOrder(['Apple', 'Banana', 'Pear']);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_ignore_the_set_sorting_when_reordering(): void
     {
         Blog::factory()->createMany([

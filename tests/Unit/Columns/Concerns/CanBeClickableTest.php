@@ -2,12 +2,13 @@
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns\Concerns;
 
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class CanBeClickableTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_be_clickable(): void
     {
         $column = Column::make('Column', 'column');

@@ -4,12 +4,13 @@ namespace RamonRietdijk\LivewireTables\Tests\Unit\Filters;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Filters\SelectFilter;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class FilterTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_get_the_label_and_column_and_code(): void
     {
         $filter = SelectFilter::make('Company', 'author.company.id');
@@ -19,7 +20,7 @@ class FilterTest extends TestCase
         $this->assertEquals('author_company_id', $filter->code());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_created_with_a_callback(): void
     {
         $filter = SelectFilter::make('Company', function (Builder $builder, mixed $value): void {
@@ -32,7 +33,7 @@ class FilterTest extends TestCase
         $this->assertTrue($filter->isComputed());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_render(): void
     {
         $filter = SelectFilter::make('Label', 'column');

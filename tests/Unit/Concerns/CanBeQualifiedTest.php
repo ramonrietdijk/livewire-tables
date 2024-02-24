@@ -4,6 +4,8 @@ namespace RamonRietdijk\LivewireTables\Tests\Unit\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Exceptions\ColumnException;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
@@ -11,7 +13,7 @@ use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class CanBeQualifiedTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_qualify_using_aliases(): void
     {
         $column = Column::make('Name', 'name');
@@ -23,7 +25,7 @@ class CanBeQualifiedTest extends TestCase
         $this->assertTrue($column->shouldQualifyUsingAlias());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_qualify_columns(): void
     {
         /** @var Builder<Model> $builder */
@@ -34,7 +36,7 @@ class CanBeQualifiedTest extends TestCase
         $this->assertEquals('users.name', $column->qualify($builder));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_throw_exceptions_qualifying_columns_if_a_column_is_not_set(): void
     {
         $this->expectException(ColumnException::class);
@@ -46,11 +48,8 @@ class CanBeQualifiedTest extends TestCase
             ->qualify($builder);
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider qualifyQueries
-     */
+    #[Test]
+    #[DataProvider('qualifyQueries')]
     public function it_can_qualify_queries(string $column, bool $alias, string $expected): void
     {
         /** @var Builder<Model> $builder */
@@ -89,7 +88,7 @@ class CanBeQualifiedTest extends TestCase
         ];
     }
 
-    /** @test */
+    #[Test]
     public function it_can_throw_exceptions_qualifying_queries_if_a_column_is_not_set(): void
     {
         $this->expectException(ColumnException::class);

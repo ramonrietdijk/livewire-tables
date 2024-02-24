@@ -4,13 +4,14 @@ namespace RamonRietdijk\LivewireTables\Tests\Unit\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Filters\DateFilter;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class DateFilterTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_apply_filters(): void
     {
         User::factory()->create(['created_at' => now()]);

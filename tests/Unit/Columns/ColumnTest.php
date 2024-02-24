@@ -3,13 +3,14 @@
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns;
 
 use Illuminate\Contracts\View\View;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class ColumnTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_get_the_label_and_column_and_code(): void
     {
         $column = Column::make('Company', 'author.company.name');
@@ -19,7 +20,7 @@ class ColumnTest extends TestCase
         $this->assertEquals('author_company_name', $column->code());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_created_with_a_callback(): void
     {
         $column = Column::make('Company', fn (): string => '');
@@ -30,7 +31,7 @@ class ColumnTest extends TestCase
         $this->assertTrue($column->isComputed());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_render(): void
     {
         $column = Column::make('Name', 'name');

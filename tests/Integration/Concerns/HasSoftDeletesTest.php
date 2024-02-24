@@ -3,6 +3,7 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Enums\TrashedMode;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\UserLivewireTable;
@@ -12,7 +13,7 @@ use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasSoftDeletesTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_see_without_trashed(): void
     {
         Blog::factory()->deleted()->create(['title' => 'Deleted']);
@@ -24,7 +25,7 @@ class HasSoftDeletesTest extends TestCase
             ->assertDontSee('Deleted');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_see_with_trashed(): void
     {
         Blog::factory()->deleted()->create(['title' => 'Deleted']);
@@ -36,7 +37,7 @@ class HasSoftDeletesTest extends TestCase
             ->assertSee('Deleted');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_see_only_trashed(): void
     {
         Blog::factory()->deleted()->create(['title' => 'Deleted']);
@@ -48,7 +49,7 @@ class HasSoftDeletesTest extends TestCase
             ->assertSee('Deleted');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_see_everything_without_the_soft_deletes_trait(): void
     {
         User::factory()->deleted()->create(['name' => 'John Doe']);

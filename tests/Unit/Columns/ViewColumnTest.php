@@ -3,13 +3,14 @@
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns;
 
 use Illuminate\View\View;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\ViewColumn;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class ViewColumnTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_resolve_views(): void
     {
         /** @var User $user */
@@ -26,7 +27,7 @@ class ViewColumnTest extends TestCase
         $this->assertNotNull($model);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_resolve_views_via_a_callback(): void
     {
         /** @var User $user */
@@ -43,7 +44,7 @@ class ViewColumnTest extends TestCase
         $this->assertNotNull($model);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_resolve_null(): void
     {
         /** @var User $user */

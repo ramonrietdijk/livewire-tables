@@ -2,6 +2,7 @@
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns\Concerns;
 
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Company;
@@ -10,7 +11,7 @@ use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasValueTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_have_a_display_callback(): void
     {
         $column = Column::make('Column', 'column');
@@ -22,7 +23,7 @@ class HasValueTest extends TestCase
         $this->assertNotNull($column->displayUsingCallback());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_values(): void
     {
         /** @var Company $company */
@@ -38,7 +39,7 @@ class HasValueTest extends TestCase
         $this->assertEquals('Company', $value);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_values_without_a_column(): void
     {
         /** @var User $user */
@@ -51,7 +52,7 @@ class HasValueTest extends TestCase
         $this->assertEquals($user, $value);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_values_from_json_columns(): void
     {
         /** @var User $user */
@@ -64,7 +65,7 @@ class HasValueTest extends TestCase
         $this->assertEquals('Light', $value);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_values_from_x_to_many_relations(): void
     {
         /** @var User $user */
@@ -79,7 +80,7 @@ class HasValueTest extends TestCase
         $this->assertEquals('Blog, Blog, Blog', $value);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_resolve_values(): void
     {
         /** @var User $user */
@@ -92,7 +93,7 @@ class HasValueTest extends TestCase
         $this->assertEquals('John Doe', $value);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_implode_resolved_values(): void
     {
         /** @var User $user */
@@ -114,7 +115,7 @@ class HasValueTest extends TestCase
         $this->assertEquals('Red, Green, Blue', $value);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_resolve_values_with_a_callback(): void
     {
         /** @var User $user */

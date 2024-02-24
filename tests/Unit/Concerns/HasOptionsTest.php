@@ -2,12 +2,13 @@
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Concerns;
 
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\SelectColumn;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasOptionsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_have_options(): void
     {
         $column = SelectColumn::make('Column', 'column');
