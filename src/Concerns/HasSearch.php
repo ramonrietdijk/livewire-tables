@@ -35,9 +35,9 @@ trait HasSearch
         $this->resetPage();
     }
 
-    public function updatedSearch(mixed $value, string $key): void
+    public function updatedSearch(mixed $value, ?string $key): void
     {
-        if (blank($value)) {
+        if (blank($value) && $key !== null) {
             unset($this->search[$key]);
         }
 
