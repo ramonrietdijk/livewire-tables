@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator as ConcreteLengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
-use RamonRietdijk\LivewireTables\Columns\BaseColumn;
 use RamonRietdijk\LivewireTables\Concerns\HasActions;
 use RamonRietdijk\LivewireTables\Concerns\HasColumns;
 use RamonRietdijk\LivewireTables\Concerns\HasDeferredLoading;
@@ -55,27 +54,6 @@ class LivewireTable extends Component
     protected $listeners = [
         'refreshLivewireTable' => '$refresh',
     ];
-
-    public function mount(): void
-    {
-        $this->initialize();
-    }
-
-    protected function initialize(): void
-    {
-        $this->restoreSession();
-
-        if (count($this->columns) === 0) {
-            /** @var array<int, string> $columns */
-            $columns = $this->resolveColumns()
-                ->filter(fn (BaseColumn $column): bool => $column->isVisible())
-                ->map(fn (BaseColumn $column): string => $column->code())
-                ->values()
-                ->toArray();
-
-            $this->columns = $columns;
-        }
-    }
 
     protected function link(Model $model): ?string
     {
