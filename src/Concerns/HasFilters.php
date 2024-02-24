@@ -26,9 +26,9 @@ trait HasFilters
         ];
     }
 
-    public function updatedFilters(mixed $value, string $key): void
+    public function updatedFilters(mixed $value, ?string $key): void
     {
-        if (blank($value)) {
+        if (blank($value) && $key !== null) {
             unset($this->filters[$key]);
         }
 
