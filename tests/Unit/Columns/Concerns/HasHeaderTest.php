@@ -3,12 +3,13 @@
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns\Concerns;
 
 use Illuminate\Contracts\View\View;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasHeaderTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_render_the_header(): void
     {
         $column = Column::make('Column', 'column');
@@ -22,7 +23,7 @@ class HasHeaderTest extends TestCase
         $this->assertNotNull($column);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_disable_the_header(): void
     {
         $column = Column::make('Column', 'column');

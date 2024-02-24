@@ -2,13 +2,14 @@
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns;
 
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\DateColumn;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class DateColumnTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_resolve_nullable_values(): void
     {
         /** @var User $user */
@@ -21,7 +22,7 @@ class DateColumnTest extends TestCase
         $this->assertNull($value);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_resolve_values_with_a_format(): void
     {
         /** @var User $user */
@@ -34,7 +35,7 @@ class DateColumnTest extends TestCase
         $this->assertEquals($value, '25-02-2023');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_resolve_values_without_a_format(): void
     {
         /** @var User $user */
@@ -47,7 +48,7 @@ class DateColumnTest extends TestCase
         $this->assertEquals($value, '2023-02-25 12:00:00');
     }
 
-    /** @test */
+    #[Test]
     public function display_using_always_takes_priority(): void
     {
         /** @var User $user */

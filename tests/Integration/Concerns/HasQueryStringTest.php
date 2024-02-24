@@ -3,6 +3,7 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\LivewireManager;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\DisabledQueryStringBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\QueryStringPrefixedBlogLivewireTable;
@@ -10,7 +11,7 @@ use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasQueryStringTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_has_query_string_parameters(): void
     {
         /** @var LivewireManager $livewireManager */
@@ -22,7 +23,7 @@ class HasQueryStringTest extends TestCase
             ->assertSet('globalSearch', '::global-search::');
     }
 
-    /** @test */
+    #[Test]
     public function it_has_prefixed_query_string_parameters(): void
     {
         /** @var LivewireManager $livewireManager */
@@ -34,7 +35,7 @@ class HasQueryStringTest extends TestCase
             ->assertSet('globalSearch', '::global-search::');
     }
 
-    /** @test */
+    #[Test]
     public function the_query_string_can_be_disabled(): void
     {
         /** @var LivewireManager $livewireManager */

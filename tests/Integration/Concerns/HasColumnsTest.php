@@ -3,12 +3,13 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasColumnsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_select_all_columns(): void
     {
         Livewire::test(BlogLivewireTable::class)

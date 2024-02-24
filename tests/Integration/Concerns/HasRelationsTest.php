@@ -3,6 +3,7 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\RelationBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Category;
@@ -13,7 +14,7 @@ use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasRelationsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_load_different_types_of_relations(): void
     {
         Company::factory()

@@ -2,12 +2,13 @@
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns\Concerns;
 
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\ImageColumn;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasSizeTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_set_a_size(): void
     {
         $column = ImageColumn::make('Image', 'image');
@@ -21,7 +22,7 @@ class HasSizeTest extends TestCase
         $this->assertEquals(100, $column->getHeight());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_a_width(): void
     {
         $column = ImageColumn::make('Image', 'image');
@@ -33,7 +34,7 @@ class HasSizeTest extends TestCase
         $this->assertEquals(100, $column->getWidth());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_a_height(): void
     {
         $column = ImageColumn::make('Image', 'image');

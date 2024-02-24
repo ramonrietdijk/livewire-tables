@@ -3,12 +3,13 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\SessionBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasSessionTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_store_sessions(): void
     {
         $sessionKey = SessionBlogLivewireTable::class.':configuration';
@@ -26,7 +27,7 @@ class HasSessionTest extends TestCase
         ], $value);
     }
 
-    /** @test */
+    #[Test]
     public function it_only_stores_configured_properties_in_sessions(): void
     {
         $sessionKey = SessionBlogLivewireTable::class.':configuration';
@@ -37,7 +38,7 @@ class HasSessionTest extends TestCase
         $this->assertFalse(session()->has($sessionKey));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_restore_sessions(): void
     {
         $sessionKey = SessionBlogLivewireTable::class.':configuration';

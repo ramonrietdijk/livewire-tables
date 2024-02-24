@@ -4,13 +4,14 @@ namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\SelectColumn;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class SelectColumnTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_search(): void
     {
         User::factory()->create(['name' => 'Alex']);

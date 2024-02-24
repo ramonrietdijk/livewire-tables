@@ -4,6 +4,7 @@ namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Enums\Direction;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
@@ -11,7 +12,7 @@ use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasSortingTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_be_sortable(): void
     {
         $column = Column::make('Column', 'column');
@@ -25,7 +26,7 @@ class HasSortingTest extends TestCase
         $this->assertNull($column->sortCallback());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_sortable_with_a_callback(): void
     {
         $column = Column::make('Column', 'column');
@@ -41,7 +42,7 @@ class HasSortingTest extends TestCase
         $this->assertNotNull($column->sortCallback());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_sort(): void
     {
         User::factory()->create(['name' => 'John Doe']);
@@ -59,7 +60,7 @@ class HasSortingTest extends TestCase
         $this->assertEquals('Jane Doe', $user->name);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_apply_sorting(): void
     {
         User::factory()->create(['name' => 'John Doe']);
@@ -77,7 +78,7 @@ class HasSortingTest extends TestCase
         $this->assertEquals('Jane Doe', $user->name);
     }
 
-    /** @test */
+    #[Test]
     public function it_wont_apply_sorting_to_computed_columns(): void
     {
         User::factory()->create(['name' => 'John Doe']);
@@ -95,7 +96,7 @@ class HasSortingTest extends TestCase
         $this->assertEquals('John Doe', $user->name);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_apply_sorting_with_a_callback(): void
     {
         User::factory()->create(['name' => 'John Doe']);

@@ -5,13 +5,14 @@ namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns\Concerns;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasSearchTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_be_searchable(): void
     {
         $column = Column::make('Column', 'column');
@@ -25,7 +26,7 @@ class HasSearchTest extends TestCase
         $this->assertNull($column->searchCallback());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_searchable_with_a_callback(): void
     {
         $column = Column::make('Column', 'column');
@@ -41,7 +42,7 @@ class HasSearchTest extends TestCase
         $this->assertNotNull($column->searchCallback());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_search(): void
     {
         User::factory()->create(['name' => 'John Doe']);
@@ -56,7 +57,7 @@ class HasSearchTest extends TestCase
         $this->assertEquals(1, $builder->count());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_search_json_columns(): void
     {
         User::factory()->create(['name' => 'John Doe', 'preferences' => ['theme' => 'Light']]);
@@ -71,7 +72,7 @@ class HasSearchTest extends TestCase
         $this->assertEquals(1, $builder->count());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_apply_searching(): void
     {
         User::factory()->create(['name' => 'John Doe']);
@@ -86,7 +87,7 @@ class HasSearchTest extends TestCase
         $this->assertEquals(1, $builder->count());
     }
 
-    /** @test */
+    #[Test]
     public function it_wont_apply_searching_to_computed_columns(): void
     {
         User::factory()->create(['name' => 'John Doe']);
@@ -101,7 +102,7 @@ class HasSearchTest extends TestCase
         $this->assertEquals(2, $builder->count());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_apply_searching_with_a_callback(): void
     {
         User::factory()->create(['name' => 'John Doe']);
@@ -122,7 +123,7 @@ class HasSearchTest extends TestCase
         $this->assertEquals(1, $builder->count());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_render_the_search_section(): void
     {
         $column = Column::make('Column', 'column');

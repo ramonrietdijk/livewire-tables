@@ -3,6 +3,7 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Livewire;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\EmptyBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
@@ -12,13 +13,13 @@ use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class LivewireTableTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_instantiate_an_empty_livewire_table(): void
     {
         Livewire::test(EmptyBlogLivewireTable::class)->assertSet('columns', []);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_do_advanced_querying(): void
     {
         /** @var User $johnDoe */

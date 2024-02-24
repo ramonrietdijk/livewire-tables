@@ -3,12 +3,13 @@
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
 class HasPaginationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_reset_selecting_the_page(): void
     {
         Livewire::test(BlogLivewireTable::class)
@@ -17,7 +18,7 @@ class HasPaginationTest extends TestCase
             ->assertSet('selectedPage', false);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_reset_the_page(): void
     {
         Livewire::test(BlogLivewireTable::class)
