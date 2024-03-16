@@ -40,4 +40,4 @@ Next, supply the user id via the view.
 <livewire:orders-table :userId="$user->id" />
 ```
 
-The property will automatically be assigned to the class. You do not need to add the `mount` method. Also note that the `mount` method is already used by the package to initialize properties.
+The property will automatically be assigned to the class. You do not need to add the `mount` method.

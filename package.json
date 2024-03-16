@@ -10,7 +10,7 @@
     "author": "Ramon Rietdijk",
     "license": "MIT",
     "devDependencies": {
-        "vitepress": "^1.0.0-rc.32",
-        "vue": "^3.3.12"
+        "vitepress": "^1.0.0-rc.45",
+        "vue": "^3.4.21"
     }
 }
