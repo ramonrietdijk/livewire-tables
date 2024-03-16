@@ -2,6 +2,14 @@
 
 Guide to upgrade the package to the next major versions.
 
+## Upgrading to 4.x from 3.x
+
+Laravel 11 is supported since version 4.x. Support for Laravel 10 and PHP version 8.1 have both been dropped.
+
+The `mount` method has been renamed to `mountHasInitialization` and is moved to the `HasInitialization` concern. If you are overriding the `mount` method, make sure to remove `parent::mount()` as it's no longer available.
+
+The `$key` parameter of methods `updatedFilters` and `updatedSearch` have been made nullable. If you are overriding these methods, make sure to update the method signature.
+
 ## Upgrading to 3.x from 2.x
 
 Support for Livewire 3 has been introduced in version 3.x.
