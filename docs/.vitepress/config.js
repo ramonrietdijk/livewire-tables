@@ -5,6 +5,9 @@ export default {
     base: '/livewire-tables',
     themeConfig: {
         logo: 'https://ramonrietdijk.nl/img/logo.svg',
+        search: {
+            provider: 'local'
+        },
         socialLinks: [
             {
                 icon: 'github',
