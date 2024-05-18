@@ -10,7 +10,7 @@ trait HasSelect
     /** @param  Builder<Model>  $builder */
     protected function applySelect(Builder $builder): static
     {
-        $builder->select($builder->qualifyColumn('*'));
+        $builder->addSelect($builder->qualifyColumn('*'));
 
         return $this;
     }
