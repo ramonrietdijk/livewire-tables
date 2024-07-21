@@ -16,6 +16,7 @@ use RamonRietdijk\LivewireTables\Tests\Database\Factories\TagFactory;
  */
 class Tag extends Model
 {
+    /** @use HasFactory<TagFactory> */
     use HasFactory;
 
     /** @return BelongsToMany<Blog> */

@@ -14,8 +14,7 @@ class Column
 
     public function __construct(
         protected string $column
-    ) {
-    }
+    ) {}
 
     public function column(): Stringable
     {

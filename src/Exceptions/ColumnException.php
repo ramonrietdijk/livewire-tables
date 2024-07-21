@@ -2,6 +2,4 @@
 
 namespace RamonRietdijk\LivewireTables\Exceptions;
 
-class ColumnException extends BaseException
-{
-}
+class ColumnException extends BaseException {}

@@ -19,8 +19,7 @@ abstract class BaseAction
         protected string $label,
         protected string $code,
         protected ?Closure $callback = null
-    ) {
-    }
+    ) {}
 
     public function label(): string
     {
