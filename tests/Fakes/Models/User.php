@@ -22,6 +22,7 @@ use RamonRietdijk\LivewireTables\Tests\Database\Factories\UserFactory;
  */
 class User extends Model
 {
+    /** @use HasFactory<UserFactory> */
     use HasFactory;
 
     protected $casts = [

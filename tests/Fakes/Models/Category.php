@@ -16,6 +16,7 @@ use RamonRietdijk\LivewireTables\Tests\Database\Factories\CategoryFactory;
  */
 class Category extends Model
 {
+    /** @use HasFactory<CategoryFactory> */
     use HasFactory;
 
     /** @return HasMany<Blog> */

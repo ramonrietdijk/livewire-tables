@@ -26,7 +26,9 @@ use RamonRietdijk\LivewireTables\Tests\Database\Factories\BlogFactory;
  */
 class Blog extends Model
 {
+    /** @use HasFactory<BlogFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
     protected $casts = [

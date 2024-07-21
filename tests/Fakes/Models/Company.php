@@ -16,6 +16,7 @@ use RamonRietdijk\LivewireTables\Tests\Database\Factories\CompanyFactory;
  */
 class Company extends Model
 {
+    /** @use HasFactory<CompanyFactory> */
     use HasFactory;
 
     /** @return HasMany<User> */
