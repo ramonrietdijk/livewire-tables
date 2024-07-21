@@ -10,6 +10,9 @@ trait HasColumns
     /** @var array<int, string> */
     public array $columns = [];
 
+    /** @var array<int, string> */
+    public array $columnOrder = [];
+
     public function selectAllColumns(bool $select): void
     {
         /** @var array<int, string> $columns */
@@ -20,6 +23,64 @@ trait HasColumns
         $this->columns = $columns;
 
         $this->updateSession();
+    }
+
+    public function reorderColumn(string $from, string $to, bool $above): void
+    {
+        if ($from === $to) {
+            return;
+        }
+
+        $currentOrder = (int) array_search($from, $this->columnOrder);
+
+        $toOrder = (int) array_search($to, $this->columnOrder);
+
+        $up = $toOrder > $currentOrder;
+
+        if ($above && $up) {
+            $newOrder = $toOrder - 1;
+        } elseif (! $above && ! $up) {
+            $newOrder = $toOrder + 1;
+        } else {
+            $newOrder = $toOrder;
+        }
+
+        if ($newOrder === $currentOrder) {
+            return;
+        }
+
+        $columnOrder = $this->columnOrder;
+
+        $removedColumn = array_splice($columnOrder, $currentOrder, 1);
+
+        array_splice($columnOrder, $newOrder, 0, $removedColumn);
+
+        $this->columnOrder = array_values($columnOrder);
+
+        $this->updateSession();
+    }
+
+    protected function initializeColumns(): static
+    {
+        $columns = $this->resolveColumns();
+
+        if (count($this->columns) === 0) {
+            /** @var array<int, string> $visibleColumns */
+            $visibleColumns = $columns
+                ->filter(fn (BaseColumn $column): bool => $column->isVisible())
+                ->map(fn (BaseColumn $column): string => $column->code())
+                ->values()
+                ->toArray();
+
+            $this->columns = $visibleColumns;
+        }
+
+        /** @var array<int, string> $codes */
+        $codes = $columns->map(fn (BaseColumn $column): string => $column->code())->toArray();
+
+        $this->columnOrder = array_unique(array_merge($this->columnOrder, $codes));
+
+        return $this;
     }
 
     /** @return array<int, BaseColumn> */
@@ -33,6 +94,8 @@ trait HasColumns
     /** @return Enumerable<int, BaseColumn> */
     protected function resolveColumns(): Enumerable
     {
-        return collect($this->columns());
+        return collect($this->columns())->sortBy(function (BaseColumn $column): int {
+            return (int) array_search($column->code(), $this->columnOrder);
+        })->values();
     }
 }

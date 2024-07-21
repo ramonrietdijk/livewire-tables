@@ -24,6 +24,10 @@ class HasSessionTest extends TestCase
             'columns' => [
                 'title',
             ],
+            'columnOrder' => [
+                'title',
+                'published',
+            ],
         ], $value);
     }
 

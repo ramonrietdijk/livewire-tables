@@ -12,11 +12,12 @@ Sessions can be enabled by setting the `$useSession` property to `true`.
 protected bool $useSession = true;
 ```
 
-By default, only the selected columns are saved within the session. The `$sessionProperties` property contains a list of all properties that will be saved to the session. By adding `globalSearch` to the list, for example, the global search will also be saved in the session.
+By default, only the selected columns and their order are saved within the session. The `$sessionProperties` property contains a list of all properties that will be saved to the session. By adding `globalSearch` to the list, for example, the global search will also be saved in the session.
 
 ```php
 protected array $sessionProperties = [
     'columns',
+    'columnOrder',
     'globalSearch',
 ];
 ```
