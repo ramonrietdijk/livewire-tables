@@ -16,13 +16,6 @@ class BlogTable extends LivewireTable
 }
 ```
 
-If you have manually created the file, Livewire may not yet know about this component. This can be fixed by
-running `livewire:discover`.
-
-```sh
-php artisan livewire:discover
-```
-
 Depending on how you have named your table, you should be able to see it now.
 
 ```html
