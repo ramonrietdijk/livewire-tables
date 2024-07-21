@@ -2,8 +2,6 @@
 
 namespace RamonRietdijk\LivewireTables\Concerns;
 
-use RamonRietdijk\LivewireTables\Columns\BaseColumn;
-
 trait HasInitialization
 {
     public bool $initialized = false;
@@ -22,15 +20,6 @@ trait HasInitialization
     {
         $this->restoreSession();
 
-        if (count($this->columns) === 0) {
-            /** @var array<int, string> $columns */
-            $columns = $this->resolveColumns()
-                ->filter(fn (BaseColumn $column): bool => $column->isVisible())
-                ->map(fn (BaseColumn $column): string => $column->code())
-                ->values()
-                ->toArray();
-
-            $this->columns = $columns;
-        }
+        $this->initializeColumns();
     }
 }

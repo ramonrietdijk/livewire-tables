@@ -11,6 +11,7 @@ trait HasSession
     /** @var array<int, string> */
     protected array $sessionProperties = [
         'columns',
+        'columnOrder',
     ];
 
     public function updatedHasSession(string $property): void
