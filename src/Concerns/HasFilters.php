@@ -42,6 +42,11 @@ trait HasFilters
         $this->updateSession();
     }
 
+    protected function canClearFilters(): bool
+    {
+        return count($this->filters) > 0;
+    }
+
     /** @return array<int, BaseFilter> */
     protected function filters(): array
     {
