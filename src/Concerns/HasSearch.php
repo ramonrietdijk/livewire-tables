@@ -44,6 +44,21 @@ trait HasSearch
         $this->resetPage();
     }
 
+    public function clearSearch(): void
+    {
+        $this->globalSearch = '';
+        $this->search = [];
+
+        $this->resetPage();
+
+        $this->updateSession();
+    }
+
+    protected function canClearSearch(): bool
+    {
+        return strlen($this->globalSearch) > 0 || count($this->search) > 0;
+    }
+
     /** @param  Builder<Model>  $builder */
     protected function applyGlobalSearch(Builder $builder): static
     {
