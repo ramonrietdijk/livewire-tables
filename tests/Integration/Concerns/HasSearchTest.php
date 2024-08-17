@@ -36,4 +36,17 @@ class HasSearchTest extends TestCase
             ->set('search.author_name', '')
             ->assertSet('search', []);
     }
+
+    #[Test]
+    public function it_can_clear_the_search(): void
+    {
+        Livewire::test(BlogLivewireTable::class)
+            ->set('globalSearch', 'search')
+            ->set('search.author_name', 'search')
+            ->set('paginators.page', 2)
+            ->call('clearSearch')
+            ->assertSet('globalSearch', '')
+            ->assertSet('search', [])
+            ->assertSet('paginators.page', 1);
+    }
 }
