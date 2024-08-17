@@ -7,7 +7,7 @@
     ])
     title="{{ __('Reordering') }}"
     aria-label="{{ __('Reordering') }}"
-    x-on:click="$wire.set('reordering', ! $wire.reordering)"
+    wire:click="$toggle('reordering')"
 >
     <!-- Icon "queue-list" (outline) from https://heroicons.com -->
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
