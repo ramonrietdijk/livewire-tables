@@ -55,6 +55,26 @@ SelectFilter::make(__('Category'), 'category_id')
     ->multiple(),
 ```
 
+You can also use a nested array in order to make use of option groups. Note that only one level of nesting is supported.
+
+```php
+SelectFilter::make(__('Category'), 'category_id')
+    ->options([
+        'Software' => [
+            1 => 'PHP',
+            2 => 'Laravel',
+            3 => 'Tailwind CSS',
+        ],
+        'Hardware' => [
+            4 => 'Laptops',
+            5 => 'Monitors',
+            6 => 'Keyboards',
+        ],
+    ]),
+
+```
+
+
 ## JSON
 
 The table can also be filtered using a JSON column.

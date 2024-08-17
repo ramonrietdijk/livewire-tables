@@ -4,7 +4,15 @@
         wire:model.live="search.{{ $column->code() }}">
         <option value="">&mdash;</option>
         @foreach($column->getOptions() as $key => $value)
-            <option value="{{ $key }}">{{ $value }}</option>
+            @if (is_array($value))
+                <optgroup label="{{ $key }}">
+                    @foreach($value as $key => $value)
+                        <option value="{{ $key }}">{{ $value }}</option>
+                    @endforeach
+                </optgroup>
+            @else
+                <option value="{{ $key }}">{{ $value }}</option>
+            @endif
         @endforeach
     </select>
 </div>
