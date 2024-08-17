@@ -71,9 +71,7 @@ SelectFilter::make(__('Category'), 'category_id')
             6 => 'Keyboards',
         ],
     ]),
-
 ```
-
 
 ## JSON
 
