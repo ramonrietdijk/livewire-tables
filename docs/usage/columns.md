@@ -59,6 +59,24 @@ SelectColumn::make(__('Favorite Fruit'), 'favorite_fruit')
     ]),
 ```
 
+You can also use a nested array in order to make use of option groups. Note that only one level of nesting is supported.
+
+```php
+SelectColumn::make(__('Favorite Fruit'), 'favorite_fruit')
+    ->options([
+        'Red Fruit' => [
+            'Apple' => 'Apple',
+            'Strawberry' => 'Strawberry',
+        ],
+        'Yellow Fruit' => [
+            'Banana' => 'Banana',
+        ],
+        'Green Fruit' => [
+            'Pear' => 'Pear',
+        ],
+    ]),
+```
+
 ### Image Column
 
 Images can easily be displayed using the `ImageColumn`. The value of the field will be the `src` of the image. It is also

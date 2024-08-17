@@ -12,8 +12,16 @@
         @if(! $filter->isMultiple())
             <option value="">&mdash;</option>
         @endif
-        @foreach($filter->getOptions() as $value => $label)
-            <option value="{{ $value }}">{{ $label }}</option>
+        @foreach($filter->getOptions() as $key => $value)
+            @if (is_array($value))
+                <optgroup label="{{ $key }}">
+                    @foreach($value as $key => $value)
+                        <option value="{{ $key }}">{{ $value }}</option>
+                    @endforeach
+                </optgroup>
+            @else
+                <option value="{{ $key }}">{{ $value }}</option>
+            @endif
         @endforeach
     </select>
 </div>
