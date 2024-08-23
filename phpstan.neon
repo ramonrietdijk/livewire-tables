@@ -1,4 +1,5 @@
 includes:
+    - ./vendor/phpstan/phpstan-strict-rules/rules.neon
     - ./vendor/larastan/larastan/extension.neon
 
 parameters:
@@ -6,3 +7,7 @@ parameters:
         - src
         - tests
     level: 9
+    ignoreErrors:
+        - identifier: staticMethod.dynamicCall
+        - identifier: property.dynamicName
+        - identifier: method.dynamicName

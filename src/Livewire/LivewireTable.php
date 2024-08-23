@@ -50,7 +50,7 @@ class LivewireTable extends Component
 
     protected string $model = Model::class;
 
-    /** @var array <int|string, string> */
+    /** @var mixed */
     protected $listeners = [
         'refreshLivewireTable' => '$refresh',
     ];
