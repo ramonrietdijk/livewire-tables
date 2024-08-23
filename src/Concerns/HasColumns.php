@@ -31,9 +31,9 @@ trait HasColumns
             return;
         }
 
-        $currentOrder = (int) array_search($from, $this->columnOrder);
+        $currentOrder = (int) array_search($from, $this->columnOrder, true);
 
-        $toOrder = (int) array_search($to, $this->columnOrder);
+        $toOrder = (int) array_search($to, $this->columnOrder, true);
 
         $up = $toOrder > $currentOrder;
 
@@ -95,7 +95,7 @@ trait HasColumns
     protected function resolveColumns(): Enumerable
     {
         return collect($this->columns())->sortBy(function (BaseColumn $column): int {
-            return (int) array_search($column->code(), $this->columnOrder);
+            return (int) array_search($column->code(), $this->columnOrder, true);
         })->values();
     }
 }

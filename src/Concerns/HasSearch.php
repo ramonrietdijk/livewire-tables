@@ -67,7 +67,7 @@ trait HasSearch
         }
 
         $columns = $this->resolveColumns()->filter(function (BaseColumn $column): bool {
-            return $column->isSearchable() && in_array($column->code(), $this->columns);
+            return $column->isSearchable() && in_array($column->code(), $this->columns, true);
         });
 
         $builder->where(function (Builder $builder) use ($columns): void {
@@ -89,7 +89,7 @@ trait HasSearch
         }
 
         $columns = $this->resolveColumns()->filter(function (BaseColumn $column): bool {
-            return $column->isSearchable() && in_array($column->code(), $this->columns);
+            return $column->isSearchable() && in_array($column->code(), $this->columns, true);
         });
 
         $builder->where(function (Builder $builder) use ($columns): void {

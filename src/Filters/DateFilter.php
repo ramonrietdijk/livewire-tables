@@ -8,9 +8,9 @@ class DateFilter extends BaseFilter
 {
     protected string $view = 'livewire-table::filters.date';
 
-    /** @param  array<string, string>  $value */
     public function filter(Builder $builder, mixed $value): void
     {
+        /** @var array<string, string> $value */
         $from = $value['from'] ?? null;
         $to = $value['to'] ?? null;
 

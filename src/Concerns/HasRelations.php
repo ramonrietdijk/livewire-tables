@@ -55,11 +55,11 @@ trait HasRelations
 
                 $fullRelation = $previous->push($segment)->implode('.');
 
-                if (! in_array($fullRelation, $with)) {
+                if (! in_array($fullRelation, $with, true)) {
                     $with[] = $fullRelation;
                 }
 
-                if (! in_array($fullRelation, $join) && $shouldJoin) {
+                if (! in_array($fullRelation, $join, true) && $shouldJoin) {
                     $join[] = $fullRelation;
 
                     $lookup[$fullRelation] = $this->joinEloquentRelation($builder, $relation, $model, $segment, $alias);

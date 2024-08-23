@@ -43,7 +43,7 @@ trait HasPagination
     {
         $options = $this->perPageOptions();
 
-        if (! in_array($this->perPage, $options)) {
+        if (! in_array($this->perPage, $options, true)) {
             return $options[0];
         }
 

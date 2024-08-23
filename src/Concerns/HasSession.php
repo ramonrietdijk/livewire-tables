@@ -22,7 +22,7 @@ trait HasSession
 
         $property = Str::of($property)->before('.')->toString();
 
-        if (! in_array($property, $this->sessionProperties)) {
+        if (! in_array($property, $this->sessionProperties, true)) {
             return;
         }
 
