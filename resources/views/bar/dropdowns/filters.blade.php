@@ -1,5 +1,5 @@
 @if($table['filters']->isNotEmpty())
-    <x-livewire-table::dropdown label="{{ __('Filters') }}" :count="count($this->filters)">
+    <x-livewire-table::dropdown label="{{ __('Filters') }}" :active="count($this->filters) > 0">
         <x-slot name="icon">
             <!-- Icon "adjustments-horizontal" (outline) from https://heroicons.com -->
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
