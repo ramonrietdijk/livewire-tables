@@ -18,7 +18,7 @@ trait HasActions
     /** @return Enumerable<int, BaseAction> */
     protected function resolveActions(): Enumerable
     {
-        return collect($this->actions());
+        return once(fn (): Enumerable => collect($this->actions()));
     }
 
     public function executeAction(string $code): mixed

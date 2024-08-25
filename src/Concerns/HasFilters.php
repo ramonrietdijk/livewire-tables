@@ -58,7 +58,7 @@ trait HasFilters
     /** @return Enumerable<int, BaseFilter> */
     protected function resolveFilters(): Enumerable
     {
-        return collect($this->filters());
+        return once(fn (): Enumerable => collect($this->filters()));
     }
 
     /** @param  Builder<Model>  $builder */

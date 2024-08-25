@@ -94,8 +94,11 @@ trait HasColumns
     /** @return Enumerable<int, BaseColumn> */
     protected function resolveColumns(): Enumerable
     {
-        return collect($this->columns())->sortBy(function (BaseColumn $column): int {
-            return (int) array_search($column->code(), $this->columnOrder, true);
-        })->values();
+        return once(function (): Enumerable {
+            return collect($this->columns())
+                ->sortBy(function (BaseColumn $column): int {
+                    return (int) array_search($column->code(), $this->columnOrder, true);
+                })->values();
+        });
     }
 }
