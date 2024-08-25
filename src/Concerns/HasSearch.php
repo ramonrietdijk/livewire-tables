@@ -44,6 +44,11 @@ trait HasSearch
         $this->resetPage();
     }
 
+    protected function canSearch(): bool
+    {
+        return $this->resolveColumns()->filter(fn (BaseColumn $column): bool => $column->isSearchable())->isNotEmpty();
+    }
+
     public function clearSearch(): void
     {
         $this->globalSearch = '';
