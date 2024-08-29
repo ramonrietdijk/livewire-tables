@@ -3,6 +3,7 @@
 namespace RamonRietdijk\LivewireTables\Concerns;
 
 use Illuminate\Database\Eloquent\Model;
+use RamonRietdijk\LivewireTables\Actions\BaseAction;
 
 trait HasSelection
 {
@@ -11,6 +12,7 @@ trait HasSelection
 
     public bool $selectedPage = false;
 
+    /** @deprecated */
     protected bool $useSelection = true;
 
     public function updatingSelectedPage(bool $selectedPage): void
@@ -100,6 +102,12 @@ trait HasSelection
 
     protected function canSelect(): bool
     {
-        return $this->useSelection && ! $this->isReordering();
+        $hasActions = $this->resolveActions()
+            ->filter(fn (BaseAction $action): bool => ! $action->isStandalone())
+            ->isNotEmpty();
+
+        return $this->useSelection
+            && ! $this->isReordering()
+            && $hasActions;
     }
 }

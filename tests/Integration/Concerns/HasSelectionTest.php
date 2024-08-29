@@ -6,6 +6,7 @@ use Livewire\Livewire;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\DisabledSelectionBlogLivewireTable;
+use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\EmptyBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
@@ -48,6 +49,18 @@ class HasSelectionTest extends TestCase
     }
 
     #[Test]
+    public function it_cant_select_a_single_item_when_no_actions_are_available(): void
+    {
+        Blog::factory()->count(3)->create();
+
+        Livewire::test(EmptyBlogLivewireTable::class)
+            ->call('selectItem', '1')
+            ->call('selectItem', '2')
+            ->call('selectItem', '3')
+            ->assertCount('selected', 0);
+    }
+
+    #[Test]
     public function it_can_select_the_page(): void
     {
         Blog::factory()->count(30)->create();
@@ -71,6 +84,16 @@ class HasSelectionTest extends TestCase
     }
 
     #[Test]
+    public function it_cant_select_the_page_when_no_actions_are_available(): void
+    {
+        Blog::factory()->count(30)->create();
+
+        Livewire::test(EmptyBlogLivewireTable::class)
+            ->call('selectPage', true)
+            ->assertCount('selected', 0);
+    }
+
+    #[Test]
     public function it_can_select_the_table(): void
     {
         Blog::factory()->count(30)->create();
@@ -89,6 +112,16 @@ class HasSelectionTest extends TestCase
         Blog::factory()->count(30)->create();
 
         Livewire::test(DisabledSelectionBlogLivewireTable::class)
+            ->call('selectTable', true)
+            ->assertCount('selected', 0);
+    }
+
+    #[Test]
+    public function it_cant_select_the_table_when_no_actions_are_available(): void
+    {
+        Blog::factory()->count(30)->create();
+
+        Livewire::test(EmptyBlogLivewireTable::class)
             ->call('selectTable', true)
             ->assertCount('selected', 0);
     }

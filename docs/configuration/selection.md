@@ -1,10 +1,8 @@
 # Selection
 
-The selection of records in the table are enabled by default. This behaviour can be disabled by setting the property to false.
+The selection of records in the table is enabled when non-standalone [actions](/usage/actions) have been added. However, it will be disabled during [reordering](/usage/reordering).
 
-::: info
-The selection could be disabled automatically when no regular actions are available. This is not implemented to preserve performance as much as possible.
-:::
+To permanently disable the selection, you can set the property `$useSelection` to false. Note that this property was introduced before the action logic stated above. This property will therefore be removed in the next major release.
 
 ```php
 protected bool $useSelection = false;
@@ -20,5 +18,3 @@ protected function canSelect(): bool
     return false;
 }
 ```
-
-Out of the box, the selection is always enabled, depending on the value of the `$useSelection` property. The selection will get disabled during [reordering](/usage/reordering). Make sure to pay attention to this when overriding the method.
