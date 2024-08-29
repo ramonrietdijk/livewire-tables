@@ -12,6 +12,6 @@
 >
     {{ $slot }}
     @if ($active)
-        <span class="absolute -right-1 -top-1 rounded-full shadow-sm bg-blue-500 dark:bg-blue-600 block w-2.5 h-2.5"></span>
+        <span class="absolute -right-1 -top-1 rounded-full shadow-sm bg-blue-500 dark:bg-blue-600 block size-2.5"></span>
     @endif
 </button>
