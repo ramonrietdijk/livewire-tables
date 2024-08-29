@@ -3,7 +3,7 @@
     <tr class="group">
         @if($this->canSelect())
             <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
-                <input type="checkbox" wire:model.live="selectedPage" class="h-4 w-4 mx-3">
+                <input type="checkbox" wire:model.live="selectedPage" class="size-4 mx-3">
             </th>
         @endif
         @foreach($table['columns'] as $column)
@@ -61,7 +61,7 @@
                                 ? 'bg-blue-100 group-odd:bg-blue-100 group-hover:bg-blue-200 dark:bg-blue-900 dark:group-odd:bg-blue-900 dark:group-hover:bg-blue-800'
                                 : 'bg-neutral-100 group-odd:bg-white group-hover:bg-neutral-200 dark:bg-neutral-800 dark:group-odd:bg-neutral-900 dark:group-hover:bg-neutral-700'">
                         <div class="mx-3">
-                            <input type="checkbox" wire:model.live="selected" value="{{ $item->getKey() }}" class="h-4 w-4">
+                            <input type="checkbox" wire:model.live="selected" value="{{ $item->getKey() }}" class="size-4">
                         </div>
                     </td>
                 @endif
