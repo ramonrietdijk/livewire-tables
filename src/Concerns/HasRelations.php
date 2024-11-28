@@ -83,7 +83,7 @@ trait HasRelations
         return $this;
     }
 
-    /** @return ?Relation<Model> */
+    /** @return ?Relation<Model, Model, mixed> */
     protected function getEloquentRelation(Model $model, string $relation): ?Relation
     {
         if (! method_exists($model, $relation)) {
@@ -101,7 +101,7 @@ trait HasRelations
 
     /**
      * @param  Builder<Model>  $builder
-     * @param  Relation<Model>  $relation
+     * @param  Relation<Model, Model, mixed>  $relation
      */
     protected function joinEloquentRelation(Builder $builder, Relation $relation, Model $model, string $name, ?string $parent = null): ?string
     {

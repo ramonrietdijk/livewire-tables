@@ -38,13 +38,13 @@ class User extends Model
         );
     }
 
-    /** @return BelongsTo<Company, User> */
+    /** @return BelongsTo<Company, $this> */
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
     }
 
-    /** @return HasMany<Blog> */
+    /** @return HasMany<Blog, $this> */
     public function blogs(): HasMany
     {
         return $this->hasMany(Blog::class, 'author_id');
