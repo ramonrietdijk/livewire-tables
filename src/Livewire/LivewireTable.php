@@ -62,10 +62,7 @@ class LivewireTable extends Component
 
     protected function model(): Model
     {
-        /** @var Model $model */
-        $model = $this->model;
-
-        return app($model);
+        return app($this->model);
     }
 
     /** @return Builder<Model> */
