@@ -19,7 +19,7 @@ class Category extends Model
     /** @use HasFactory<CategoryFactory> */
     use HasFactory;
 
-    /** @return HasMany<Blog> */
+    /** @return HasMany<Blog, $this> */
     public function blogs(): HasMany
     {
         return $this->hasMany(Blog::class);
