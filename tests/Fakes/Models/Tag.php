@@ -19,7 +19,7 @@ class Tag extends Model
     /** @use HasFactory<TagFactory> */
     use HasFactory;
 
-    /** @return BelongsToMany<Blog> */
+    /** @return BelongsToMany<Blog, $this> */
     public function blogs(): BelongsToMany
     {
         return $this->belongsToMany(Blog::class);
