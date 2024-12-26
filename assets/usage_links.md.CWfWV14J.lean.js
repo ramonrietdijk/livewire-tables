@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,a4 as t}from"./chunks/framework.DWNowD48.js";const g=JSON.parse('{"title":"Links","description":"","frontmatter":{},"headers":[],"relativePath":"usage/links.md","filePath":"usage/links.md"}'),l={name:"usage/links.md"},n=t("",7),e=[n];function h(k,p,d,r,o,c){return a(),i("div",null,e)}const y=s(l,[["render",h]]);export{g as __pageData,y as default};
