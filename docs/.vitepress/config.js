@@ -4,7 +4,6 @@ export default {
     lang: 'en-US',
     base: '/livewire-tables',
     themeConfig: {
-        logo: 'https://ramonrietdijk.nl/img/logo.svg',
         search: {
             provider: 'local'
         },
