@@ -12,4 +12,4 @@ Note that Alpine.js is included in Livewire 3 by default.
 | Laravel      | `^11.0` |
 | Livewire     | `^3.0`  |
 | Alpine.js    | `^3.0`  |
-| Tailwind CSS | `^3.0`  |
+| Tailwind CSS | `^4.0`  |

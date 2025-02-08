@@ -1,5 +1,5 @@
 <button
-    class="flex items-center gap-1 px-3 py-2 bg-white border border-neutral-200 text-neutral-800 hover:text-neutral-500 focus:border-blue-300 active:bg-neutral-100 active:text-neutral-800 transition ease-in-out rounded-md shadow-sm h-full text-sm dark:bg-neutral-800 dark:border-neutral-700 dark:focus:border-blue-600 dark:text-neutral-300 dark:hover:text-white dark:focus:border-blue-600 dark:active:bg-neutral-900 dark:active:text-white"
+    class="flex items-center gap-1 px-3 py-2 bg-white border border-neutral-200 text-neutral-800 hover:text-neutral-500 focus:border-blue-300 active:bg-neutral-100 active:text-neutral-800 transition ease-in-out rounded-md shadow-xs h-full text-sm dark:bg-neutral-800 dark:border-neutral-700 dark:focus:border-blue-600 dark:text-neutral-300 dark:hover:text-white dark:focus:border-blue-600 dark:active:bg-neutral-900 dark:active:text-white"
     title="{{ __('Clear search') }}"
     aria-label="{{ __('Clear search') }}"
     wire:click="clearSearch"
