@@ -36,7 +36,7 @@ abstract class BaseAction
         return $this->callback;
     }
 
-    /** @param  Enumerable<int, Model>  $models */
+    /** @param  Enumerable<int, covariant Model>  $models */
     public function execute(Enumerable $models): mixed
     {
         $callback = $this->callback();

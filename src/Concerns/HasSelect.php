@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 trait HasSelect
 {
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     protected function applySelect(Builder $builder): static
     {
         $builder->addSelect($builder->qualifyColumn('*'));

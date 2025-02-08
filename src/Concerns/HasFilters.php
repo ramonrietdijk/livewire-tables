@@ -61,7 +61,7 @@ trait HasFilters
         return once(fn (): Enumerable => collect($this->filters()));
     }
 
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     protected function applyFilters(Builder $builder): static
     {
         $builder->where(function (Builder $builder): void {

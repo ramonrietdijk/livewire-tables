@@ -3,7 +3,6 @@
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Enums\Direction;
@@ -48,7 +47,6 @@ class HasSortingTest extends TestCase
         User::factory()->create(['name' => 'John Doe']);
         User::factory()->create(['name' => 'Jane Doe']);
 
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
         $column = Column::make('Name', 'name');
@@ -66,7 +64,6 @@ class HasSortingTest extends TestCase
         User::factory()->create(['name' => 'John Doe']);
         User::factory()->create(['name' => 'Jane Doe']);
 
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
         $column = Column::make('Name', 'name');
@@ -84,7 +81,6 @@ class HasSortingTest extends TestCase
         User::factory()->create(['name' => 'John Doe']);
         User::factory()->create(['name' => 'Jane Doe']);
 
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
         $column = Column::make('Name', 'name')->computed();
@@ -102,7 +98,6 @@ class HasSortingTest extends TestCase
         User::factory()->create(['name' => 'John Doe']);
         User::factory()->create(['name' => 'Jane Doe']);
 
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
         $column = Column::make('Name', 'name')

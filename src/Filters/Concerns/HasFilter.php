@@ -22,7 +22,7 @@ trait HasFilter
         return $this->filterUsing;
     }
 
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     public function filter(Builder $builder, mixed $value): void
     {
         $builder->when(! blank($value), function (Builder $builder) use ($value): void {
@@ -36,7 +36,7 @@ trait HasFilter
         });
     }
 
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     public function applyFilter(Builder $builder, mixed $value): void
     {
         if ($this->filterUsing !== null) {

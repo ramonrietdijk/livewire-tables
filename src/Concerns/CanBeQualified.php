@@ -24,7 +24,7 @@ trait CanBeQualified
         return $this->qualifyUsingAlias;
     }
 
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     public function qualify(Builder $builder): string
     {
         $column = $this->column();
@@ -36,7 +36,7 @@ trait CanBeQualified
         return Column::make($column)->qualify($builder);
     }
 
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     public function qualifyQuery(Builder $builder, Closure $callback): void
     {
         $column = $this->column();

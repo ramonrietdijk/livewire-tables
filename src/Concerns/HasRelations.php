@@ -13,7 +13,7 @@ use RamonRietdijk\LivewireTables\Support\Column;
 
 trait HasRelations
 {
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     protected function applyRelations(Builder $builder): static
     {
         $columns = $this->resolveColumns()
@@ -83,7 +83,7 @@ trait HasRelations
         return $this;
     }
 
-    /** @return ?Relation<Model, Model, mixed> */
+    /** @return ?Relation<covariant Model, covariant Model, mixed> */
     protected function getEloquentRelation(Model $model, string $relation): ?Relation
     {
         if (! method_exists($model, $relation)) {
@@ -100,8 +100,8 @@ trait HasRelations
     }
 
     /**
-     * @param  Builder<Model>  $builder
-     * @param  Relation<Model, Model, mixed>  $relation
+     * @param  Builder<covariant Model>  $builder
+     * @param  Relation<covariant Model, covariant Model, mixed>  $relation
      */
     protected function joinEloquentRelation(Builder $builder, Relation $relation, Model $model, string $name, ?string $parent = null): ?string
     {
@@ -115,8 +115,8 @@ trait HasRelations
     }
 
     /**
-     * @param  Builder<Model>  $builder
-     * @param  BelongsTo<Model, Model>  $relation
+     * @param  Builder<covariant Model>  $builder
+     * @param  BelongsTo<covariant Model, covariant Model>  $relation
      */
     protected function joinBelongsTo(Builder $builder, BelongsTo $relation, Model $model, string $name, ?string $parent = null): string
     {

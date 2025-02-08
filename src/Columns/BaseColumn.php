@@ -18,6 +18,9 @@ use RamonRietdijk\LivewireTables\Concerns\CanBeQualified;
 use RamonRietdijk\LivewireTables\Concerns\HasMetadata;
 use RamonRietdijk\LivewireTables\Concerns\Makeable;
 
+/**
+ * @property view-string $view
+ */
 abstract class BaseColumn
 {
     use CanBeClickable;

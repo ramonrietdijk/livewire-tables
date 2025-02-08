@@ -2,8 +2,6 @@
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Filters\BooleanFilter;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
@@ -17,7 +15,6 @@ class BooleanFilterTest extends TestCase
         User::factory()->admin()->create();
         User::factory()->create();
 
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
         $filter = BooleanFilter::make('Admin', 'is_admin');

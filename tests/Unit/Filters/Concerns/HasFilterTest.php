@@ -3,7 +3,6 @@
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Filters\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Filters\SelectFilter;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
@@ -31,11 +30,9 @@ class HasFilterTest extends TestCase
         User::factory()->create(['name' => 'John Doe']);
         User::factory()->create(['name' => 'Jane Doe']);
 
-        $filter = SelectFilter::make('Name', 'name');
-
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
+        $filter = SelectFilter::make('Name', 'name');
         $filter->filter($builder, 'John Doe');
 
         $this->assertEquals(1, $builder->count());
@@ -48,11 +45,9 @@ class HasFilterTest extends TestCase
         User::factory()->create(['name' => 'Jane Doe']);
         User::factory()->create(['name' => 'Richard Doe']);
 
-        $filter = SelectFilter::make('Name', 'name')->multiple();
-
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
+        $filter = SelectFilter::make('Name', 'name')->multiple();
         $filter->filter($builder, ['John Doe', 'Jane Doe']);
 
         $this->assertEquals(2, $builder->count());
@@ -64,11 +59,9 @@ class HasFilterTest extends TestCase
         User::factory()->create(['name' => 'John Doe', 'preferences' => ['theme' => 'Light']]);
         User::factory()->create(['name' => 'Jane Doe', 'preferences' => ['theme' => 'Dark']]);
 
-        $filter = SelectFilter::make('Theme', 'preferences->theme');
-
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
+        $filter = SelectFilter::make('Theme', 'preferences->theme');
         $filter->filter($builder, 'Dark');
 
         $this->assertEquals(1, $builder->count());
@@ -80,11 +73,9 @@ class HasFilterTest extends TestCase
         User::factory()->create(['name' => 'John Doe', 'preferences' => ['theme' => 'Light']]);
         User::factory()->create(['name' => 'Jane Doe', 'preferences' => ['theme' => 'Dark']]);
 
-        $filter = SelectFilter::make('Theme', 'preferences->theme');
-
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
+        $filter = SelectFilter::make('Theme', 'preferences->theme');
         $filter->filter($builder, ['Light', 'Dark']);
 
         $this->assertEquals(2, $builder->count());
@@ -96,11 +87,9 @@ class HasFilterTest extends TestCase
         User::factory()->create(['name' => 'John Doe']);
         User::factory()->create(['name' => 'Jane Doe']);
 
-        $filter = SelectFilter::make('Name', 'name');
-
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
+        $filter = SelectFilter::make('Name', 'name');
         $filter->applyFilter($builder, 'John Doe');
 
         $this->assertEquals(1, $builder->count());
@@ -112,11 +101,9 @@ class HasFilterTest extends TestCase
         User::factory()->create(['name' => 'John Doe']);
         User::factory()->create(['name' => 'Jane Doe']);
 
-        $filter = SelectFilter::make('Name', 'name')->computed();
-
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
+        $filter = SelectFilter::make('Name', 'name')->computed();
         $filter->applyFilter($builder, 'John Doe');
 
         $this->assertEquals(2, $builder->count());
@@ -128,15 +115,16 @@ class HasFilterTest extends TestCase
         User::factory()->create(['name' => 'John Doe']);
         User::factory()->create(['name' => 'Jane Doe']);
 
+        $builder = User::query();
+
         $filter = SelectFilter::make('Name', 'name')
             ->filterUsing(function (Builder $builder, mixed $value): void {
-                $builder
-                    ->where('name', 'LIKE', '%'.$value.'%')
-                    ->where('name', 'NOT LIKE', '%Jane%');
+                if (is_string($value)) {
+                    $builder
+                        ->where('name', 'LIKE', '%'.$value.'%')
+                        ->where('name', 'NOT LIKE', '%Jane%');
+                }
             });
-
-        /** @var Builder<Model> $builder */
-        $builder = User::query();
 
         $filter->applyFilter($builder, 'Doe');
 

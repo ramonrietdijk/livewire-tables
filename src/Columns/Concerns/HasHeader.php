@@ -2,6 +2,9 @@
 
 namespace RamonRietdijk\LivewireTables\Columns\Concerns;
 
+/**
+ * @property view-string $headerView
+ */
 trait HasHeader
 {
     protected string $headerView = 'livewire-table::columns.header.default';

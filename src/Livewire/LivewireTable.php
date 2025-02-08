@@ -3,7 +3,6 @@
 namespace RamonRietdijk\LivewireTables\Livewire;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator as ConcreteLengthAwarePaginator;
@@ -27,6 +26,9 @@ use RamonRietdijk\LivewireTables\Concerns\HasSession;
 use RamonRietdijk\LivewireTables\Concerns\HasSoftDeletes;
 use RamonRietdijk\LivewireTables\Concerns\HasSorting;
 
+/**
+ * @property view-string $view
+ */
 class LivewireTable extends Component
 {
     use HasActions;
@@ -50,6 +52,8 @@ class LivewireTable extends Component
 
     protected string $model = Model::class;
 
+    protected string $view = 'livewire-table::livewire.livewire-table';
+
     /** @var mixed */
     protected $listeners = [
         'refreshLivewireTable' => '$refresh',
@@ -65,13 +69,13 @@ class LivewireTable extends Component
         return app($this->model);
     }
 
-    /** @return Builder<Model> */
+    /** @return Builder<covariant Model> */
     protected function query(): Builder
     {
         return $this->model()->query();
     }
 
-    /** @return Builder<Model> */
+    /** @return Builder<covariant Model> */
     protected function appliedQuery(): Builder
     {
         $query = $this->query();
@@ -88,7 +92,7 @@ class LivewireTable extends Component
         return $query;
     }
 
-    /** @return LengthAwarePaginator<Model> */
+    /** @return LengthAwarePaginator<covariant Model> */
     protected function paginate(): LengthAwarePaginator
     {
         if ($this->deferLoading && ! $this->initialized) {
@@ -98,9 +102,9 @@ class LivewireTable extends Component
         return $this->appliedQuery()->paginate($this->perPage());
     }
 
-    public function render(): View
+    public function render(): mixed
     {
-        return view('livewire-table::livewire.livewire-table', [
+        return view($this->view, [
             'paginator' => $this->paginate(),
             'table' => [
                 'columns' => $this->resolveColumns(),

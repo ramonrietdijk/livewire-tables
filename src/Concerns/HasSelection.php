@@ -52,7 +52,7 @@ trait HasSelection
             return;
         }
 
-        /** @var array<int, Model> $items */
+        /** @var array<int, covariant Model> $items */
         $items = $this->paginate()->items();
 
         $page = collect($items)->map(function (Model $model): string {
