@@ -4,7 +4,6 @@ namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns\Concerns;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
@@ -48,7 +47,6 @@ class HasSearchTest extends TestCase
         User::factory()->create(['name' => 'John Doe']);
         User::factory()->create(['name' => 'Jane Doe']);
 
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
         $column = Column::make('Name', 'name');
@@ -63,7 +61,6 @@ class HasSearchTest extends TestCase
         User::factory()->create(['name' => 'John Doe', 'preferences' => ['theme' => 'Light']]);
         User::factory()->create(['name' => 'Jane Doe', 'preferences' => ['theme' => 'Dark']]);
 
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
         $column = Column::make('Theme', 'preferences->theme');
@@ -78,7 +75,6 @@ class HasSearchTest extends TestCase
         User::factory()->create(['name' => 'John Doe']);
         User::factory()->create(['name' => 'Jane Doe']);
 
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
         $column = Column::make('Name', 'name');
@@ -93,7 +89,6 @@ class HasSearchTest extends TestCase
         User::factory()->create(['name' => 'John Doe']);
         User::factory()->create(['name' => 'Jane Doe']);
 
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
         $column = Column::make('Name', 'name')->computed();
@@ -108,14 +103,15 @@ class HasSearchTest extends TestCase
         User::factory()->create(['name' => 'John Doe']);
         User::factory()->create(['name' => 'Jane Doe']);
 
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
         $column = Column::make('Name', 'name')
             ->searchable(function (Builder $builder, mixed $search): void {
-                $builder
-                    ->where('name', 'LIKE', '%'.$search.'%')
-                    ->where('name', 'NOT LIKE', '%Jane%');
+                if (is_string($search)) {
+                    $builder
+                        ->where('name', 'LIKE', '%'.$search.'%')
+                        ->where('name', 'NOT LIKE', '%Jane%');
+                }
             });
 
         $column->applySearch($builder, 'Doe');

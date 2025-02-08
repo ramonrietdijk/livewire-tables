@@ -2,8 +2,6 @@
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Support;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Support\Column;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
@@ -58,7 +56,6 @@ class ColumnTest extends TestCase
     #[Test]
     public function it_can_qualify_the_column(): void
     {
-        /** @var Builder<Model> $builder */
         $builder = Blog::query();
 
         $column = Column::make('title');
@@ -69,7 +66,6 @@ class ColumnTest extends TestCase
     #[Test]
     public function it_can_qualify_the_column_with_relations(): void
     {
-        /** @var Builder<Model> $builder */
         $builder = Blog::query();
 
         $column = Column::make('author.company.name');

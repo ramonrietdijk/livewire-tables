@@ -36,13 +36,13 @@ trait HasSorting
         return $this->sortCallback;
     }
 
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     public function sort(Builder $builder, Direction $direction): void
     {
         $builder->orderBy($this->qualify($builder), $direction->value);
     }
 
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     public function applySorting(Builder $builder, Direction $direction): void
     {
         if ($this->sortCallback !== null) {

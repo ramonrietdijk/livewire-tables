@@ -3,7 +3,6 @@
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
@@ -28,7 +27,6 @@ class CanBeQualifiedTest extends TestCase
     #[Test]
     public function it_can_qualify_columns(): void
     {
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
         $column = Column::make('Name', 'name');
@@ -41,7 +39,6 @@ class CanBeQualifiedTest extends TestCase
     {
         $this->expectException(ColumnException::class);
 
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
         Column::make('Column', fn (): string => '')
@@ -52,7 +49,6 @@ class CanBeQualifiedTest extends TestCase
     #[DataProvider('qualifyQueries')]
     public function it_can_qualify_queries(string $column, bool $alias, string $expected): void
     {
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
         $value = null;
@@ -93,7 +89,6 @@ class CanBeQualifiedTest extends TestCase
     {
         $this->expectException(ColumnException::class);
 
-        /** @var Builder<Model> $builder */
         $builder = User::query();
 
         Column::make('Column', fn (): string => '')

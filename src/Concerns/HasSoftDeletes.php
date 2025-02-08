@@ -29,7 +29,7 @@ trait HasSoftDeletes
         return method_exists($this->model(), 'trashed');
     }
 
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     protected function applySoftDeletes(Builder $builder): static
     {
         if (! $this->hasSoftDeletes()) {

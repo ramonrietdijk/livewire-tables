@@ -12,7 +12,7 @@ class SelectColumn extends BaseColumn
 
     protected string $searchView = 'livewire-table::columns.search.select';
 
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     public function search(Builder $builder, mixed $search): void
     {
         $this->qualifyQuery($builder, function (Builder $builder, string $column) use ($search): void {

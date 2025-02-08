@@ -41,7 +41,7 @@ class Column
         return $this->relation('_');
     }
 
-    /**  @param  Builder<Model>  $builder */
+    /**  @param  Builder<covariant Model>  $builder */
     public function qualify(Builder $builder): string
     {
         $name = $this->name();

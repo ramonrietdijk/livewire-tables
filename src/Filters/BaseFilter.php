@@ -10,6 +10,9 @@ use RamonRietdijk\LivewireTables\Concerns\HasMetadata;
 use RamonRietdijk\LivewireTables\Concerns\Makeable;
 use RamonRietdijk\LivewireTables\Filters\Concerns\HasFilter;
 
+/**
+ * @property view-string $view
+ */
 abstract class BaseFilter
 {
     use CanBeComputed;

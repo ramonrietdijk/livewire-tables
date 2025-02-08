@@ -6,6 +6,9 @@ use Closure;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property view-string $searchView
+ */
 trait HasSearch
 {
     protected string $searchView = 'livewire-table::columns.search.default';
@@ -37,15 +40,17 @@ trait HasSearch
         return $this->searchCallback;
     }
 
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     public function search(Builder $builder, mixed $search): void
     {
         $this->qualifyQuery($builder, function (Builder $builder, string $column) use ($search): void {
-            $builder->where($column, 'LIKE', '%'.$search.'%');
+            if (is_string($search)) {
+                $builder->where($column, 'LIKE', '%'.$search.'%');
+            }
         });
     }
 
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     public function applySearch(Builder $builder, mixed $search): void
     {
         if ($this->searchCallback !== null) {

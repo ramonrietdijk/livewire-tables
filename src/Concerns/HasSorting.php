@@ -50,7 +50,7 @@ trait HasSorting
         $this->updateSession();
     }
 
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     protected function applySorting(Builder $builder): static
     {
         $hasSorting = ! blank($this->sortColumn) && ! blank($this->sortDirection);

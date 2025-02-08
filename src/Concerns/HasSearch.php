@@ -64,7 +64,7 @@ trait HasSearch
         return strlen($this->globalSearch) > 0 || count($this->search) > 0;
     }
 
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     protected function applyGlobalSearch(Builder $builder): static
     {
         if (strlen($this->globalSearch) === 0 || count($this->columns) === 0) {
@@ -86,7 +86,7 @@ trait HasSearch
         return $this;
     }
 
-    /** @param  Builder<Model>  $builder */
+    /** @param  Builder<covariant Model>  $builder */
     protected function applyColumnSearch(Builder $builder): static
     {
         if (count($this->columns) === 0) {

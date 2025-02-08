@@ -4,6 +4,9 @@ namespace RamonRietdijk\LivewireTables\Columns\Concerns;
 
 use Closure;
 
+/**
+ * @property view-string $footerView
+ */
 trait HasFooter
 {
     protected string $footerView = 'livewire-table::columns.footer.default';
