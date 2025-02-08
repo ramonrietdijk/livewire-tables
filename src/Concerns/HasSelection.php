@@ -12,9 +12,6 @@ trait HasSelection
 
     public bool $selectedPage = false;
 
-    /** @deprecated */
-    protected bool $useSelection = true;
-
     public function updatingSelectedPage(bool $selectedPage): void
     {
         $this->selectPage($selectedPage);
@@ -106,8 +103,6 @@ trait HasSelection
             ->filter(fn (BaseAction $action): bool => ! $action->isStandalone())
             ->isNotEmpty();
 
-        return $this->useSelection
-            && ! $this->isReordering()
-            && $hasActions;
+        return $hasActions && ! $this->isReordering();
     }
 }
