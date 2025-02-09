@@ -5,6 +5,7 @@ namespace RamonRietdijk\LivewireTables\Columns\Concerns;
 use Closure;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use RamonRietdijk\LivewireTables\Enums\SearchScope;
 
 /**
  * @property view-string $searchView
@@ -41,7 +42,7 @@ trait HasSearch
     }
 
     /** @param  Builder<covariant Model>  $builder */
-    public function search(Builder $builder, mixed $search): void
+    public function search(Builder $builder, SearchScope $scope, mixed $search): void
     {
         $this->qualifyQuery($builder, function (Builder $builder, string $column) use ($search): void {
             if (is_string($search)) {
@@ -51,16 +52,16 @@ trait HasSearch
     }
 
     /** @param  Builder<covariant Model>  $builder */
-    public function applySearch(Builder $builder, mixed $search): void
+    public function applySearch(Builder $builder, SearchScope $scope, mixed $search): void
     {
         if ($this->searchCallback !== null) {
-            call_user_func($this->searchCallback, $builder, $search);
+            call_user_func($this->searchCallback, $builder, $search, $scope);
 
             return;
         }
 
         if (! $this->isComputed()) {
-            $this->search($builder, $search);
+            $this->search($builder, $scope, $search);
         }
     }
 

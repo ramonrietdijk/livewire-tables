@@ -6,6 +6,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
+use RamonRietdijk\LivewireTables\Enums\SearchScope;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
@@ -50,7 +51,7 @@ class HasSearchTest extends TestCase
         $builder = User::query();
 
         $column = Column::make('Name', 'name');
-        $column->search($builder, 'John');
+        $column->search($builder, SearchScope::Column, 'John');
 
         $this->assertEquals(1, $builder->count());
     }
@@ -64,7 +65,7 @@ class HasSearchTest extends TestCase
         $builder = User::query();
 
         $column = Column::make('Theme', 'preferences->theme');
-        $column->search($builder, 'Dark');
+        $column->search($builder, SearchScope::Column, 'Dark');
 
         $this->assertEquals(1, $builder->count());
     }
@@ -78,7 +79,7 @@ class HasSearchTest extends TestCase
         $builder = User::query();
 
         $column = Column::make('Name', 'name');
-        $column->applySearch($builder, 'John');
+        $column->applySearch($builder, SearchScope::Column, 'John');
 
         $this->assertEquals(1, $builder->count());
     }
@@ -92,7 +93,7 @@ class HasSearchTest extends TestCase
         $builder = User::query();
 
         $column = Column::make('Name', 'name')->computed();
-        $column->applySearch($builder, 'John');
+        $column->applySearch($builder, SearchScope::Column, 'John');
 
         $this->assertEquals(2, $builder->count());
     }
@@ -114,7 +115,7 @@ class HasSearchTest extends TestCase
                 }
             });
 
-        $column->applySearch($builder, 'Doe');
+        $column->applySearch($builder, SearchScope::Column, 'Doe');
 
         $this->assertEquals(1, $builder->count());
     }
