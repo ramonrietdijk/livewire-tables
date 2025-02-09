@@ -156,12 +156,15 @@ It is also possible to pass a callback in order to handle searching yourself.
 
 ```php
 use Illuminate\Database\Eloquent\Builder;
+use RamonRietdijk\LivewireTables\Enums\SearchScope;
 
 Column::make(__('Name'), 'name')
-    ->searchable(function (Builder $builder, mixed $search): void {
+    ->searchable(function (Builder $builder, mixed $search, SearchScope $scope): void {
         //
     }),
 ```
+
+The third parameter `$scope` can be either `SearchScope::Global` or `SearchScope::Column`. This can be helpful if you wish to process the search differently if it's passed by the global search or the column.
 
 ## Sortable
 

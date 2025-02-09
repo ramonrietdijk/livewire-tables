@@ -5,6 +5,7 @@ namespace RamonRietdijk\LivewireTables\Concerns;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use RamonRietdijk\LivewireTables\Columns\BaseColumn;
+use RamonRietdijk\LivewireTables\Enums\SearchScope;
 
 trait HasSearch
 {
@@ -78,7 +79,7 @@ trait HasSearch
         $builder->where(function (Builder $builder) use ($columns): void {
             $columns->each(function (BaseColumn $column) use ($builder): void {
                 $builder->orWhere(function (Builder $builder) use ($column) {
-                    $column->applySearch($builder, $this->globalSearch);
+                    $column->applySearch($builder, SearchScope::Global, $this->globalSearch);
                 });
             });
         });
@@ -103,7 +104,7 @@ trait HasSearch
                     $search = $this->search[$column->code()] ?? null;
 
                     if (! blank($search)) {
-                        $column->applySearch($builder, $search);
+                        $column->applySearch($builder, SearchScope::Column, $search);
                     }
                 });
             });
