@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RamonRietdijk\LivewireTables\Tests\Fakes\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

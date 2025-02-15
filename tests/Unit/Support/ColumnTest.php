@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Support;
 
 use PHPUnit\Framework\Attributes\Test;

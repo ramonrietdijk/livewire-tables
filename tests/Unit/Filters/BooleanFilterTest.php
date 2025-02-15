@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Filters;
 
 use PHPUnit\Framework\Attributes\Test;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns\Concerns;
 
 use PHPUnit\Framework\Attributes\Test;
