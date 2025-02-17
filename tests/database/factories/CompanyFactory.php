@@ -17,6 +17,8 @@ class CompanyFactory extends Factory
     {
         return [
             'name' => fake()->company(),
+            'created_at' => fake()->dateTime(),
+            'updated_at' => fake()->dateTime(),
         ];
     }
 }

@@ -21,6 +21,8 @@ class UserFactory extends Factory
             'company_id' => Company::factory(),
             'is_admin' => false,
             'preferences' => null,
+            'created_at' => fake()->dateTime(),
+            'updated_at' => fake()->dateTime(),
         ];
     }
 
