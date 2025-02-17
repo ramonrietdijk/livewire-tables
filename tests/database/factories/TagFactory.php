@@ -17,6 +17,8 @@ class TagFactory extends Factory
     {
         return [
             'name' => fake()->word(),
+            'created_at' => fake()->dateTime(),
+            'updated_at' => fake()->dateTime(),
         ];
     }
 }

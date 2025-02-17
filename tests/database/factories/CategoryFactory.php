@@ -17,6 +17,8 @@ class CategoryFactory extends Factory
     {
         return [
             'title' => fake()->sentence(3),
+            'created_at' => fake()->dateTime(),
+            'updated_at' => fake()->dateTime(),
         ];
     }
 }

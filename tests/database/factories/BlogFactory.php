@@ -26,6 +26,8 @@ class BlogFactory extends Factory
             'published' => fake()->boolean(),
             'order' => fake()->randomNumber(),
             'settings' => null,
+            'created_at' => fake()->dateTime(),
+            'updated_at' => fake()->dateTime(),
         ];
     }
 
