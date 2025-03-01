@@ -9,7 +9,7 @@ Note that Alpine.js is included in Livewire 3 by default.
 | Requirement  | Version |
 |--------------|---------|
 | PHP          | `^8.3`  |
-| Laravel      | `^11.0` |
+| Laravel      | `^12.0` |
 | Livewire     | `^3.0`  |
 | Alpine.js    | `^3.0`  |
 | Tailwind CSS | `^4.0`  |
