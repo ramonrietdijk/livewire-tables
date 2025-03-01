@@ -16,13 +16,13 @@
     ],
     "require": {
         "php": "^8.3",
-        "laravel/framework": "^11.0",
+        "laravel/framework": "^12.0",
         "livewire/livewire": "^3.0"
     },
     "require-dev": {
-        "larastan/larastan": "^3.0",
-        "laravel/pint": "^1.20",
-        "orchestra/testbench": "^9.9",
+        "larastan/larastan": "^3.1",
+        "laravel/pint": "^1.21",
+        "orchestra/testbench": "^10.0",
         "phpstan/phpstan-strict-rules": "^2.0",
         "phpunit/phpunit": "^11.5"
     },
