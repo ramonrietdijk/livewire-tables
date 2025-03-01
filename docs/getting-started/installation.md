@@ -12,18 +12,11 @@ composer require ramonrietdijk/livewire-tables
 You can skip this step if you are planning to customize the views.
 :::
 
-This package does not ship with any assets except views. Therefore, you will have to add the views to your tailwind
+This package does not ship with any assets except views. Therefore, you will have to add the views to your Tailwind
 configuration.
 
-```js
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-    content: [
-        // ...
-
-        "./vendor/ramonrietdijk/livewire-tables/resources/**/*.blade.php"
-    ]
-}
+```css
+@source "../../vendor/ramonrietdijk/livewire-tables/resources/**/*.blade.php";
 ```
 
 ## Publishing Views
