@@ -2,6 +2,18 @@
 
 Guide to upgrade the package to the next major versions.
 
+## Upgrading to 5.x from 4.x
+
+Laravel 12 is supported since version 5.x. Support for Laravel 11 and PHP version 8.2 have both been dropped.
+
+The property `$useSelection` has been removed from the `HasSelection` trait as the selection will automatically be disabled when no actions have been added.
+
+The signature of methods `search` and `applySearch` in the `HasSearch` trait of columns has been changed. It now has a `SearchScope` as the second parameter. The callback for `searchable` on columns has not been changed. Access to the scope is given via the third parameter of your callback.
+
+The default implementation of searching explicitly checks if the input is a string now.
+
+All views have been updated to support Tailwind 4.
+
 ## Upgrading to 4.x from 3.x
 
 Laravel 11 is supported since version 4.x. Support for Laravel 10 and PHP version 8.1 have both been dropped.
