@@ -307,3 +307,5 @@ Column::make(__('Badge'), function (mixed $value, Model $model): string {
     return '<div>...</div>';
 })->asHtml(),
 ```
+
+It's recommended to use a [View](#view-column) column if you have a lot of markup.
