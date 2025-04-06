@@ -40,6 +40,14 @@ class User extends Model
         );
     }
 
+    /** @return Attribute<string, null> */
+    protected function lowercase(): Attribute
+    {
+        return Attribute::make(
+            get: fn (): string => strtolower($this->name),
+        );
+    }
+
     /** @return BelongsTo<Company, $this> */
     public function company(): BelongsTo
     {

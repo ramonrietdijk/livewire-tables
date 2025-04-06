@@ -24,7 +24,9 @@ class RelationBlogLivewireTable extends LivewireTable
                 ->sortable()
                 ->searchable(),
 
-            Column::make(__('Author'), 'author.uppercase'),
+            Column::make(__('Author (uppercase)'), 'author.uppercase'),
+
+            Column::make(__('Author (lowercase)'), 'author.lowercase'),
 
             Column::make(__('Company'), 'author.company.name')
                 ->qualifyUsingAlias()
