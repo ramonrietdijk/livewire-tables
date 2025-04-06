@@ -63,7 +63,9 @@ class HasRelationsTest extends TestCase
             ->assertSee('My Category')
             ->assertSee('My Second Category')
             ->assertSee('JOHN DOE')
+            ->assertSee('john doe')
             ->assertSee('JANE DOE')
+            ->assertSee('jane doe')
             ->assertSee('My Company')
             ->assertSee('John Doe, Jane Doe')
             ->assertSee('Tag 1, Tag 2')
@@ -76,6 +78,8 @@ class HasRelationsTest extends TestCase
             ->assertSee('Tag 3')
             ->assertDontSee('Tag 1, Tag 2')
             ->assertSee('JANE DOE')
-            ->assertDontSee('JOHN DOE');
+            ->assertSee('jane doe')
+            ->assertDontSee('JOHN DOE')
+            ->assertDontSee('john doe');
     }
 }

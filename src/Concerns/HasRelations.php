@@ -12,6 +12,8 @@ use Illuminate\Support\Collection;
 use RamonRietdijk\LivewireTables\Columns\BaseColumn;
 use RamonRietdijk\LivewireTables\Filters\BaseFilter;
 use RamonRietdijk\LivewireTables\Support\Column;
+use ReflectionException;
+use ReflectionMethod;
 
 trait HasRelations
 {
@@ -88,17 +90,23 @@ trait HasRelations
     /** @return ?Relation<covariant Model, covariant Model, mixed> */
     protected function getEloquentRelation(Model $model, string $relation): ?Relation
     {
-        if (! method_exists($model, $relation)) {
+        try {
+            $reflectionMethod = new ReflectionMethod($model, $relation);
+
+            if (! $reflectionMethod->isPublic()) {
+                return null;
+            }
+
+            $relation = $model->$relation();
+
+            if (! ($relation instanceof Relation)) {
+                return null;
+            }
+
+            return $relation;
+        } catch (ReflectionException) {
             return null;
         }
-
-        $relation = $model->$relation();
-
-        if (! ($relation instanceof Relation)) {
-            return null;
-        }
-
-        return $relation;
     }
 
     /**
