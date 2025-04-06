@@ -94,7 +94,7 @@ class LivewireTable extends Component
         return $query;
     }
 
-    /** @return LengthAwarePaginator<covariant Model> */
+    /** @return LengthAwarePaginator<int, covariant Model> */
     protected function paginate(): LengthAwarePaginator
     {
         if ($this->deferLoading && ! $this->initialized) {
