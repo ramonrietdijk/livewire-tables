@@ -15,7 +15,7 @@ public function link(Model $model): ?string
 If you wish to have multiple links, you could consider making a new column for this.
 
 ::: info
-Make sure to call `clickable(false)` as this will prevent the default click action as described above.
+Make sure to call `clickable(false)` as this will prevent the default click action as described [here](/usage/columns#clickable).
 :::
 
 ```php

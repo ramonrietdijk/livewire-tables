@@ -67,7 +67,11 @@
                 @endif
                 @foreach($table['columns'] as $column)
                     @continue(! in_array($column->code(), $this->columns))
-                    <td class="p-0"
+                    <td
+                        @class([
+                            'p-0' => true,
+                            'select-none cursor-pointer' => $column->isClickable() || $this->isReordering(),
+                        ])
                         @if($column->isClickable() && ! $this->isReordering())
                             @if(($link = $this->link($item)) !== null)
                                 x-on:click.prevent="window.location.href = '{{ $link }}'"
@@ -76,8 +80,8 @@
                             @endif
                         @endif
                         x-bind:class="~selected.indexOf('{{ $item->getKey() }}')
-                                ? 'select-none cursor-pointer bg-blue-100 group-odd:bg-blue-100 group-hover:bg-blue-200 dark:bg-blue-900 dark:group-odd:bg-blue-900 dark:group-hover:bg-blue-800'
-                                : 'select-none cursor-pointer bg-neutral-100 group-odd:bg-white group-hover:bg-neutral-200 dark:bg-neutral-800 dark:group-odd:bg-neutral-900 dark:group-hover:bg-neutral-700'">
+                                ? 'bg-blue-100 group-odd:bg-blue-100 group-hover:bg-blue-200 dark:bg-blue-900 dark:group-odd:bg-blue-900 dark:group-hover:bg-blue-800'
+                                : 'bg-neutral-100 group-odd:bg-white group-hover:bg-neutral-200 dark:bg-neutral-800 dark:group-odd:bg-neutral-900 dark:group-hover:bg-neutral-700'">
                         {{ $column->render($item) }}
                     </td>
                 @endforeach
