@@ -111,7 +111,7 @@ The model will be passed to the view.
 ViewColumn::make(__('Actions'), 'actions'),
 ```
 
-If you're containing links in your view, it may be helpful to disable the column from being clicked. See [links](/usage/links) for more information about this.
+If you've added links in your view, you should disable the column from being [clicked](#clickable).
 
 ```php
 ViewColumn::make(__('Actions'), 'actions')
@@ -234,6 +234,19 @@ Column::make(__('Name'), 'name')
     ->displayUsing(function (mixed $value, Model $model): string {
         return ucfirst($value);
     }),
+```
+
+## Clickable
+
+All table cells can be clicked on by default. This will select the row or open the configured [link](/usage/links). This can be disabled by calling `clickable(false)` on the column.
+
+::: info
+If the column can't be clicked, you'll be able to select the content of the cell.
+:::
+
+```php
+Column::make(__('Name'), 'name')
+    ->clickable(false),
 ```
 
 ## Computed
