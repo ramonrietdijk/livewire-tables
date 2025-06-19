@@ -31,7 +31,7 @@ trait HasActions
         $models = collect();
 
         if (! $action->isStandalone() && count($this->selected) > 0) {
-            $models = $this->query()->whereIn($this->model()->getQualifiedKeyName(), $this->selected)->get();
+            $models = $this->queryWithTrashed()->whereIn($this->model()->getQualifiedKeyName(), $this->selected)->get();
         }
 
         $response = $action->execute($models);

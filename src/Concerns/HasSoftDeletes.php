@@ -41,18 +41,15 @@ trait HasSoftDeletes
         $trashedMode = TrashedMode::from($this->trashed);
 
         if ($trashedMode === TrashedMode::WithoutTrashed) {
-            /** @phpstan-ignore-next-line */
-            $builder->withoutTrashed();
+            $builder->withoutTrashed(); // @phpstan-ignore-line
         }
 
         if ($trashedMode === TrashedMode::WithTrashed) {
-            /** @phpstan-ignore-next-line */
-            $builder->withTrashed();
+            $builder->withTrashed(); // @phpstan-ignore-line
         }
 
         if ($trashedMode === TrashedMode::OnlyTrashed) {
-            /** @phpstan-ignore-next-line */
-            $builder->onlyTrashed();
+            $builder->onlyTrashed(); // @phpstan-ignore-line
         }
 
         return $this;

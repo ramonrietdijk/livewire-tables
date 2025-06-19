@@ -41,10 +41,10 @@ trait HasReordering
         }
 
         /** @var Model $from */
-        $from = $this->query()->findOrFail($from);
+        $from = $this->queryWithTrashed()->findOrFail($from);
 
         /** @var Model $to */
-        $to = $this->query()->findOrFail($to);
+        $to = $this->queryWithTrashed()->findOrFail($to);
 
         $column = $this->reorderingColumn;
 
@@ -71,14 +71,14 @@ trait HasReordering
         if ($up) {
             // The new order is higher, meaning that everything between has to go down by one.
             $this
-                ->query()
+                ->queryWithTrashed()
                 ->where($column, '>', $currentOrder)
                 ->where($column, '<=', $newOrder)
                 ->decrement($column);
         } else {
             // The new order is lower, meaning that everything between has to go up by one.
             $this
-                ->query()
+                ->queryWithTrashed()
                 ->where($column, '<', $currentOrder)
                 ->where($column, '>=', $newOrder)
                 ->increment($column);
