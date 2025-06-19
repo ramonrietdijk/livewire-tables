@@ -8,7 +8,6 @@ trait Makeable
 {
     public static function make(mixed ...$arguments): static
     {
-        /** @phpstan-ignore-next-line */
-        return new static(...$arguments);
+        return new static(...$arguments); // @phpstan-ignore-line
     }
 }

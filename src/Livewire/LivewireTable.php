@@ -78,6 +78,18 @@ class LivewireTable extends Component
     }
 
     /** @return Builder<covariant Model> */
+    protected function queryWithTrashed(): Builder
+    {
+        $query = $this->query();
+
+        if ($this->hasSoftDeletes()) {
+            $query->withTrashed(); // @phpstan-ignore-line
+        }
+
+        return $query;
+    }
+
+    /** @return Builder<covariant Model> */
     protected function appliedQuery(): Builder
     {
         $query = $this->query();
