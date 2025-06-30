@@ -204,6 +204,19 @@ Column::make(__('Name'), 'name')
     ->hide(),
 ```
 
+## Copy
+
+The content of columns can be made copyable. When enabled, a copy button will be shown while hovering the column.
+
+::: info
+The copy functionality makes use of the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) which is only available in a secure context (HTTPS).
+:::
+
+```php
+Column::make(__('Name'), 'name')
+    ->copyable(),
+```
+
 ## Authorization
 
 By default, all columns will be available. You can manage the access to a column by using the `canSee` method.

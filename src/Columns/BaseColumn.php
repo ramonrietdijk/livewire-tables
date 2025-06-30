@@ -8,6 +8,7 @@ use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use RamonRietdijk\LivewireTables\Columns\Concerns\CanBeClickable;
+use RamonRietdijk\LivewireTables\Columns\Concerns\CanBeCopied;
 use RamonRietdijk\LivewireTables\Columns\Concerns\CanBeRaw;
 use RamonRietdijk\LivewireTables\Columns\Concerns\HasFooter;
 use RamonRietdijk\LivewireTables\Columns\Concerns\HasHeader;
@@ -28,6 +29,7 @@ abstract class BaseColumn
 {
     use CanBeClickable;
     use CanBeComputed;
+    use CanBeCopied;
     use CanBeQualified;
     use CanBeRaw;
     use CanBeSeen;
