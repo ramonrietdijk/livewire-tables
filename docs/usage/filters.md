@@ -122,9 +122,9 @@ BooleanFilter::make(__('Recent Blogs'), function (Builder $builder, mixed $value
 
 ## Authorization
 
-By default, all filters will be available. You can disable access to a filter by using the `canSee` method. You'll be able to supply a boolean or callback if the conditions are more complex.
+By default, all filters will be available. You can manage the access to a filter by using the `canSee` method.
 
 ```php
 BooleanFilter::make(__('Published'), 'published')
-    ->canSee(fn (): bool => auth()->user()->can('...')),
+    ->canSee(auth()->user()->can('...')),
 ```

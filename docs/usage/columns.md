@@ -206,11 +206,11 @@ Column::make(__('Name'), 'name')
 
 ## Authorization
 
-By default, all columns will be available. You can disable access to a column by using the `canSee` method. You'll be able to supply a boolean or callback if the conditions are more complex.
+By default, all columns will be available. You can manage the access to a column by using the `canSee` method.
 
 ```php
 Column::make(__('Name'), 'name')
-    ->canSee(fn (): bool => auth()->user()->can('...')),
+    ->canSee(auth()->user()->can('...')),
 ```
 
 ## Relations

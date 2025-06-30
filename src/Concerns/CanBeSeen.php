@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Concerns;
 
-use Closure;
-
 trait CanBeSeen
 {
-    protected bool|Closure $canSee = true;
+    protected bool $canSee = true;
 
-    public function canSee(bool|Closure $canSee = true): static
+    public function canSee(bool $canSee = true): static
     {
         $this->canSee = $canSee;
 
@@ -19,10 +17,6 @@ trait CanBeSeen
 
     public function canBeSeen(): bool
     {
-        if (is_bool($this->canSee)) {
-            return $this->canSee;
-        }
-
-        return call_user_func($this->canSee);
+        return $this->canSee;
     }
 }

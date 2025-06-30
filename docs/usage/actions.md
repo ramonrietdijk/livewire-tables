@@ -64,10 +64,10 @@ JS),
 
 ## Authorization
 
-By default, all actions will be available. You can disable access to an action by using the `canSee` method. You'll be able to supply a boolean or callback if the conditions are more complex.
+By default, all actions will be available. You can manage the access to an action by using the `canSee` method.
 
 ```php
 Action::make(__('My Action'), 'my_action', function (Enumerable $models): void {
     //
-})->canSee(fn (): bool => auth()->user()->can('...')),
+})->canSee(auth()->user()->can('...')),
 ```
