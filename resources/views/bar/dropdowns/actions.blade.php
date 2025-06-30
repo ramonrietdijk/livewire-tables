@@ -26,6 +26,7 @@
                             </button>
                         @else
                             <button class="px-3 py-1 text-left truncate hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                                    wire:key="{{ $standaloneAction->code() }}"
                                     wire:click="executeAction('{{ $standaloneAction->code() }}')"
                                     x-on:click="show = false"
                                     type="button">
@@ -59,6 +60,7 @@
                             <button
                                 class="px-3 py-1 text-left truncate hover:bg-neutral-100 disabled:hover:bg-white disabled:text-neutral-500 dark:hover:bg-neutral-700 dark:disabled:hover:bg-neutral-800"
                                 x-bind:disabled="selected.length === 0"
+                                wire:key="{{ $action->code() }}"
                                 wire:click="executeAction('{{ $action->code() }}')"
                                 x-on:click="show = false"
                                 type="button">

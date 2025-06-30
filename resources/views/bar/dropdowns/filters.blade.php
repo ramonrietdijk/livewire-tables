@@ -17,7 +17,7 @@
         </span>
         <div class="flex flex-col">
             @foreach($table['filters'] as $filter)
-                <div class="border-b border-neutral-200 last:border-b-0 dark:border-neutral-700">
+                <div wire:key="{{ $filter->code() }}" class="border-b border-neutral-200 last:border-b-0 dark:border-neutral-700">
                     {{ $filter->render() }}
                 </div>
             @endforeach
