@@ -204,6 +204,15 @@ Column::make(__('Name'), 'name')
     ->hide(),
 ```
 
+## Authorization
+
+By default, all columns will be available. You can disable access to a column by using the `canSee` method. You'll be able to supply a boolean or callback if the conditions are more complex.
+
+```php
+Column::make(__('Name'), 'name')
+    ->canSee(fn (): bool => auth()->user()->can('...')),
+```
+
 ## Relations
 
 If you wish to show data from a related model, you can prefix the column with the name of the relations. Always use the name of the relations and not of the tables.

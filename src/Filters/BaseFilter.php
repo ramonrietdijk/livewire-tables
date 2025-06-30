@@ -8,6 +8,7 @@ use Closure;
 use Illuminate\Support\Str;
 use RamonRietdijk\LivewireTables\Concerns\CanBeComputed;
 use RamonRietdijk\LivewireTables\Concerns\CanBeQualified;
+use RamonRietdijk\LivewireTables\Concerns\CanBeSeen;
 use RamonRietdijk\LivewireTables\Concerns\HasMetadata;
 use RamonRietdijk\LivewireTables\Concerns\Makeable;
 use RamonRietdijk\LivewireTables\Filters\Concerns\HasFilter;
@@ -19,6 +20,7 @@ abstract class BaseFilter
 {
     use CanBeComputed;
     use CanBeQualified;
+    use CanBeSeen;
     use HasFilter;
     use HasMetadata;
     use Makeable;

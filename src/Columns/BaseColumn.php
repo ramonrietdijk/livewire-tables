@@ -17,6 +17,7 @@ use RamonRietdijk\LivewireTables\Columns\Concerns\HasValue;
 use RamonRietdijk\LivewireTables\Columns\Concerns\HasVisibility;
 use RamonRietdijk\LivewireTables\Concerns\CanBeComputed;
 use RamonRietdijk\LivewireTables\Concerns\CanBeQualified;
+use RamonRietdijk\LivewireTables\Concerns\CanBeSeen;
 use RamonRietdijk\LivewireTables\Concerns\HasMetadata;
 use RamonRietdijk\LivewireTables\Concerns\Makeable;
 
@@ -29,6 +30,7 @@ abstract class BaseColumn
     use CanBeComputed;
     use CanBeQualified;
     use CanBeRaw;
+    use CanBeSeen;
     use HasFooter;
     use HasHeader;
     use HasMetadata;

@@ -98,6 +98,7 @@ trait HasColumns
     {
         return once(function (): Enumerable {
             return collect($this->columns())
+                ->filter(fn (BaseColumn $column): bool => $column->canBeSeen())
                 ->sortBy(function (BaseColumn $column): int {
                     return (int) array_search($column->code(), $this->columnOrder, true);
                 })->values();
