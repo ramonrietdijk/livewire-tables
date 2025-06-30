@@ -1,4 +1,6 @@
-@if($table['filters']->isNotEmpty())
+@php($filters = $this->resolveFilters())
+
+@if($filters->isNotEmpty())
     <x-livewire-table::dropdown label="{{ __('Filters') }}" :active="count($this->filters) > 0">
         <x-slot name="icon">
             <!-- Icon "adjustments-horizontal" (outline) from https://heroicons.com -->
@@ -16,7 +18,7 @@
             @endif
         </span>
         <div class="flex flex-col">
-            @foreach($table['filters'] as $filter)
+            @foreach($filters as $filter)
                 <div wire:key="{{ $filter->code() }}" class="border-b border-neutral-200 last:border-b-0 dark:border-neutral-700">
                     {{ $filter->render() }}
                 </div>

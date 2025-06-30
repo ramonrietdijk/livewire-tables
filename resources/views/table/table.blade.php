@@ -1,3 +1,5 @@
+@php($columns = $this->resolveColumns())
+
 <table class="w-full relative" x-data="{ selected: @entangle('selected') }">
     <thead class="border-b border-neutral-200 dark:border-neutral-700">
     <tr class="group">
@@ -6,7 +8,7 @@
                 <input type="checkbox" wire:model.live="selectedPage" class="size-4 mx-3">
             </th>
         @endif
-        @foreach($table['columns'] as $column)
+        @foreach($columns as $column)
             @continue(! in_array($column->code(), $this->columns))
             <th wire:key="{{ $column->code() }}" class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
                 {{ $column->renderHeader() }}
@@ -17,7 +19,7 @@
         @if($this->canSelect())
             <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800"></th>
         @endif
-        @foreach($table['columns'] as $column)
+        @foreach($columns as $column)
             @continue(! in_array($column->code(), $this->columns))
             <th wire:key="{{ $column->code() }}" class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
                 @if($column->isSearchable())
@@ -30,7 +32,7 @@
     <tbody>
     @if($this->deferLoading && ! $this->initialized)
         <tr class="group">
-            <td class="p-0" colspan="{{ $table['columns']->count() + 1 }}">
+            <td class="p-0" colspan="{{ $columns->count() + 1 }}">
                 <span class="block text-lg text-center py-20 bg-white text-black dark:bg-neutral-900 dark:text-white">
                     @lang('Fetching records...')
                 </span>
@@ -65,7 +67,7 @@
                         </div>
                     </td>
                 @endif
-                @foreach($table['columns'] as $column)
+                @foreach($columns as $column)
                     @continue(! in_array($column->code(), $this->columns))
                     <td
                         wire:key="{{ $column->code() }}"
@@ -89,7 +91,7 @@
             </tr>
         @empty
             <tr class="group">
-                <td class="p-0" colspan="{{ $table['columns']->count() + 1 }}">
+                <td class="p-0" colspan="{{ $columns->count() + 1 }}">
                     <span class="block text-lg text-center py-20 bg-white text-black dark:bg-neutral-900 dark:text-white">
                         @lang('No results')
                     </span>
@@ -103,7 +105,7 @@
         @if($this->canSelect())
             <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800"></th>
         @endif
-        @foreach($table['columns'] as $column)
+        @foreach($columns as $column)
             @continue(! in_array($column->code(), $this->columns))
             <th wire:key="{{ $column->code() }}" class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
                 {{ $column->renderFooter() }}
