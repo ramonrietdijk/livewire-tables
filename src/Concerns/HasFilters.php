@@ -60,7 +60,11 @@ trait HasFilters
     /** @return Enumerable<int, BaseFilter> */
     protected function resolveFilters(): Enumerable
     {
-        return once(fn (): Enumerable => collect($this->filters()));
+        return once(function (): Enumerable {
+            return collect($this->filters())
+                ->filter(fn (BaseFilter $filter): bool => $filter->canBeSeen())
+                ->values();
+        });
     }
 
     /** @param  Builder<covariant Model>  $builder */

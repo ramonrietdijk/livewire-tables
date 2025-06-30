@@ -20,7 +20,11 @@ trait HasActions
     /** @return Enumerable<int, BaseAction> */
     protected function resolveActions(): Enumerable
     {
-        return once(fn (): Enumerable => collect($this->actions()));
+        return once(function (): Enumerable {
+            return collect($this->actions())
+                ->filter(fn (BaseAction $action): bool => $action->canBeSeen())
+                ->values();
+        });
     }
 
     public function executeAction(string $code): mixed
