@@ -1,4 +1,6 @@
-@if($table['columns']->isNotEmpty())
+@php($columns = $this->resolveColumns())
+
+@if($columns->isNotEmpty())
     <x-livewire-table::dropdown label="{{ __('Columns') }}">
         <x-slot name="icon">
             <!-- Icon "view-columns" (outline) from https://heroicons.com -->
@@ -16,7 +18,7 @@
                 @lang('None')
             </a>
         </span>
-        @foreach($table['columns'] as $column)
+        @foreach($columns as $column)
             <label
                 wire:key="{{ $column->code() }}"
                 class="flex items-center gap-2 px-3 py-1 cursor-pointer"

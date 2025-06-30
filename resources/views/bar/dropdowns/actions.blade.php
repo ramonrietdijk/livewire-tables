@@ -1,4 +1,6 @@
-@if($table['actions']->isNotEmpty())
+@php($allActions = $this->resolveActions())
+
+@if($allActions->isNotEmpty())
     <x-livewire-table::dropdown label="{{ __('Actions') }}">
         <x-slot name="icon">
             <!-- Icon "play" (outline) from https://heroicons.com -->
@@ -7,7 +9,7 @@
             </svg>
         </x-slot>
         <div class="flex flex-col" x-data="{ selected: @entangle('selected') }">
-            @php($standaloneActions = $table['actions']->filter(fn($action): bool => $action->isStandalone()))
+            @php($standaloneActions = $allActions->filter(fn ($action): bool => $action->isStandalone()))
             @if($standaloneActions->isNotEmpty())
                 <div class="flex flex-col border-b border-neutral-200 dark:border-neutral-700 last:border-b-0">
                     <span
@@ -37,7 +39,7 @@
                 </div>
             @endif
 
-            @php($actions = $table['actions']->filter(fn($action): bool => ! $action->isStandalone()))
+            @php($actions = $allActions->filter(fn ($action): bool => ! $action->isStandalone()))
             @if($actions->isNotEmpty())
                 <div class="flex flex-col border-b border-neutral-200 dark:border-neutral-700 last:border-b-0">
                     <span
