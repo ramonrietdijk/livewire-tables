@@ -8,7 +8,7 @@
         @endif
         @foreach($table['columns'] as $column)
             @continue(! in_array($column->code(), $this->columns))
-            <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
+            <th wire:key="{{ $column->code() }}" class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
                 {{ $column->renderHeader() }}
             </th>
         @endforeach
@@ -19,7 +19,7 @@
         @endif
         @foreach($table['columns'] as $column)
             @continue(! in_array($column->code(), $this->columns))
-            <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
+            <th wire:key="{{ $column->code() }}" class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
                 @if($column->isSearchable())
                     {{ $column->renderSearch() }}
                 @endif
@@ -68,6 +68,7 @@
                 @foreach($table['columns'] as $column)
                     @continue(! in_array($column->code(), $this->columns))
                     <td
+                        wire:key="{{ $column->code() }}"
                         @class([
                             'p-0' => true,
                             'select-none cursor-pointer' => $column->isClickable() || $this->isReordering(),
@@ -104,7 +105,7 @@
         @endif
         @foreach($table['columns'] as $column)
             @continue(! in_array($column->code(), $this->columns))
-            <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
+            <th wire:key="{{ $column->code() }}" class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
                 {{ $column->renderFooter() }}
             </th>
         @endforeach
