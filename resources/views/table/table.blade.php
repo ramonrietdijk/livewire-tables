@@ -71,8 +71,9 @@
                     @continue(! in_array($column->code(), $this->columns))
                     <td
                         wire:key="{{ $column->code() }}"
+                        x-data=""
                         @class([
-                            'p-0' => true,
+                            'p-0 group/column relative' => true,
                             'select-none cursor-pointer' => $column->isClickable() || $this->isReordering(),
                         ])
                         @if($column->isClickable() && ! $this->isReordering())
@@ -84,8 +85,12 @@
                         @endif
                         x-bind:class="~selected.indexOf('{{ $item->getKey() }}')
                                 ? 'bg-blue-100 group-odd:bg-blue-100 group-hover:bg-blue-200 dark:bg-blue-900 dark:group-odd:bg-blue-900 dark:group-hover:bg-blue-800'
-                                : 'bg-neutral-100 group-odd:bg-white group-hover:bg-neutral-200 dark:bg-neutral-800 dark:group-odd:bg-neutral-900 dark:group-hover:bg-neutral-700'">
-                        {{ $column->render($item) }}
+                                : 'bg-neutral-100 group-odd:bg-white group-hover:bg-neutral-200 dark:bg-neutral-800 dark:group-odd:bg-neutral-900 dark:group-hover:bg-neutral-700'"
+                    >
+                        @includeWhen($column->isCopyable(), 'livewire-table::columns.buttons.copy')
+                        <div x-ref="content">
+                            {{ $column->render($item) }}
+                        </div>
                     </td>
                 @endforeach
             </tr>
