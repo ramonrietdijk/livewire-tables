@@ -41,6 +41,7 @@
     @else
         @forelse($paginator->items() as $item)
             <tr class="group"
+                x-data="{ item: '{{ $item->getKey() }}' }"
                 wire:key="row-{{ $item->getKey() }}"
 
                 @if($this->isReordering())

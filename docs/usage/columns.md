@@ -17,7 +17,7 @@ protected function columns(): array
 
 ## Column Types
 
-Currently, there are 6 different column types available.
+Currently, there are 7 different column types available.
 
 ### Column
 
@@ -108,31 +108,39 @@ The model will be passed to the view.
 :::
 
 ```php
-ViewColumn::make(__('Actions'), 'actions'),
+ViewColumn::make(__('View'), 'view'),
 ```
 
 If you've added links in your view, you should disable the column from being [clicked](#clickable).
 
 ```php
-ViewColumn::make(__('Actions'), 'actions')
+ViewColumn::make(__('View'), 'view')
     ->clickable(false),
 ```
 
 By default, only the model will be passed to the view. Any additional data can be passed by using the `with` method.
 
 ```php
-ViewColumn::make(__('Actions'), 'actions')
+ViewColumn::make(__('View'), 'view')
     ->with([
         'key' => 'value',
     ]),
 
 // or
 
-ViewColumn::make(__('Actions'), 'actions')
+ViewColumn::make(__('View'), 'view')
     ->with('key', 'value'),
 ```
 
 Just like any other column, the [header](#header) can be disabled as well.
+
+### Action Column
+
+Add the `ActionColumn` to your table in order to show the actions on each row.
+
+```php
+ActionColumn::make(__('Actions')),
+```
 
 ## JSON
 

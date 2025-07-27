@@ -27,15 +27,16 @@ trait HasActions
         });
     }
 
-    public function executeAction(string $code): mixed
+    /** @param array<int, string> $items */
+    protected function runAction(string $code, array $items = []): mixed
     {
         /** @var BaseAction $action */
         $action = $this->resolveActions()->firstOrFail(fn (BaseAction $action): bool => $code === $action->code());
 
         $models = collect();
 
-        if (! $action->isStandalone() && count($this->selected) > 0) {
-            $models = $this->queryWithTrashed()->whereIn($this->model()->getQualifiedKeyName(), $this->selected)->get();
+        if (! $action->isStandalone() && count($items) > 0) {
+            $models = $this->queryWithTrashed()->whereIn($this->model()->getQualifiedKeyName(), $items)->get();
         }
 
         $response = $action->execute($models);
@@ -49,5 +50,15 @@ trait HasActions
         }
 
         return $response;
+    }
+
+    public function executeAction(string $code): mixed
+    {
+        return $this->runAction($code, $this->selected);
+    }
+
+    public function executeItemAction(string $code, string $key): mixed
+    {
+        return $this->runAction($code, [$key]);
     }
 }

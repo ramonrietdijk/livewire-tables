@@ -25,6 +25,17 @@ class HasActionsTest extends TestCase
     }
 
     #[Test]
+    public function it_can_execute_actions_for_single_items(): void
+    {
+        Blog::factory()->count(3)->create();
+
+        Livewire::test(BlogLivewireTable::class)
+            ->call('executeItemAction', 'publish', '1')
+            ->assertDispatched('refreshLivewireTable')
+            ->assertSet('selected', []);
+    }
+
+    #[Test]
     public function it_can_execute_standalone_actions(): void
     {
         Livewire::test(BlogLivewireTable::class)
