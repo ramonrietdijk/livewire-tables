@@ -43,8 +43,8 @@ protected function applySelect(Builder $builder): static
 {
     parent::applySelect($builder);
 
-    $builder->addSelect(
-        DB::raw('(SELECT COUNT(`blogs`.`author_id`) FROM `blogs` WHERE `blogs`.`author_id` = `author`.`id` GROUP BY `blogs`.`author_id`) AS total_blogs')
+    $builder->selectRaw(
+        '(SELECT COUNT(`blogs`.`author_id`) FROM `blogs` WHERE `blogs`.`author_id` = `author`.`id` GROUP BY `blogs`.`author_id`) AS total_blogs'
     );
 
     return $this;
@@ -74,11 +74,11 @@ Column::make(__('Total Blogs'), function (mixed $value, Model $model): int {
     return $model->total_blogs;
 })->sortable(function (Builder $builder, Direction $direction): void {
     $builder->orderBy(function (Query $query): void {
-        $query->selectRaw('COUNT(*)')->from('blogs')->where('author_id', '=', DB::raw('author.id'));
+        $query->selectRaw('COUNT(*)')->from('blogs')->whereColumn('author_id', '=', 'author.id');
     }, $direction->value);
 })->searchable(function (Builder $builder, mixed $value): void {
     $builder->where(function (Query $query): void {
-        $query->selectRaw('COUNT(*)')->from('blogs')->where('author_id', '=', DB::raw('author.id'));
+        $query->selectRaw('COUNT(*)')->from('blogs')->whereColumn('author_id', '=', 'author.id');
     }, '=', $value);
 }),
 ```
