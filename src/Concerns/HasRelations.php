@@ -93,7 +93,7 @@ trait HasRelations
         try {
             $reflectionMethod = new ReflectionMethod($model, $relation);
 
-            if (! $reflectionMethod->isPublic()) {
+            if (! $reflectionMethod->isPublic() || $reflectionMethod->isStatic()) {
                 return null;
             }
 
