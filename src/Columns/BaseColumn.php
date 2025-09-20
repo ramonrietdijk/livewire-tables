@@ -22,9 +22,6 @@ use RamonRietdijk\LivewireTables\Concerns\CanBeSeen;
 use RamonRietdijk\LivewireTables\Concerns\HasMetadata;
 use RamonRietdijk\LivewireTables\Concerns\Makeable;
 
-/**
- * @property view-string $view
- */
 abstract class BaseColumn
 {
     use CanBeClickable;
@@ -46,6 +43,7 @@ abstract class BaseColumn
 
     protected ?string $column;
 
+    /** @phpstan-var view-string */
     protected string $view = 'livewire-table::columns.content.default';
 
     public function __construct(

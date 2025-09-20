@@ -9,11 +9,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use RamonRietdijk\LivewireTables\Enums\SearchScope;
 
-/**
- * @property view-string $searchView
- */
 trait HasSearch
 {
+    /** @phpstan-var view-string */
     protected string $searchView = 'livewire-table::columns.search.default';
 
     protected bool $searchable = false;
