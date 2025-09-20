@@ -6,11 +6,9 @@ namespace RamonRietdijk\LivewireTables\Columns\Concerns;
 
 use Closure;
 
-/**
- * @property view-string $footerView
- */
 trait HasFooter
 {
+    /** @phpstan-var view-string */
     protected string $footerView = 'livewire-table::columns.footer.default';
 
     protected ?Closure $footerCallback = null;

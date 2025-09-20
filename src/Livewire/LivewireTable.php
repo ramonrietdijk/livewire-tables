@@ -28,9 +28,6 @@ use RamonRietdijk\LivewireTables\Concerns\HasSession;
 use RamonRietdijk\LivewireTables\Concerns\HasSoftDeletes;
 use RamonRietdijk\LivewireTables\Concerns\HasSorting;
 
-/**
- * @property view-string $view
- */
 class LivewireTable extends Component
 {
     use HasActions;
@@ -54,6 +51,7 @@ class LivewireTable extends Component
 
     protected string $model = Model::class;
 
+    /** @phpstan-var view-string */
     protected string $view = 'livewire-table::livewire.livewire-table';
 
     /** @var mixed */

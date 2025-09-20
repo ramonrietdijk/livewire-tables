@@ -13,9 +13,6 @@ use RamonRietdijk\LivewireTables\Concerns\HasMetadata;
 use RamonRietdijk\LivewireTables\Concerns\Makeable;
 use RamonRietdijk\LivewireTables\Filters\Concerns\HasFilter;
 
-/**
- * @property view-string $view
- */
 abstract class BaseFilter
 {
     use CanBeComputed;
@@ -29,6 +26,7 @@ abstract class BaseFilter
 
     protected ?string $column;
 
+    /** @phpstan-var view-string */
     protected string $view = 'livewire-table::filters.filter';
 
     public function __construct(

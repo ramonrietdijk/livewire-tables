@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Columns\Concerns;
 
-/**
- * @property view-string $headerView
- */
 trait HasHeader
 {
+    /** @phpstan-var view-string */
     protected string $headerView = 'livewire-table::columns.header.default';
 
     protected bool $header = true;
