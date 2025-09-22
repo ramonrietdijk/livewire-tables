@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Concerns;
 
-use Illuminate\Support\Enumerable;
 use RamonRietdijk\LivewireTables\Actions\BaseAction;
+use RamonRietdijk\LivewireTables\Collections\ActionCollection;
 
 trait HasActions
 {
@@ -17,13 +17,13 @@ trait HasActions
         ];
     }
 
-    /** @return Enumerable<int, BaseAction> */
-    protected function resolveActions(): Enumerable
+    protected function resolveActions(): ActionCollection
     {
-        return once(function (): Enumerable {
+        return once(function (): ActionCollection {
             return collect($this->actions())
                 ->filter(fn (BaseAction $action): bool => $action->canBeSeen())
-                ->values();
+                ->values()
+                ->pipeInto(ActionCollection::class);
         });
     }
 

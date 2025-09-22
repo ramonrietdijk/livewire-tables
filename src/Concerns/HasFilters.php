@@ -6,7 +6,7 @@ namespace RamonRietdijk\LivewireTables\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Enumerable;
+use RamonRietdijk\LivewireTables\Collections\FilterCollection;
 use RamonRietdijk\LivewireTables\Filters\BaseFilter;
 
 trait HasFilters
@@ -57,13 +57,13 @@ trait HasFilters
         ];
     }
 
-    /** @return Enumerable<int, BaseFilter> */
-    protected function resolveFilters(): Enumerable
+    protected function resolveFilters(): FilterCollection
     {
-        return once(function (): Enumerable {
+        return once(function (): FilterCollection {
             return collect($this->filters())
                 ->filter(fn (BaseFilter $filter): bool => $filter->canBeSeen())
-                ->values();
+                ->values()
+                ->pipeInto(FilterCollection::class);
         });
     }
 

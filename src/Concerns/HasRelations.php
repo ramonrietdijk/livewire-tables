@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Collection;
-use RamonRietdijk\LivewireTables\Columns\BaseColumn;
-use RamonRietdijk\LivewireTables\Filters\BaseFilter;
 use RamonRietdijk\LivewireTables\Support\Column;
 use ReflectionException;
 use ReflectionMethod;
@@ -20,19 +18,11 @@ trait HasRelations
     /** @param  Builder<covariant Model>  $builder */
     protected function applyRelations(Builder $builder): static
     {
-        $columns = $this->resolveColumns()
-            ->filter(fn (BaseColumn $column): bool => ! $column->isComputed())
-            ->map(fn (BaseColumn $column): ?string => $column->column());
+        $columns = $this->resolveColumns()->computed(false)->columns();
 
-        $filters = $this->resolveFilters()
-            ->filter(fn (BaseFilter $filter): bool => ! $filter->isComputed())
-            ->map(fn (BaseFilter $filter): ?string => $filter->column());
+        $filters = $this->resolveFilters()->computed(false)->columns();
 
-        $allColumns = $columns
-            ->merge($filters)
-            ->filter(fn (?string $column): bool => $column !== null)
-            ->unique()
-            ->values();
+        $allColumns = collect($columns)->merge($filters)->filter()->unique()->values();
 
         $with = [];
         $join = [];

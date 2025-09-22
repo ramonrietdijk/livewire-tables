@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace RamonRietdijk\LivewireTables\Concerns;
 
 use Illuminate\Database\Eloquent\Model;
-use RamonRietdijk\LivewireTables\Actions\BaseAction;
 
 trait HasSelection
 {
@@ -101,9 +100,7 @@ trait HasSelection
 
     protected function canSelect(): bool
     {
-        $hasActions = $this->resolveActions()
-            ->filter(fn (BaseAction $action): bool => ! $action->isStandalone())
-            ->isNotEmpty();
+        $hasActions = $this->resolveActions()->standalone(false)->isNotEmpty();
 
         return $hasActions && ! $this->isReordering();
     }

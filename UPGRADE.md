@@ -2,6 +2,10 @@
 
 Guide to upgrade the package to the next major versions.
 
+## Upgrading to 6.x from 5.x
+
+The return type of methods `resolveActions`, `resolveColumns` and `resolveFilters` have been changed. They now return their own collection in favor of `Illuminate\Support\Collection` for easier interaction.
+
 ## Upgrading to 5.x from 4.x
 
 Laravel 12 is supported since version 5.x. Support for Laravel 11 and PHP version 8.2 have both been dropped.
