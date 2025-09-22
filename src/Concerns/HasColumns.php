@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Concerns;
 
-use Illuminate\Support\Enumerable;
+use RamonRietdijk\LivewireTables\Collections\ColumnCollection;
 use RamonRietdijk\LivewireTables\Columns\BaseColumn;
 
 trait HasColumns
@@ -93,15 +93,14 @@ trait HasColumns
         ];
     }
 
-    /** @return Enumerable<int, BaseColumn> */
-    protected function resolveColumns(): Enumerable
+    protected function resolveColumns(): ColumnCollection
     {
-        return once(function (): Enumerable {
+        return once(function (): ColumnCollection {
             return collect($this->columns())
                 ->filter(fn (BaseColumn $column): bool => $column->canBeSeen())
-                ->sortBy(function (BaseColumn $column): int {
-                    return (int) array_search($column->code(), $this->columnOrder, true);
-                })->values();
+                ->sortBy(fn (BaseColumn $column): int => (int) array_search($column->code(), $this->columnOrder, true))
+                ->values()
+                ->pipeInto(ColumnCollection::class);
         });
     }
 }

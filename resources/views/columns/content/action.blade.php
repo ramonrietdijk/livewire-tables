@@ -1,4 +1,4 @@
-@php($actions = $this->resolveActions()->filter(fn ($action): bool => ! $action->isStandalone()))
+@php($actions = $this->resolveActions()->standalone(false))
 
 <div class="px-2 py-0.5 text-black dark:text-white">
     <x-livewire-table::dropdown size="sm" label="{{ __('Actions') }}">

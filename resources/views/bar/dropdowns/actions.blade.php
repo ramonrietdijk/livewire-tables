@@ -9,7 +9,7 @@
             </svg>
         </x-slot>
         <div class="flex flex-col" x-data="{ selected: @entangle('selected') }">
-            @php($standaloneActions = $allActions->filter(fn ($action): bool => $action->isStandalone()))
+            @php($standaloneActions = $allActions->standalone())
             @if($standaloneActions->isNotEmpty())
                 <div class="flex flex-col border-b border-neutral-200 dark:border-neutral-700 last:border-b-0">
                     <span
@@ -39,7 +39,7 @@
                 </div>
             @endif
 
-            @php($actions = $allActions->filter(fn ($action): bool => ! $action->isStandalone()))
+            @php($actions = $allActions->standalone(false))
             @if($actions->isNotEmpty())
                 <div class="flex flex-col border-b border-neutral-200 dark:border-neutral-700 last:border-b-0">
                     <span
