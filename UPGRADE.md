@@ -6,6 +6,8 @@ Guide to upgrade the package to the next major versions.
 
 The return type of methods `resolveActions`, `resolveColumns` and `resolveFilters` have been changed. They now return their own collection in favor of `Illuminate\Support\Collection` for easier interaction.
 
+The event `refreshLivewireTable` has been removed. It was dispatched after the execution of actions which is redundant because the component already refreshes afterwards.
+
 ## Upgrading to 5.x from 4.x
 
 Laravel 12 is supported since version 5.x. Support for Laravel 11 and PHP version 8.2 have both been dropped.

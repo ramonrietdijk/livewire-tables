@@ -54,11 +54,6 @@ class LivewireTable extends Component
     /** @phpstan-var view-string */
     protected string $view = 'livewire-table::livewire.livewire-table';
 
-    /** @var mixed */
-    protected $listeners = [
-        'refreshLivewireTable' => '$refresh',
-    ];
-
     protected function link(Model $model): ?string
     {
         return null;

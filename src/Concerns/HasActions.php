@@ -45,8 +45,6 @@ trait HasActions
             if (! $action->isStandalone()) {
                 $this->clearSelection();
             }
-
-            $this->dispatch('refreshLivewireTable');
         }
 
         return $response;
