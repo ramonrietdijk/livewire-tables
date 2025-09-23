@@ -4,6 +4,8 @@ Guide to upgrade the package to the next major versions.
 
 ## Upgrading to 6.x from 5.x
 
+Documentation about the [versioning](VERSIONING.md) of this package has been added. Please, read it carefully before upgrading.
+
 The return type of methods `resolveActions`, `resolveColumns` and `resolveFilters` have been changed. They now return their own collection in favor of `Illuminate\Support\Collection` for easier interaction.
 
 The event `refreshLivewireTable` has been removed. It was dispatched after the execution of actions which is redundant because the component already refreshes afterwards.
