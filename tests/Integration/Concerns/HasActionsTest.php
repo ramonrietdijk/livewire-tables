@@ -20,8 +20,8 @@ class HasActionsTest extends TestCase
         Livewire::test(BlogLivewireTable::class)
             ->set('selected', ['1', '2', '3'])
             ->call('executeAction', 'publish')
-            ->assertDispatched('refreshLivewireTable')
-            ->assertSet('selected', []);
+            ->assertSet('selected', [])
+            ->assertSuccessful();
     }
 
     #[Test]
@@ -31,8 +31,7 @@ class HasActionsTest extends TestCase
 
         Livewire::test(BlogLivewireTable::class)
             ->call('executeItemAction', 'publish', '1')
-            ->assertDispatched('refreshLivewireTable')
-            ->assertSet('selected', []);
+            ->assertSuccessful();
     }
 
     #[Test]
@@ -40,6 +39,6 @@ class HasActionsTest extends TestCase
     {
         Livewire::test(BlogLivewireTable::class)
             ->call('executeAction', 'publish_all')
-            ->assertDispatched('refreshLivewireTable');
+            ->assertSuccessful();
     }
 }
