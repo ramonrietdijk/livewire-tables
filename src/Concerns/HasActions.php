@@ -41,10 +41,8 @@ trait HasActions
 
         $response = $action->execute($models);
 
-        if ($response !== false) {
-            if (! $action->isStandalone()) {
-                $this->clearSelection();
-            }
+        if ($action->shouldClearSelection()) {
+            $this->clearSelection();
         }
 
         return $response;

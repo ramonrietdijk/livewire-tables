@@ -8,6 +8,7 @@ use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Enumerable;
 use RamonRietdijk\LivewireTables\Actions\Concerns\CanBeStandalone;
+use RamonRietdijk\LivewireTables\Actions\Concerns\HasSelection;
 use RamonRietdijk\LivewireTables\Concerns\CanBeSeen;
 use RamonRietdijk\LivewireTables\Concerns\HasMetadata;
 use RamonRietdijk\LivewireTables\Concerns\Makeable;
@@ -17,6 +18,7 @@ abstract class BaseAction
     use CanBeSeen;
     use CanBeStandalone;
     use HasMetadata;
+    use HasSelection;
     use Makeable;
 
     public function __construct(
