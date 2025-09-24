@@ -10,6 +10,8 @@ The return type of methods `resolveActions`, `resolveColumns` and `resolveFilter
 
 The event `refreshLivewireTable` has been removed. It was dispatched after the execution of actions which is redundant because the component already refreshes afterwards.
 
+The selection of records will automatically be cleared after an action has been executed. Returning `false` won't prevent this anymore. Make use of the `keepSelection` method instead.
+
 ## Upgrading to 5.x from 4.x
 
 Laravel 12 is supported since version 5.x. Support for Laravel 11 and PHP version 8.2 have both been dropped.

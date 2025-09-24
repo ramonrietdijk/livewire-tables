@@ -22,8 +22,25 @@ Action::make(__('My Action'), 'my_action', function (Enumerable $models): void {
 
 Actions can return anything but are not required to. This makes it very simple to redirect the user to another page or to download an [export](/usage/exports) of the records.
 
-When an action has been executed, it will automatically clear the selection and refresh the table. This can be prevented
-if you return `false` from your callback.
+## Selection
+
+When an action has been executed, it will automatically clear the selection. This can be prevented by calling the `keepSelection` method on your action.
+
+```php
+Action::make(__('My Action'), 'my_action', function (Enumerable $models): void {
+    //
+})->keepSelection(),
+```
+
+If you wish to clear the selection conditionally, you can call the `clearSelection` method on your Livewire Table.
+
+```php
+Action::make(__('My Action'), 'my_action', function (Enumerable $models): void {
+    //
+
+    $this->clearSelection();
+})->keepSelection(),
+```
 
 ## Standalone
 
