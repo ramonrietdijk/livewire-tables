@@ -29,7 +29,7 @@ You can also use a regular action, only exporting records that have been selecte
 protected function actions(): array
 {
     return [
-        Action::make(__('Export'), 'export', function (Enumerable $models): mixed {
+        Action::make(__('Export'), 'export', function (Collection $models): mixed {
             return Excel::download(
                 new BlogExport($models), 'blogs.xlsx',
             );

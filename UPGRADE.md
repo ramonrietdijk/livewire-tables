@@ -12,6 +12,8 @@ The event `refreshLivewireTable` has been removed. It was dispatched after the e
 
 The selection of records will automatically be cleared after an action has been executed. Returning `false` won't prevent this anymore. Make use of the `keepSelection` method instead.
 
+The type of parameter `$models` in method `execute` of the `BaseAction` has been changed from `Illuminate\Support\Enumerable` to `Illuminate\Database\Eloquent\Collection`. As `Illuminate\Database\Eloquent\Collection` implements the `Illuminate\Support\Enumerable` interface, application code does not have to be updated.
+
 ## Upgrading to 5.x from 4.x
 
 Laravel 12 is supported since version 5.x. Support for Laravel 11 and PHP version 8.2 have both been dropped.

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Tests\Fakes\Livewire;
 
-use Illuminate\Support\Enumerable;
+use Illuminate\Database\Eloquent\Collection;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Columns\BooleanColumn;
 use RamonRietdijk\LivewireTables\Columns\Column;
@@ -82,7 +82,7 @@ class BlogLivewireTable extends LivewireTable
                 Blog::query()->update(['published' => true]);
             })->standalone(),
 
-            Action::make(__('Publish'), 'publish', function (Enumerable $models): void {
+            Action::make(__('Publish'), 'publish', function (Collection $models): void {
                 /** @var Blog $model */
                 foreach ($models as $model) {
                     $model->published = true;
@@ -90,7 +90,7 @@ class BlogLivewireTable extends LivewireTable
                 }
             }),
 
-            Action::make(__('Unpublish'), 'unpublish', function (Enumerable $models): void {
+            Action::make(__('Unpublish'), 'unpublish', function (Collection $models): void {
                 /** @var Blog $model */
                 foreach ($models as $model) {
                     $model->published = false;

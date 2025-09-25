@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Concerns;
 
+use Illuminate\Database\Eloquent\Collection;
 use RamonRietdijk\LivewireTables\Actions\BaseAction;
 use RamonRietdijk\LivewireTables\Collections\ActionCollection;
 
@@ -33,10 +34,10 @@ trait HasActions
         /** @var BaseAction $action */
         $action = $this->resolveActions()->firstOrFail(fn (BaseAction $action): bool => $code === $action->code());
 
-        $models = collect();
-
         if (! $action->isStandalone() && count($items) > 0) {
             $models = $this->queryWithTrashed()->whereIn($this->model()->getQualifiedKeyName(), $items)->get();
+        } else {
+            $models = Collection::make();
         }
 
         $response = $action->execute($models);
