@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Tests\Fakes\Livewire;
 
-use Illuminate\Support\Enumerable;
+use Illuminate\Database\Eloquent\Collection;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Livewire\LivewireTable;
@@ -28,7 +28,7 @@ class ReorderingBlogLivewireTable extends LivewireTable
     protected function actions(): array
     {
         return [
-            Action::make(__('Publish'), 'publish', function (Enumerable $models): void {
+            Action::make(__('Publish'), 'publish', function (Collection $models): void {
                 /** @var Blog $model */
                 foreach ($models as $model) {
                     $model->published = true;

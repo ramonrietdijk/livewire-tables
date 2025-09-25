@@ -15,7 +15,7 @@ protected function actions(): array
 To create an action, simply add a label, code and callback.
 
 ```php
-Action::make(__('My Action'), 'my_action', function (Enumerable $models): void {
+Action::make(__('My Action'), 'my_action', function (Collection $models): void {
     //
 }),
 ```
@@ -27,7 +27,7 @@ Actions can return anything but are not required to. This makes it very simple t
 When an action has been executed, it will automatically clear the selection. This can be prevented by calling the `keepSelection` method on your action.
 
 ```php
-Action::make(__('My Action'), 'my_action', function (Enumerable $models): void {
+Action::make(__('My Action'), 'my_action', function (Collection $models): void {
     //
 })->keepSelection(),
 ```
@@ -35,7 +35,7 @@ Action::make(__('My Action'), 'my_action', function (Enumerable $models): void {
 If you wish to clear the selection conditionally, you can call the `clearSelection` method on your Livewire Table.
 
 ```php
-Action::make(__('My Action'), 'my_action', function (Enumerable $models): void {
+Action::make(__('My Action'), 'my_action', function (Collection $models): void {
     //
 
     $this->clearSelection();
@@ -52,7 +52,7 @@ Note that the collection of `$models` is always empty if a standalone action is 
 :::
 
 ```php
-Action::make(__('Import'), 'import', function (Enumerable $models): void {
+Action::make(__('Import'), 'import', function (Collection $models): void {
     //
 })->standalone(),
 ```
@@ -84,7 +84,7 @@ JS),
 By default, all actions will be available. You can manage the access to an action by using the `canSee` method.
 
 ```php
-Action::make(__('My Action'), 'my_action', function (Enumerable $models): void {
+Action::make(__('My Action'), 'my_action', function (Collection $models): void {
     //
 })->canSee(auth()->user()->can('...')),
 ```

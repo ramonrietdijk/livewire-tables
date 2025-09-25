@@ -12,8 +12,8 @@ namespace App\Livewire;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Enumerable;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Columns\BooleanColumn;
 use RamonRietdijk\LivewireTables\Columns\Column;
@@ -94,14 +94,14 @@ class BlogTable extends LivewireTable
                 Blog::query()->update(['published' => true]);
             })->standalone(),
 
-            Action::make(__('Publish'), 'publish', function (Enumerable $models): void {
+            Action::make(__('Publish'), 'publish', function (Collection $models): void {
                 $models->each(function (Blog $blog): void {
                     $blog->published = true;
                     $blog->save();
                 });
             }),
 
-            Action::make(__('Unpublish'), 'unpublish', function (Enumerable $models): void {
+            Action::make(__('Unpublish'), 'unpublish', function (Collection $models): void {
                 $models->each(function (Blog $blog): void {
                     $blog->published = false;
                     $blog->save();

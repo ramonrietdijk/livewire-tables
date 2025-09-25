@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace RamonRietdijk\LivewireTables\Actions;
 
 use Closure;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Enumerable;
 use RamonRietdijk\LivewireTables\Actions\Concerns\CanBeStandalone;
 use RamonRietdijk\LivewireTables\Actions\Concerns\HasSelection;
 use RamonRietdijk\LivewireTables\Concerns\CanBeSeen;
@@ -42,8 +42,8 @@ abstract class BaseAction
         return $this->callback;
     }
 
-    /** @param  Enumerable<int, covariant Model>  $models */
-    public function execute(Enumerable $models): mixed
+    /** @param  Collection<int, covariant Model>  $models */
+    public function execute(Collection $models): mixed
     {
         $callback = $this->callback();
 

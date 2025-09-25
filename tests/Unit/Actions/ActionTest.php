@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Actions;
 
+use Illuminate\Database\Eloquent\Collection;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
@@ -25,7 +26,9 @@ class ActionTest extends TestCase
     {
         $action = Action::make('Action', 'code', fn (): bool => true);
 
-        $result = $action->execute(collect());
+        $result = $action->execute(
+            Collection::make()
+        );
 
         $this->assertTrue($result);
     }
@@ -37,7 +40,9 @@ class ActionTest extends TestCase
 
         $this->assertNull($action->callback());
 
-        $result = $action->execute(collect());
+        $result = $action->execute(
+            Collection::make()
+        );
 
         $this->assertNull($result);
     }
