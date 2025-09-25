@@ -12,7 +12,7 @@ use Illuminate\Support\Collection;
  *
  * @extends Collection<TKey, TValue>
  */
-class BaseCollection extends Collection
+abstract class BaseCollection extends Collection
 {
     //
 }
