@@ -7,8 +7,8 @@ namespace RamonRietdijk\LivewireTables\Actions;
 use Closure;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use RamonRietdijk\LivewireTables\Actions\Concerns\CanBeStandalone;
 use RamonRietdijk\LivewireTables\Actions\Concerns\HasSelection;
+use RamonRietdijk\LivewireTables\Actions\Concerns\HasType;
 use RamonRietdijk\LivewireTables\Concerns\CanBeSeen;
 use RamonRietdijk\LivewireTables\Concerns\HasMetadata;
 use RamonRietdijk\LivewireTables\Concerns\Makeable;
@@ -16,9 +16,9 @@ use RamonRietdijk\LivewireTables\Concerns\Makeable;
 abstract class BaseAction
 {
     use CanBeSeen;
-    use CanBeStandalone;
     use HasMetadata;
     use HasSelection;
+    use HasType;
     use Makeable;
 
     public function __construct(
