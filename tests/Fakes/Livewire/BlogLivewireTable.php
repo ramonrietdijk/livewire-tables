@@ -97,6 +97,20 @@ class BlogLivewireTable extends LivewireTable
                     $model->save();
                 }
             }),
+
+            Action::make(__('Delete'), 'delete', function (Collection $models): void {
+                /** @var Blog $model */
+                foreach ($models as $model) {
+                    $model->delete();
+                }
+            })->record(),
+
+            Action::make(__('Restore'), 'restore', function (Collection $models): void {
+                /** @var Blog $model */
+                foreach ($models as $model) {
+                    $model->restore();
+                }
+            })->record(),
         ];
     }
 }

@@ -12,6 +12,21 @@ use RamonRietdijk\LivewireTables\Tests\TestCase;
 class ActionCollectionTest extends TestCase
 {
     #[Test]
+    public function it_can_get_bulk_actions(): void
+    {
+        $items = [
+            Action::make('Action', 'action', function (): void {
+                //
+            })->bulk(),
+        ];
+
+        $collection = ActionCollection::make($items);
+
+        $this->assertEquals(1, $collection->bulk()->count());
+        $this->assertEquals(0, $collection->bulk(false)->count());
+    }
+
+    #[Test]
     public function it_can_get_standalone_actions(): void
     {
         $items = [
@@ -24,5 +39,20 @@ class ActionCollectionTest extends TestCase
 
         $this->assertEquals(1, $collection->standalone()->count());
         $this->assertEquals(0, $collection->standalone(false)->count());
+    }
+
+    #[Test]
+    public function it_can_get_record_actions(): void
+    {
+        $items = [
+            Action::make('Action', 'action', function (): void {
+                //
+            })->record(),
+        ];
+
+        $collection = ActionCollection::make($items);
+
+        $this->assertEquals(1, $collection->record()->count());
+        $this->assertEquals(0, $collection->record(false)->count());
     }
 }
