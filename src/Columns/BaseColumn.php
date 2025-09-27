@@ -83,6 +83,7 @@ abstract class BaseColumn
 
         return view($this->view, [
             'column' => $this,
+            'model' => $model,
             'value' => $value,
         ]);
     }

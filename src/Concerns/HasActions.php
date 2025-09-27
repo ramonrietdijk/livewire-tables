@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RamonRietdijk\LivewireTables\Concerns;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use RamonRietdijk\LivewireTables\Actions\BaseAction;
 use RamonRietdijk\LivewireTables\Collections\ActionCollection;
 
@@ -39,6 +40,10 @@ trait HasActions
         } else {
             $models = Collection::make();
         }
+
+        $models = $models
+            ->filter(fn (Model $model): bool => $action->canBeRun($model))
+            ->values();
 
         $response = $action->execute($models);
 

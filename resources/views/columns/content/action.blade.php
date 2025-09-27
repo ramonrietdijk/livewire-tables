@@ -1,4 +1,4 @@
-@php($actions = $this->resolveActions()->standalone(false))
+@php($actions = $this->resolveActions()->standalone(false)->canBeRun($model))
 
 <div class="px-2 py-0.5 text-black dark:text-white">
     <x-livewire-table::dropdown size="sm" label="{{ __('Actions') }}">
