@@ -123,3 +123,13 @@ Action::make(__('Publish'), 'publish', function (Collection $models): void {
     //
 })->canSee(auth()->user()->can('...')),
 ```
+
+You can make use of the `canRun` method to specify if the action can be run for the given model. Note that this method does not apply to [standalone actions](#standalone) as they do not interact with models directly.
+
+```php
+Action::make(__('Publish'), 'publish', function (Collection $models): void {
+    //
+})->canRun(function (Model $model): bool {
+    return true;
+}),
+```

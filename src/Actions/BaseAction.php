@@ -7,6 +7,7 @@ namespace RamonRietdijk\LivewireTables\Actions;
 use Closure;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use RamonRietdijk\LivewireTables\Actions\Concerns\CanBeRun;
 use RamonRietdijk\LivewireTables\Actions\Concerns\HasSelection;
 use RamonRietdijk\LivewireTables\Actions\Concerns\HasType;
 use RamonRietdijk\LivewireTables\Concerns\CanBeSeen;
@@ -15,6 +16,7 @@ use RamonRietdijk\LivewireTables\Concerns\Makeable;
 
 abstract class BaseAction
 {
+    use CanBeRun;
     use CanBeSeen;
     use HasMetadata;
     use HasSelection;
