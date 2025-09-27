@@ -41,8 +41,8 @@ trait HasFilter
     /** @param  Builder<covariant Model>  $builder */
     public function applyFilter(Builder $builder, mixed $value): void
     {
-        if ($this->filterUsing !== null) {
-            call_user_func($this->filterUsing, $builder, $value);
+        if (($callback = $this->filterUsingCallback()) !== null) {
+            call_user_func($callback, $builder, $value);
 
             return;
         }

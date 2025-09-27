@@ -47,8 +47,8 @@ trait HasSorting
     /** @param  Builder<covariant Model>  $builder */
     public function applySorting(Builder $builder, Direction $direction): void
     {
-        if ($this->sortCallback !== null) {
-            call_user_func($this->sortCallback, $builder, $direction);
+        if (($callback = $this->sortCallback()) !== null) {
+            call_user_func($callback, $builder, $direction);
 
             return;
         }
