@@ -90,18 +90,18 @@ class BlogTable extends LivewireTable
     protected function actions(): array
     {
         return [
-            Action::make(__('Publish All'), 'publish_all', function (): void {
+            Action::make(__('Publish All'), function (): void {
                 Blog::query()->update(['published' => true]);
             })->standalone(),
 
-            Action::make(__('Publish'), 'publish', function (Collection $models): void {
+            Action::make(__('Publish'), function (Collection $models): void {
                 $models->each(function (Blog $blog): void {
                     $blog->published = true;
                     $blog->save();
                 });
             }),
 
-            Action::make(__('Unpublish'), 'unpublish', function (Collection $models): void {
+            Action::make(__('Unpublish'), function (Collection $models): void {
                 $models->each(function (Blog $blog): void {
                     $blog->published = false;
                     $blog->save();

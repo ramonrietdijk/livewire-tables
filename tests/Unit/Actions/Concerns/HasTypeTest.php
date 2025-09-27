@@ -13,7 +13,7 @@ class HasTypeTest extends TestCase
     #[Test]
     public function it_can_be_a_bulk_action(): void
     {
-        $action = Action::make('Action', 'code', fn (): bool => true);
+        $action = Action::make('Action', fn (): bool => true);
 
         $this->assertTrue($action->isBulk());
 
@@ -25,7 +25,7 @@ class HasTypeTest extends TestCase
     #[Test]
     public function it_can_be_a_standalone_action(): void
     {
-        $action = Action::make('Action', 'code', fn (): bool => true);
+        $action = Action::make('Action', fn (): bool => true);
 
         $this->assertFalse($action->isStandalone());
 
@@ -37,7 +37,7 @@ class HasTypeTest extends TestCase
     #[Test]
     public function it_can_be_a_record_action(): void
     {
-        $action = Action::make('Action', 'code', fn (): bool => true);
+        $action = Action::make('Action', fn (): bool => true);
 
         $this->assertFalse($action->isRecord());
 

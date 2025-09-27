@@ -12,10 +12,10 @@ protected function actions(): array
 }
 ```
 
-To create an action, simply add a label, code and callback.
+To create an action, simply add a label and callback.
 
 ```php
-Action::make(__('Publish'), 'publish', function (Collection $models): void {
+Action::make(__('Publish'), function (Collection $models): void {
     //
 }),
 ```
@@ -39,7 +39,7 @@ Note that the `bulk` method is added explicitly for demonstration purposes only.
 :::
 
 ```php
-Action::make(__('Publish'), 'publish', function (Collection $models): void {
+Action::make(__('Publish'), function (Collection $models): void {
     //
 })->bulk(),
 ```
@@ -53,7 +53,7 @@ The collection of `$models` is always empty if a standalone action is executed s
 :::
 
 ```php
-Action::make(__('Import'), 'import', function (): void {
+Action::make(__('Import'), function (): void {
     //
 })->standalone(),
 ```
@@ -67,7 +67,7 @@ Note that the collection of `$models` will always contain one model.
 :::
 
 ```php
-Action::make(__('Publish'), 'publish', function (Collection $models): void {
+Action::make(__('Publish'), function (Collection $models): void {
     //
 })->record(),
 ```
@@ -77,7 +77,7 @@ Action::make(__('Publish'), 'publish', function (Collection $models): void {
 When an action has been executed, it will automatically clear the selection. This can be prevented by calling the `keepSelection` method on your action.
 
 ```php
-Action::make(__('Publish'), 'publish', function (Collection $models): void {
+Action::make(__('Publish'), function (Collection $models): void {
     //
 })->keepSelection(),
 ```
@@ -85,7 +85,7 @@ Action::make(__('Publish'), 'publish', function (Collection $models): void {
 If you wish to clear the selection conditionally, you can call the `clearSelection` method on your Livewire Table.
 
 ```php
-Action::make(__('Publish'), 'publish', function (Collection $models): void {
+Action::make(__('Publish'), function (Collection $models): void {
     //
 
     $this->clearSelection();
@@ -119,7 +119,7 @@ JS),
 By default, all actions will be available. You can manage the access to an action by using the `canSee` method.
 
 ```php
-Action::make(__('Publish'), 'publish', function (Collection $models): void {
+Action::make(__('Publish'), function (Collection $models): void {
     //
 })->canSee(auth()->user()->can('...')),
 ```
@@ -127,7 +127,7 @@ Action::make(__('Publish'), 'publish', function (Collection $models): void {
 You can make use of the `canRun` method to specify if the action can be run for the given model. Note that this method does not apply to [standalone actions](#standalone) as they do not interact with models directly.
 
 ```php
-Action::make(__('Publish'), 'publish', function (Collection $models): void {
+Action::make(__('Publish'), function (Collection $models): void {
     //
 })->canRun(function (Model $model): bool {
     return true;

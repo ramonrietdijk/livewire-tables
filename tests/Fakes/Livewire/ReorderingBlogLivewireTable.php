@@ -28,7 +28,7 @@ class ReorderingBlogLivewireTable extends LivewireTable
     protected function actions(): array
     {
         return [
-            Action::make(__('Publish'), 'publish', function (Collection $models): void {
+            Action::make(__('Publish'), function (Collection $models): void {
                 /** @var Blog $model */
                 foreach ($models as $model) {
                     $model->published = true;
