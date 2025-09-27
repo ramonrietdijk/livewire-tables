@@ -20,23 +20,23 @@ trait HasFooter
         return $this;
     }
 
+    public function footerCallback(): ?Closure
+    {
+        return $this->footerCallback;
+    }
+
     public function getFooterContent(): mixed
     {
-        if ($this->footerCallback === null) {
-            return null;
+        if (($callback = $this->footerCallback()) !== null) {
+            return call_user_func($callback);
         }
 
-        return call_user_func($this->footerCallback);
+        return null;
     }
 
     public function hasFooter(): bool
     {
         return $this->footerCallback() !== null;
-    }
-
-    public function footerCallback(): ?Closure
-    {
-        return $this->footerCallback;
     }
 
     public function renderFooter(): mixed

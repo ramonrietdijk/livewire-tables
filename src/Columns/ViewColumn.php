@@ -19,8 +19,8 @@ class ViewColumn extends BaseColumn
     {
         $view = $this->column();
 
-        if ($this->displayUsing !== null) {
-            $view = call_user_func($this->displayUsing, $model, $model);
+        if (($callback = $this->displayUsingCallback()) !== null) {
+            $view = call_user_func($callback, $model, $model);
         }
 
         if ($view === null) {

@@ -54,8 +54,8 @@ trait HasValue
     {
         $value = $this->getValue($model);
 
-        if ($this->displayUsing !== null) {
-            return call_user_func($this->displayUsing, $value, $model);
+        if (($callback = $this->displayUsingCallback()) !== null) {
+            return call_user_func($callback, $value, $model);
         }
 
         if ($value instanceof Collection) {

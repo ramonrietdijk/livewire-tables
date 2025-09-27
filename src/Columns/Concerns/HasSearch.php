@@ -54,8 +54,8 @@ trait HasSearch
     /** @param  Builder<covariant Model>  $builder */
     public function applySearch(Builder $builder, SearchScope $scope, mixed $search): void
     {
-        if ($this->searchCallback !== null) {
-            call_user_func($this->searchCallback, $builder, $search, $scope);
+        if (($callback = $this->searchCallback()) !== null) {
+            call_user_func($callback, $builder, $search, $scope);
 
             return;
         }
