@@ -6,13 +6,56 @@ Guide to upgrade the package to the next major versions.
 
 Documentation about the [versioning](VERSIONING.md) of this package has been added. Please, read it carefully before upgrading.
 
-The return type of methods `resolveActions`, `resolveColumns` and `resolveFilters` have been changed. They now return their own collection in favor of `Illuminate\Support\Collection` for easier interaction.
+The changes in this release have been categorized into `High`, `Medium` and `Low` impact.
 
-The event `refreshLivewireTable` has been removed. It was dispatched after the execution of actions which is redundant because the component already refreshes afterwards.
+### High
+
+#### Action constructor
+
+The constructor for actions has been changed for more flexibility. The callback has been moved to the second parameter. The third parameter has become an optional code to identify the action. The new structure is more aligned with columns and filters.
+
+For JavaScript actions, no changes are required. In the case of callbacks, removing the second argument is all that is needed.
+
+```php
+Action::make(__('Publish'), function (Collection $models): void {
+    //
+}),
+```
+
+If you've exported the views of this package, make sure to update them as well. The JavaScript can be received from the method `script()` instead of `code()`.
+
+```html
+<button ...
+    x-on:click="
+        {{ $action->script() }}
+        show = false
+    "
+>
+    ...
+</button>
+```
+
+### Medium
+
+#### Selection
 
 The selection of records will automatically be cleared after an action has been executed. Returning `false` won't prevent this anymore. Make use of the `keepSelection` method instead.
 
+### Low
+
+#### New collections
+
+The return type of methods `resolveActions`, `resolveColumns` and `resolveFilters` have been changed. They now return their own collection in favor of `Illuminate\Support\Collection` for easier interaction.
+
+#### Dropped event
+
+The event `refreshLivewireTable` has been removed. It was dispatched after the execution of actions which is redundant because the component already refreshes afterwards.
+
+#### Eloquent collection
+
 The type of parameter `$models` in method `execute` of the `BaseAction` has been changed from `Illuminate\Support\Enumerable` to `Illuminate\Database\Eloquent\Collection`. As `Illuminate\Database\Eloquent\Collection` implements the `Illuminate\Support\Enumerable` interface, application code does not have to be updated.
+
+#### Standalone
 
 A new `Record` action type has been added. Due to this, the trait `CanBeStandalone` has been removed from the `BaseAction` class in favor of the `HasType` trait. The methods `standalone` and `isStandalone` are still available. Please note that the `standalone` method does not accept a boolean anymore. In the case of `false`, use the method `bulk` instead or omit it entirely.
 

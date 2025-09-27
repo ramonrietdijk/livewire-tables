@@ -15,12 +15,13 @@
                     @lang('Actions')
                 </span>
                 @foreach($actions as $action)
-                    @if($action->callback() === null)
+                    @if($action->isScript())
                         <button
                             class="px-3 py-1 text-left truncate hover:bg-neutral-100 disabled:hover:bg-white disabled:text-neutral-500 dark:hover:bg-neutral-700 dark:disabled:hover:bg-neutral-800"
+                            wire:key="{{ $action->code() }}"
                             x-data="{ selected: [item] }"
                             x-on:click="
-                                {{ $action->code() }}
+                                {{ $action->script() }}
                                 show = false
                             "
                             type="button">

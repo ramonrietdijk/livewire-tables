@@ -8,17 +8,21 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasSelectionTest extends TestCase
+class HasKindTest extends TestCase
 {
     #[Test]
-    public function it_can_keep_the_selection(): void
+    public function it_can_have_a_callback(): void
     {
         $action = Action::make('Action', fn (): bool => true);
 
-        $this->assertTrue($action->shouldClearSelection());
+        $this->assertTrue($action->isCallback());
+    }
 
-        $action->keepSelection();
+    #[Test]
+    public function it_can_have_a_script(): void
+    {
+        $action = Action::make('Action', 'JavaScript');
 
-        $this->assertFalse($action->shouldClearSelection());
+        $this->assertTrue($action->isScript());
     }
 }

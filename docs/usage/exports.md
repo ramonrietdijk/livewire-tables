@@ -12,7 +12,7 @@ Start by adding an action to your table. This example will make use of a [standa
 protected function actions(): array
 {
     return [
-        Action::make(__('Export All'), 'export_all', function (): mixed {
+        Action::make(__('Export All'), function (): mixed {
             $collection = $this->appliedQuery()->get();
 
             return Excel::download(
@@ -29,7 +29,7 @@ You can also use a regular action, only exporting records that have been selecte
 protected function actions(): array
 {
     return [
-        Action::make(__('Export'), 'export', function (Collection $models): mixed {
+        Action::make(__('Export'), function (Collection $models): mixed {
             return Excel::download(
                 new BlogExport($models), 'blogs.xlsx',
             );

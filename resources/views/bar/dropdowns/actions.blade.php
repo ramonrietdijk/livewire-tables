@@ -17,10 +17,11 @@
                         @lang('Standalone Actions')
                     </span>
                     @foreach($standaloneActions as $standaloneAction)
-                        @if($standaloneAction->callback() === null)
+                        @if($standaloneAction->isScript())
                             <button class="px-3 py-1 text-left truncate hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                                    wire:key="{{ $standaloneAction->code() }}"
                                     x-on:click="
-                                        {{ $standaloneAction->code() }}
+                                        {{ $standaloneAction->script() }}
                                         show = false
                                     "
                                     type="button">
@@ -47,12 +48,13 @@
                         @lang('Bulk Actions')
                     </span>
                     @foreach($bulkActions as $bulkAction)
-                        @if($bulkAction->callback() === null)
+                        @if($bulkAction->isScript())
                             <button
                                 class="px-3 py-1 text-left truncate hover:bg-neutral-100 disabled:hover:bg-white disabled:text-neutral-500 dark:hover:bg-neutral-700 dark:disabled:hover:bg-neutral-800"
                                 x-bind:disabled="selected.length === 0"
+                                wire:key="{{ $bulkAction->code() }}"
                                 x-on:click="
-                                    {{ $bulkAction->code() }}
+                                    {{ $bulkAction->script() }}
                                     show = false
                                 "
                                 type="button">

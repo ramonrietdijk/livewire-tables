@@ -17,9 +17,9 @@ trait HasType
         return $this;
     }
 
-    public function isType(ActionType $action): bool
+    public function isType(ActionType $type): bool
     {
-        return $this->type === $action;
+        return $this->type === $type;
     }
 
     public function bulk(): static

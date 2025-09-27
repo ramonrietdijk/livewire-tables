@@ -17,7 +17,7 @@ class ActionCollectionTest extends TestCase
     public function it_can_get_bulk_actions(): void
     {
         $items = [
-            Action::make('Action', 'action', function (): void {
+            Action::make('Action', function (): void {
                 //
             })->bulk(),
         ];
@@ -32,7 +32,7 @@ class ActionCollectionTest extends TestCase
     public function it_can_get_standalone_actions(): void
     {
         $items = [
-            Action::make('Action', 'action', function (): void {
+            Action::make('Action', function (): void {
                 //
             })->standalone(),
         ];
@@ -47,7 +47,7 @@ class ActionCollectionTest extends TestCase
     public function it_can_get_record_actions(): void
     {
         $items = [
-            Action::make('Action', 'action', function (): void {
+            Action::make('Action', function (): void {
                 //
             })->record(),
         ];
@@ -62,7 +62,7 @@ class ActionCollectionTest extends TestCase
     public function it_can_get_runnable_actions(): void
     {
         $items = [
-            Action::make('Action', 'action', function (): void {
+            Action::make('Action', function (): void {
                 //
             })->canRun(fn (Model $model): bool => $model->exists),
         ];

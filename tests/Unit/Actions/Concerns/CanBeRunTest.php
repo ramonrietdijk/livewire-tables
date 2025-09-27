@@ -15,7 +15,7 @@ class CanBeRunTest extends TestCase
     #[Test]
     public function it_can_be_run(): void
     {
-        $action = Action::make('Action', 'code', fn (): bool => true);
+        $action = Action::make('Action', fn (): bool => true);
         $model = new User;
 
         $this->assertTrue($action->canBeRun($model));
