@@ -15,8 +15,8 @@ class HasDeferredLoadingTest extends TestCase
     public function it_can_defer_loading(): void
     {
         Livewire::test(DeferredLoadingBlogLivewireTable::class)
-            ->assertSee('Fetching records...')
+            ->assertSet('initialized', false)
             ->call('init')
-            ->assertDontSee('Fetching records...');
+            ->assertSet('initialized', true);
     }
 }

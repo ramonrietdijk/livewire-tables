@@ -1,4 +1,4 @@
-<div class="px-3 py-2 truncate text-black dark:text-white">
+<div class="px-3 py-2 truncate">
     @if(($content = $column->getFooterContent()) !== null)
         {!! $content !!}
     @else

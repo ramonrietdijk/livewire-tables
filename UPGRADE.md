@@ -59,6 +59,10 @@ The type of parameter `$models` in method `execute` of the `BaseAction` has been
 
 A new `Record` action type has been added. Due to this, the trait `CanBeStandalone` has been removed from the `BaseAction` class in favor of the `HasType` trait. The methods `standalone` and `isStandalone` are still available. Please note that the `standalone` method does not accept a boolean anymore. In the case of `false`, use the method `bulk` instead or omit it entirely.
 
+#### Initialization
+
+If you make use of the new design, note that the `wire:init="init"` will only be added if `deferLoading` has been enabled.
+
 ## Upgrading to 5.x from 4.x
 
 Laravel 12 is supported since version 5.x. Support for Laravel 11 and PHP version 8.2 have both been dropped.

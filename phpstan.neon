@@ -11,3 +11,13 @@ parameters:
         - identifier: staticMethod.dynamicCall
         - identifier: property.dynamicName
         - identifier: method.dynamicName
+        -
+            message: '#^Implicit array creation is not allowed \- variable \$lookup might not exist\.$#'
+            identifier: variable.implicitArray
+            count: 1
+            path: src/Livewire/LivewireTable.php
+        -
+            message: '#^Variable \$lookup might not be defined\.$#'
+            identifier: variable.undefined
+            count: 1
+            path: src/Livewire/LivewireTable.php

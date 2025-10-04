@@ -1,122 +1,134 @@
 @php($columns = $this->resolveColumns())
 
-<table class="w-full relative" x-data="{ selected: @entangle('selected') }">
-    <thead class="border-b border-neutral-200 dark:border-neutral-700">
-    <tr class="group">
-        @if($this->canSelect())
-            <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
-                <input type="checkbox" wire:model.live="selectedPage" class="size-4 mx-3">
-            </th>
-        @endif
-        @foreach($columns as $column)
-            @continue(! in_array($column->code(), $this->columns))
-            <th wire:key="{{ $column->code() }}" class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
-                {{ $column->renderHeader() }}
-            </th>
-        @endforeach
-    </tr>
-    <tr class="group">
-        @if($this->canSelect())
-            <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800"></th>
-        @endif
-        @foreach($columns as $column)
-            @continue(! in_array($column->code(), $this->columns))
-            <th wire:key="{{ $column->code() }}" class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
-                @if($column->isSearchable())
-                    {{ $column->renderSearch() }}
-                @endif
-            </th>
-        @endforeach
-    </tr>
-    </thead>
-    <tbody>
-    @if($this->deferLoading && ! $this->initialized)
-        <tr class="group">
-            <td class="p-0" colspan="{{ $columns->count() + 1 }}">
-                <span class="block text-lg text-center py-20 bg-white text-black dark:bg-neutral-900 dark:text-white">
-                    @lang('Fetching records...')
-                </span>
-            </td>
-        </tr>
-    @else
-        @forelse($paginator->items() as $item)
-            <tr class="group"
-                x-data="{ item: '{{ $item->getKey() }}' }"
-                wire:key="row-{{ $item->getKey() }}"
-
-                @if($this->isReordering())
-                    draggable="true"
-                    x-on:dragstart="e => e.dataTransfer.setData('key', '{{ $item->getKey() }}')"
-                    x-on:dragover.prevent=""
-                    x-on:drop="e => {
-                        $wire.call(
-                            'reorderItem',
-                            e.dataTransfer.getData('key'),
-                            '{{ $item->getKey() }}',
-                            e.target.offsetHeight / 2 > e.offsetY
-                        )
-                    }"
-                @endif
-            >
+<x-livewire-table::table x-data="{ selected: $wire.entangle('selected') }">
+    <x-livewire-table::table.thead>
+        <x-livewire-table::table.tr>
+            @if($this->canSelect())
+                <x-livewire-table::table.th class="px-3">
+                    <x-livewire-table::form.checkbox wire:model.live="selectedPage" />
+                </x-livewire-table::table.th>
+            @endif
+            @foreach($columns as $column)
+                @continue(! in_array($column->code(), $this->columns))
+                <x-livewire-table::table.th wire:key="{{ $column->code() }}">
+                    {{ $column->renderHeader() }}
+                </x-livewire-table::table.th>
+            @endforeach
+        </x-livewire-table::table.tr>
+        @if($this->canSearch())
+            <x-livewire-table::table.tr>
                 @if($this->canSelect())
-                    <td class="p-0"
-                        x-bind:class="~selected.indexOf('{{ $item->getKey() }}')
-                                ? 'bg-blue-100 group-odd:bg-blue-100 group-hover:bg-blue-200 dark:bg-blue-900 dark:group-odd:bg-blue-900 dark:group-hover:bg-blue-800'
-                                : 'bg-neutral-100 group-odd:bg-white group-hover:bg-neutral-200 dark:bg-neutral-800 dark:group-odd:bg-neutral-900 dark:group-hover:bg-neutral-700'">
-                        <div class="mx-3">
-                            <input type="checkbox" wire:model.live="selected" value="{{ $item->getKey() }}" class="size-4">
-                        </div>
-                    </td>
+                    <x-livewire-table::table.td />
                 @endif
                 @foreach($columns as $column)
                     @continue(! in_array($column->code(), $this->columns))
-                    <td
-                        wire:key="{{ $column->code() }}"
-                        x-data=""
-                        @class([
-                            'p-0 group/column relative' => true,
-                            'select-none cursor-pointer' => $column->isClickable() || $this->isReordering(),
-                        ])
-                        @if($column->isClickable() && ! $this->isReordering())
-                            @if(($link = $this->link($item)) !== null)
-                                x-on:click.prevent="window.location.href = '{{ $link }}'"
-                            @elseif($this->canSelect())
-                                x-on:click="$wire.selectItem('{{ $item->getKey() }}')"
-                            @endif
+                    <x-livewire-table::table.td wire:key="{{ $column->code() }}">
+                        @if($column->isSearchable())
+                            {{ $column->renderSearch() }}
                         @endif
-                        x-bind:class="~selected.indexOf('{{ $item->getKey() }}')
-                                ? 'bg-blue-100 group-odd:bg-blue-100 group-hover:bg-blue-200 dark:bg-blue-900 dark:group-odd:bg-blue-900 dark:group-hover:bg-blue-800'
-                                : 'bg-neutral-100 group-odd:bg-white group-hover:bg-neutral-200 dark:bg-neutral-800 dark:group-odd:bg-neutral-900 dark:group-hover:bg-neutral-700'"
-                    >
-                        @includeWhen($column->isCopyable(), 'livewire-table::columns.buttons.copy')
-                        <div x-ref="content">
-                            {{ $column->render($item) }}
-                        </div>
-                    </td>
+                    </x-livewire-table::table.td>
                 @endforeach
-            </tr>
-        @empty
-            <tr class="group">
-                <td class="p-0" colspan="{{ $columns->count() + 1 }}">
-                    <span class="block text-lg text-center py-20 bg-white text-black dark:bg-neutral-900 dark:text-white">
-                        @lang('No results')
-                    </span>
-                </td>
-            </tr>
-        @endforelse
-    @endif
-    </tbody>
-    <tfoot class="border-t border-neutral-200 dark:border-neutral-700">
-    <tr class="group">
-        @if($this->canSelect())
-            <th class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800"></th>
+            </x-livewire-table::table.td>
         @endif
-        @foreach($columns as $column)
-            @continue(! in_array($column->code(), $this->columns))
-            <th wire:key="{{ $column->code() }}" class="p-0 text-left text-black bg-neutral-50 dark:text-white dark:bg-neutral-800">
-                {{ $column->renderFooter() }}
-            </th>
-        @endforeach
-    </tr>
-    </tfoot>
-</table>
+    </x-livewire-table::table.thead>
+
+    <x-livewire-table::table.tbody>
+        @if($this->deferLoading && ! $this->initialized)
+            @for($i = 0; $i < $this->perPage(); $i++)
+                <x-livewire-table::table.tr
+                    wire:key="placeholder-{{ $i }}"
+                    class="bg-gray-100 dark:bg-gray-800 odd:bg-gray-50 dark:odd:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition motion-safe:animate-pulse"
+                >
+                    @if($this->canSelect())
+                        <x-livewire-table::table.td class="px-3">
+                            <x-livewire-table::form.checkbox disabled />
+                        </x-livewire-table::table.td>
+                    @endif
+                    @foreach($columns as $column)
+                        @continue(! in_array($column->code(), $this->columns))
+                        <td wire:key="{{ $column->code() }}">
+                            <div class="px-3 py-2">
+                                <span class="block w-full rounded-full min-w-8 h-2 my-2 bg-gray-300 dark:bg-gray-500 transition"></span>
+                            </div>
+                        </td>
+                    @endforeach
+                </x-livewire-table::table.tr>
+            @endfor
+        @else
+            @forelse($paginator->items() as $item)
+                <tr
+                    x-data="@js(['item' => (string) $item->getKey()])"
+                    x-bind:class="~selected.indexOf(item)
+                        ? 'bg-blue-100 dark:bg-blue-900 hover:bg-blue-200 dark:hover:bg-blue-800 transition'
+                        : 'bg-gray-100 dark:bg-gray-800 odd:bg-gray-50 dark:odd:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition'
+                    "
+                    wire:key="row-{{ $item->getKey() }}"
+
+                    @if($this->isReordering())
+                        draggable="true"
+                        x-on:dragstart="e => e.dataTransfer.setData('key', item)"
+                        x-on:dragover.prevent=""
+                        x-on:drop="e => {
+                            $wire.call(
+                                'reorderItem',
+                                e.dataTransfer.getData('key'),
+                                item,
+                                e.target.offsetHeight / 2 > e.offsetY
+                            )
+                        }"
+                    @endif
+                >
+                    @if($this->canSelect())
+                        <x-livewire-table::table.td class="px-3">
+                            <x-livewire-table::form.checkbox x-ref="checkbox" wire:model="selected" value="{{ $item->getKey() }}" />
+                        </x-livewire-table::table.td>
+                    @endif
+                    @foreach($columns as $column)
+                        @continue(! in_array($column->code(), $this->columns))
+                        <td
+                            wire:key="{{ $column->code() }}"
+                            @class([
+                                'group/column relative' => true,
+                                'select-none cursor-pointer' => $column->isClickable() || $this->isReordering(),
+                            ])
+                            @if($column->isClickable() && ! $this->isReordering())
+                                @if(($link = $this->link($item)) !== null)
+                                    x-on:click.prevent="window.location.href = @js($link)"
+                                @elseif($this->canSelect())
+                                    x-on:click="$refs.checkbox.click()"
+                                @endif
+                            @endif
+                        >
+                            @includeWhen($column->isCopyable(), 'livewire-table::columns.buttons.copy')
+                            <div x-ref="content">
+                                {{ $column->render($item) }}
+                            </div>
+                        </td>
+                    @endforeach
+                </tr>
+            @empty
+                <x-livewire-table::table.tr class="bg-gray-50 dark:bg-gray-700 transition">
+                    <x-livewire-table::table.td colspan="{{ $columns->count() + 1 }}">
+                        <x-livewire-table::table.message>
+                            @lang('No results')
+                        </x-livewire-table::table.message>
+                    </x-livewire-table::table.td>
+                </x-livewire-table::table.tr>
+            @endforelse
+        @endif
+    </x-livewire-table::table.tbody>
+
+    <x-livewire-table::table.tfoot>
+        <x-livewire-table::table.tr>
+            @if($this->canSelect())
+                <x-livewire-table::table.th />
+            @endif
+            @foreach($columns as $column)
+                @continue(! in_array($column->code(), $this->columns))
+                <x-livewire-table::table.th wire:key="{{ $column->code() }}">
+                    {{ $column->renderFooter() }}
+                </x-livewire-table::table.th>
+            @endforeach
+        </x-livewire-table::table.tr>
+    </x-livewire-table::table.tfoot>
+</x-livewire-table::table>
