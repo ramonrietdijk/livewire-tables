@@ -1,18 +1,19 @@
-<div class="px-3 py-1">
-    <select
-        class="min-w-full border border-neutral-200 rounded-md shadow-xs outline-hidden bg-white text-black focus:border-blue-300 mr-auto px-2 py-1 font-normal transition ease-in-out dark:bg-neutral-900 dark:border-neutral-700 dark:focus:border-blue-600 dark:text-white h-8"
-        wire:model.live="search.{{ $column->code() }}">
+<div class="px-3 pb-2">
+    <x-livewire-table::form.select
+        wire:model.live="search.{{ $column->code() }}"
+        size="sm"
+    >
         <option value="">&mdash;</option>
         @foreach($column->getOptions() as $key => $value)
-            @if (is_array($value))
+            @if(is_array($value))
                 <optgroup wire:key="{{ $key }}" label="{{ $key }}">
-                    @foreach($value as $key => $value)
-                        <option wire:key="{{ $key }}" value="{{ $key }}">{{ $value }}</option>
+                    @foreach($value as $key2 => $value2)
+                        <option wire:key="{{ $key2 }}" value="{{ $key2 }}">{{ $value2 }}</option>
                     @endforeach
                 </optgroup>
             @else
                 <option wire:key="{{ $key }}" value="{{ $key }}">{{ $value }}</option>
             @endif
         @endforeach
-    </select>
+    </x-livewire-table::form.select>
 </div>
