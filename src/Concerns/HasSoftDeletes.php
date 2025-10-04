@@ -26,6 +26,11 @@ trait HasSoftDeletes
         ];
     }
 
+    public function updatedTrashed(): void
+    {
+        $this->resetPage();
+    }
+
     protected function hasSoftDeletes(): bool
     {
         return method_exists($this->model(), 'trashed');
