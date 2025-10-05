@@ -6,6 +6,7 @@ namespace RamonRietdijk\LivewireTables\Tests\Fakes\Livewire;
 
 use Illuminate\Database\Eloquent\Collection;
 use RamonRietdijk\LivewireTables\Actions\Action;
+use RamonRietdijk\LivewireTables\Columns\ActionColumn;
 use RamonRietdijk\LivewireTables\Columns\BooleanColumn;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Columns\DateColumn;
@@ -53,6 +54,8 @@ class BlogLivewireTable extends LivewireTable
             DateColumn::make(__('Created At'), 'created_at')
                 ->sortable()
                 ->format('F jS, Y'),
+
+            ActionColumn::make(__('Actions'), null, 'actions'),
         ];
     }
 
@@ -63,12 +66,12 @@ class BlogLivewireTable extends LivewireTable
 
             SelectFilter::make(__('Category'), 'category_id')
                 ->options(
-                    Category::query()->get()->pluck('title', 'id')->toArray()
+                    Category::query()->pluck('title', 'id')->toArray()
                 ),
 
             SelectFilter::make(__('Author'), 'author_id')
                 ->options(
-                    User::query()->get()->pluck('name', 'id')->toArray()
+                    User::query()->pluck('name', 'id')->toArray()
                 ),
 
             DateFilter::make(__('Created At'), 'created_at'),
@@ -83,34 +86,38 @@ class BlogLivewireTable extends LivewireTable
             })->standalone(),
 
             Action::make(__('Publish'), function (Collection $models): void {
-                /** @var Blog $model */
+                /** @var Collection<int, Blog> $models */
                 foreach ($models as $model) {
                     $model->published = true;
                     $model->save();
                 }
-            }),
+            })->canRun(fn (Blog $blog): bool => ! $blog->published),
 
             Action::make(__('Unpublish'), function (Collection $models): void {
-                /** @var Blog $model */
+                /** @var Collection<int, Blog> $models */
                 foreach ($models as $model) {
                     $model->published = false;
                     $model->save();
                 }
-            }),
+            })->canRun(fn (Blog $blog): bool => $blog->published),
 
             Action::make(__('Delete'), function (Collection $models): void {
-                /** @var Blog $model */
+                /** @var Collection<int, Blog> $models */
                 foreach ($models as $model) {
                     $model->delete();
                 }
-            })->record(),
+            })
+                ->canRun(fn (Blog $blog): bool => ! $blog->trashed())
+                ->record(),
 
             Action::make(__('Restore'), function (Collection $models): void {
-                /** @var Blog $model */
+                /** @var Collection<int, Blog> $models */
                 foreach ($models as $model) {
                     $model->restore();
                 }
-            })->record(),
+            })
+                ->canRun(fn (Blog $blog): bool => $blog->trashed())
+                ->record(),
         ];
     }
 }
