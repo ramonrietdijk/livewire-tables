@@ -16,6 +16,7 @@ use RamonRietdijk\LivewireTables\Concerns\HasDeferredLoading;
 use RamonRietdijk\LivewireTables\Concerns\HasFilters;
 use RamonRietdijk\LivewireTables\Concerns\HasIdentifier;
 use RamonRietdijk\LivewireTables\Concerns\HasInitialization;
+use RamonRietdijk\LivewireTables\Concerns\HasLink;
 use RamonRietdijk\LivewireTables\Concerns\HasPagination;
 use RamonRietdijk\LivewireTables\Concerns\HasPolling;
 use RamonRietdijk\LivewireTables\Concerns\HasQueryString;
@@ -36,6 +37,7 @@ class LivewireTable extends Component
     use HasFilters;
     use HasIdentifier;
     use HasInitialization;
+    use HasLink;
     use HasPagination;
     use HasPolling;
     use HasQueryString;
@@ -53,11 +55,6 @@ class LivewireTable extends Component
 
     /** @phpstan-var view-string */
     protected string $view = 'livewire-table::livewire.livewire-table';
-
-    protected function link(Model $model): ?string
-    {
-        return null;
-    }
 
     protected function model(): Model
     {

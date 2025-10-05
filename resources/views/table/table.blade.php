@@ -93,7 +93,11 @@
                             ])
                             @if($column->isClickable() && ! $this->isReordering())
                                 @if(($link = $this->link($item)) !== null)
-                                    x-on:click.prevent="window.location.href = @js($link)"
+                                    @if($this->useNavigate)
+                                        x-on:click.prevent="Livewire.navigate(@js($link))"
+                                    @else
+                                        x-on:click.prevent="window.location.href = @js($link)"
+                                    @endif
                                 @elseif($this->canSelect())
                                     x-on:click="$refs.checkbox.click()"
                                 @endif
