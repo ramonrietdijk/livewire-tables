@@ -10,6 +10,14 @@ public function link(Model $model): ?string
 }
 ```
 
+## Navigate
+
+In order to make use of Livewire's [Navigate](https://livewire.laravel.com/docs/navigate), set the `$useNavigate` property to `true`.
+
+```php
+protected bool $useNavigate = true;
+```
+
 ## Multiple links
 
 If you wish to have multiple links, you could consider making a new column for this.
@@ -19,7 +27,7 @@ Make sure to call `clickable(false)` as this will prevent the default click acti
 :::
 
 ```php
-Column::make(__('Actions'), function (Model $model): string {
+Column::make(__('Links'), function (Model $model): string {
     return '<a class="underline" href="#">...</a>';
 })
     ->clickable(false)
