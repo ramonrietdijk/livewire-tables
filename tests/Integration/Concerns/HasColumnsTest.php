@@ -25,6 +25,7 @@ class HasColumnsTest extends TestCase
                 'author_company_name',
                 'published',
                 'created_at',
+                'actions',
             ])
             ->call('selectAllColumns', false)
             ->assertSet('columns', []);
@@ -48,49 +49,49 @@ class HasColumnsTest extends TestCase
                 'from' => 'title',
                 'to' => 'author_name',
                 'above' => false,
-                'order' => ['thumbnail', 'category_title', 'author_name', 'title', 'author_company_name', 'published', 'created_at'],
+                'order' => ['thumbnail', 'category_title', 'author_name', 'title', 'author_company_name', 'published', 'created_at', 'actions'],
             ],
             'From author_name to title, below the column' => [
                 'from' => 'author_name',
                 'to' => 'title',
                 'above' => false,
-                'order' => ['thumbnail', 'title', 'author_name', 'category_title', 'author_company_name', 'published', 'created_at'],
+                'order' => ['thumbnail', 'title', 'author_name', 'category_title', 'author_company_name', 'published', 'created_at', 'actions'],
             ],
             'From title to author_name, above the column' => [
                 'from' => 'title',
                 'to' => 'author_name',
                 'above' => true,
-                'order' => ['thumbnail', 'category_title', 'title', 'author_name', 'author_company_name', 'published', 'created_at'],
+                'order' => ['thumbnail', 'category_title', 'title', 'author_name', 'author_company_name', 'published', 'created_at', 'actions'],
             ],
             'From author_name to title, above the column' => [
                 'from' => 'author_name',
                 'to' => 'title',
                 'above' => true,
-                'order' => ['thumbnail', 'author_name', 'title', 'category_title', 'author_company_name', 'published', 'created_at'],
+                'order' => ['thumbnail', 'author_name', 'title', 'category_title', 'author_company_name', 'published', 'created_at', 'actions'],
             ],
             'From thumbnail to author_company_name, below the column' => [
                 'from' => 'thumbnail',
                 'to' => 'author_company_name',
                 'above' => false,
-                'order' => ['title', 'category_title', 'author_name', 'author_company_name', 'thumbnail', 'published', 'created_at'],
+                'order' => ['title', 'category_title', 'author_name', 'author_company_name', 'thumbnail', 'published', 'created_at', 'actions'],
             ],
             'From author_company_name to thumbnail, above the column' => [
                 'from' => 'author_company_name',
                 'to' => 'thumbnail',
                 'above' => true,
-                'order' => ['author_company_name', 'thumbnail', 'title', 'category_title', 'author_name', 'published', 'created_at'],
+                'order' => ['author_company_name', 'thumbnail', 'title', 'category_title', 'author_name', 'published', 'created_at', 'actions'],
             ],
             'From thumbnail to thumbnail, above the column, does not change the order' => [
                 'from' => 'thumbnail',
                 'to' => 'thumbnail',
                 'above' => true,
-                'order' => ['thumbnail', 'title', 'category_title', 'author_name', 'author_company_name', 'published', 'created_at'],
+                'order' => ['thumbnail', 'title', 'category_title', 'author_name', 'author_company_name', 'published', 'created_at', 'actions'],
             ],
             'From thumbnail to title, above the column, does not change the order' => [
                 'from' => 'thumbnail',
                 'to' => 'title',
                 'above' => true,
-                'order' => ['thumbnail', 'title', 'category_title', 'author_name', 'author_company_name', 'published', 'created_at'],
+                'order' => ['thumbnail', 'title', 'category_title', 'author_name', 'author_company_name', 'published', 'created_at', 'actions'],
             ],
         ];
     }
