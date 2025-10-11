@@ -100,7 +100,7 @@ trait HasSelection
 
     protected function canSelect(): bool
     {
-        $hasActions = $this->resolveActions()->standalone(false)->isNotEmpty();
+        $hasActions = $this->resolveActions()->bulk()->isNotEmpty();
 
         return $hasActions && ! $this->isReordering();
     }
