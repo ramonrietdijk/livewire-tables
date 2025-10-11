@@ -51,7 +51,7 @@ SelectFilter::make(__('Tags'), 'tags.id')
 
 ## Behind The Scenes
 
-:::info
+::: info
 This currently only applies to a `BelongsTo` relationship.
 :::
 

@@ -16,8 +16,7 @@ See the [Livewire Table](https://livewire-tables.ramonrietdijk.nl) in action.
 
 ## Documentation
 
-Open the [documentation](https://ramonrietdijk.github.io/livewire-tables) to see how this package can be used with
-examples.
+Open the [documentation](https://ramonrietdijk.github.io/livewire-tables) to see how this package can be used with examples.
 
 ## Testing
 

@@ -1,8 +1,6 @@
 # Columns
 
-To display your records you need to add columns to your table. You can specify what field to display - including
-relationships. It is also possible to search and sort these columns if you choose to. There is also a variety of
-different column types to make searching work out of the box.
+To display your records you need to add columns to your table. You can specify what field to display - including relationships. It is also possible to search and sort these columns if you choose to. There is also a variety of different column types to make searching work out of the box.
 
 Columns can be registered in the `columns` method of your Livewire Table.
 
@@ -21,8 +19,7 @@ Currently, there are 7 different column types available.
 
 ### Column
 
-The `Column` is the generic column type for most use cases. This column type is primarily meant for text like a name or
-email address.
+The `Column` is the generic column type for most use cases. This column type is primarily meant for text like a name or email address.
 
 ```php
 Column::make(__('Name'), 'name'),
@@ -47,8 +44,7 @@ DateColumn::make(__('Created At'), 'created_at')
 
 ### Select Column
 
-When a column can only accept a list of values, you may be interested in the `SelectColumn`. With this column you can
-specify the options that can be used. If the field is searchable, you will get a dropdown of options to choose from.
+When a column can only accept a list of values, you may be interested in the `SelectColumn`. With this column you can specify the options that can be used. If the field is searchable, you will get a dropdown of options to choose from.
 
 ```php
 SelectColumn::make(__('Favorite Fruit'), 'favorite_fruit')
@@ -79,8 +75,7 @@ SelectColumn::make(__('Favorite Fruit'), 'favorite_fruit')
 
 ### Image Column
 
-Images can easily be displayed using the `ImageColumn`. The value of the field will be the `src` of the image. It is also
-possible to ajust the size of the image by using the `size` method or the `width` and `height` methods individually.
+Images can easily be displayed using the `ImageColumn`. The value of the field will be the `src` of the image. It is also possible to adjust the size of the image by using the `size` method or the `width` and `height` methods individually.
 
 By default, the width and height of images are `32` pixels.
 
@@ -93,13 +88,11 @@ ImageColumn::make(__('Banner'), 'banner')
     ->height(50),
 ```
 
-Image columns will disable the title of the column to preserve space. It can be enabled back using the `header`
-method. See the [header](#header) section for more information.
+Image columns will disable the title of the column to preserve space. It can be enabled back using the `header` method. See the [header](#header) section for more information.
 
 ### View Column
 
-Although columns have an option to display their values [as HTML](#as-html), having a lot of
-markup in your column can be a bit messy.
+Although columns have an option to display their values [as HTML](#as-html), having a lot of markup in your column can be a bit messy.
 
 With a `ViewColumn` you can reference a view to load as the second argument.
 
@@ -152,8 +145,7 @@ Column::make(__('Color'), 'settings->color'),
 
 ## Searchable
 
-To quickly find the records you need, you can make your columns searchable. By default, searching is not enabled for any
-column, but it can easily be enabled.
+To quickly find the records you need, you can make your columns searchable. By default, searching is not enabled for any column, but it can easily be enabled.
 
 ```php
 Column::make(__('Name'), 'name')
@@ -252,8 +244,7 @@ Head to [relations](/advanced/relations) to know more about relations and how th
 
 ## Display Using
 
-Sometimes you wish to format the data in your table differently from how it's saved in the database. Luckily, this is
-easily done using the method `displayUsing` on your column.
+Sometimes you wish to format the data in your table differently from how it's saved in the database. Luckily, this is easily done using the method `displayUsing` on your column.
 
 ::: info
 This will work for any column and **always** takes priority over a format.
@@ -281,20 +272,16 @@ Column::make(__('Name'), 'name')
 
 ## Computed
 
-In some cases you wish to display values which aren't stored in the database but are rather calculated like the
-aggregate function `COUNT(*)`. This can be the total amount of blogs written by a user, for example.
+In some cases you wish to display values which aren't stored in the database but are rather calculated like the aggregate function `COUNT(*)`. This can be the total amount of blogs written by a user, for example.
 
-If you pass a callback as the second argument to a column, it will mark the column as computed. The callback is the same
-as `displayUsing`, documented above.
+If you pass a callback as the second argument to a column, it will mark the column as computed. The callback is the same as `displayUsing`, documented above.
 
 ::: info
 Computed columns **can't** be searched or sorted unless you have supplied a callback.
 :::
 
 ::: warning
-In the example below the column will calculate the amount of blogs for each user individually, introducing the N+1
-problem. This can easily be overcome to keep the table efficient. Please see [efficiency](/advanced/efficiency) to see
-the best practices.
+In the example below the column will calculate the amount of blogs for each user individually, introducing the N+1 problem. This can easily be overcome to keep the table efficient. Please see [efficiency](/advanced/efficiency) to see the best practices.
 :::
 
 ```php
@@ -312,11 +299,9 @@ Column::make(__('Name'), 'name')
 
 ## Header
 
-Sometimes, displaying the title of the column in the header is not required. It can preserve space when showing a
-thumbnail, for example.
+Sometimes, displaying the title of the column in the header is not required. It can preserve space when showing a thumbnail, for example.
 
-Luckily, this is easily done by using the `header` method. If `false` is passed as the first argument, the header
-will not be rendered in the table. The title of the column will always be visible in the column selection.
+Luckily, this is easily done by using the `header` method. If `false` is passed as the first argument, the header will not be rendered in the table. The title of the column will always be visible in the column selection.
 
 ```php
 Column::make(__('Name'), 'name')
@@ -325,8 +310,7 @@ Column::make(__('Name'), 'name')
 
 ## Footer
 
-To display information in the footer of the column, you can use the `footer` method. Pass a callback to this method
-and the contents will be rendered on the table.
+To display information in the footer of the column, you can use the `footer` method. Pass a callback to this method and the contents will be rendered on the table.
 
 The content in the footer will **not** be escaped in the table.
 
