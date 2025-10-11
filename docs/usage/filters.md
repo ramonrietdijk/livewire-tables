@@ -27,8 +27,7 @@ BooleanFilter::make(__('Published'), 'published'),
 
 ### Date Filter
 
-If you are working with dates, a `DateFilter` should be used. This filter will give you a `from` and `to` date to filter
-your records with.
+If you are working with dates, a `DateFilter` should be used. This filter will give you a `from` and `to` date to filter your records with.
 
 ```php
 DateFilter::make(__('Created At'), 'created_at'),
@@ -36,8 +35,7 @@ DateFilter::make(__('Created At'), 'created_at'),
 
 ### Select Filter
 
-When a filter can only accept a list of values, you may be interested in the `SelectFilter`. With this filter you can
-specify the options that can be used. You will get a dropdown of options to choose from to filter your records.
+When a filter can only accept a list of values, you may be interested in the `SelectFilter`. With this filter you can specify the options that can be used. You will get a dropdown of options to choose from to filter your records.
 
 ```php
 SelectFilter::make(__('Category'), 'category_id')
@@ -102,12 +100,10 @@ Head to [relations](/advanced/relations) to know more about relations and how th
 
 ## Custom Filtering
 
-In some cases, the filter you are building is not related to a single column in your database. It could be a composition
-of multiple conditions. If you pass a callback as the second argument to a filter you can query the data yourself.
+In some cases, the filter you are building is not related to a single column in your database. It could be a composition of multiple conditions. If you pass a callback as the second argument to a filter you can query the data yourself.
 
 ::: info
-Filters are always executed even if the value is null to allow for a default filter. Please, check the `$value`
-yourself in your callback.
+Filters are always executed even if the value is null to allow for a default filter. Please, check the `$value` yourself in your callback.
 :::
 
 ```php

@@ -1,11 +1,8 @@
 # Introduction
 
-This package is built using the TALL stack to easily create dynamic tables for your models. It has been created with
-**simplicity** and **efficiency** in mind while still being able to extend it to your needs. Because of this simplicity,
-you will get Livewire Tables up and running in no time.
+This package is built using the TALL stack to easily create dynamic tables for your models. It has been created with **simplicity** and **efficiency** in mind while still being able to extend it to your needs. Because of this simplicity, you will get Livewire Tables up and running in no time.
 
-An easy way to customize the tables look and feel is also a very important aspect for this package. By publishing and
-customizing the views, Livewire Tables should always blend into the style of your project.
+An easy way to customize the tables look and feel is also a very important aspect for this package. By publishing and customizing the views, Livewire Tables should always blend into the style of your project.
 
 The way the table is built up has been inspired by Laravel Nova as it is simple yet powerful.
 

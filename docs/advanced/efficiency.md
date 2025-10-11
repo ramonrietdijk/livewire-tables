@@ -1,14 +1,12 @@
 # Efficiency
 
-As stated in the introduction, this package has been built with simplicity and efficiency in mind. However, incorrect
-usage of the Livewire Table can still lead to massive performance penalties.
+As stated in the introduction, this package has been built with simplicity and efficiency in mind. However, incorrect usage of the Livewire Table can still lead to massive performance penalties.
 
 In most use cases, you should be totally fine. When you are using aggregate functions, please pay close attention.
 
 ## Aggregate functions
 
-We are building a blog table where a blog belongs to an author. In this table, we would like to see the total amount of
-blogs written by the author.
+We are building a blog table where a blog belongs to an author. In this table, we would like to see the total amount of blogs written by the author.
 
 ```php
 class BlogTable extends LivewireTable
@@ -30,11 +28,9 @@ class BlogTable extends LivewireTable
 }
 ```
 
-The example above will introduce an N+1 problem as every row is now individually counting the total amount of blogs for
-the author. This, of course, is a performance penalty, especially with greater datasets.
+The example above will introduce an N+1 problem as every row is now individually counting the total amount of blogs for the author. This, of course, is a performance penalty, especially with greater datasets.
 
-In this case, we could count the amount of blogs beforehand, preventing a lot of extra queries to the database. We can
-do this by overriding the `applySelect` method of our Livewire Table.
+In this case, we could count the amount of blogs beforehand, preventing a lot of extra queries to the database. We can do this by overriding the `applySelect` method of our Livewire Table.
 
 ```php
 use Illuminate\Database\Eloquent\Builder;
@@ -61,8 +57,7 @@ Column::make(__('Total Blogs'), function (mixed $value, Model $model): int {
 
 This time, it will not execute any additional queries as the value is retrieved from the query selection itself.
 
-As described in [columns](/usage/columns#computed), computed columns can't be searched or sorted without a callback.
-This has to be added by yourself.
+As described in [columns](/usage/columns#computed), computed columns can't be searched or sorted without a callback. This has to be added by yourself.
 
 If we want the count to be searched and sorted, we could update our column once again.
 

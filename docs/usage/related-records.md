@@ -2,7 +2,7 @@
 
 If a table has been configured, it will show all records of the given model. If you're working with relations, you may only want to display the related records of the parent model. An example for this would be to only show orders that have been placed by a specific user.
 
-:::info
+::: info
 You will need to implement any [authorization](https://laravel.com/docs/master/authorization) yourself.
 :::
 

@@ -2,7 +2,7 @@
 
 Instead of using the [query string](/configuration/query-string), the table can also save its current configuration into a session.
 
-:::info
+::: info
 It is recommended to either use a query string or a session. Using them both at the same time may cause issues.
 :::
 

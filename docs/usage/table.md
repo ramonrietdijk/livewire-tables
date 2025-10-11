@@ -1,7 +1,6 @@
 # Table
 
-In order to create your first table, you will have to extend the `LivewireTable` component. Via the `$model` variable
-you can specify what model should be used.
+In order to create your first table, you will have to extend the `LivewireTable` component. Via the `$model` variable you can specify what model should be used.
 
 ```php
 <?php
