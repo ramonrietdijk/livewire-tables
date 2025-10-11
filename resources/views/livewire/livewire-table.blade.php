@@ -5,7 +5,7 @@
 >
     <div class="bg-gray-50 dark:bg-gray-800 rounded-md shadow-sm flex flex-col border border-gray-300 dark:border-gray-600 transition">
         @include('livewire-table::toolbar.toolbar')
-        <div class="flex-1 overflow-y-auto max-h-179 rounded-b-md overscroll-none">
+        <div class="flex-1 overflow-y-auto max-h-179 rounded-b-md">
             @include('livewire-table::table.table')
         </div>
     </div>
