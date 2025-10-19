@@ -4,7 +4,7 @@
     <select
         {{
             $attributes->class([
-                'min-w-full rounded-md border appearance-none transition',
+                'min-w-full max-w-full rounded-md border appearance-none transition',
                 'ring-blue-300 dark:ring-blue-400',
                 'focus:outline-none focus:ring focus:z-10',
                 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 active:bg-gray-200 dark:active:bg-gray-600',
