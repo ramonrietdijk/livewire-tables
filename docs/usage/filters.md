@@ -111,7 +111,7 @@ BooleanFilter::make(__('Recent Blogs'), function (Builder $builder, mixed $value
     $builder->when($value, function (Builder $builder) use ($value): void {
         $builder
             ->where('published', '=', true)
-            ->whereDate('created_at', '>=', now()->subWeek());
+            ->where('created_at', '>=', now()->subWeek());
     });
 }),
 ```
