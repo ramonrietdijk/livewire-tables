@@ -35,7 +35,7 @@ class BlogLivewireTable extends LivewireTable
 
             SelectColumn::make(__('Category'), 'category.title')
                 ->options(
-                    Category::query()->get()->pluck('title', 'title')->toArray()
+                    Category::query()->pluck('title', 'title')->toArray()
                 )
                 ->sortable()
                 ->searchable(),
