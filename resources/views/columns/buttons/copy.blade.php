@@ -2,7 +2,7 @@
     size="sm"
     :title="__('Copy')"
     :aria-label="__('Copy')"
-    class="!absolute top-1 right-1 z-10 opacity-0 group-hover/column:opacity-100 cursor-pointer"
+    class="absolute! top-1 right-1 z-10 opacity-0 group-hover/column:opacity-100 cursor-pointer"
     x-on:click.stop="copy"
     x-data="{
         copied: false,
