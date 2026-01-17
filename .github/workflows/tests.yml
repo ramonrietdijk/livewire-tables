@@ -13,8 +13,9 @@ jobs:
             fail-fast: true
             matrix:
                 php: [8.5, 8.4, 8.3]
+                livewire: [3.0, 4.0]
 
-        name: PHP ${{ matrix.php }}
+        name: PHP ${{ matrix.php }} - Livewire ${{ matrix.livewire }}
 
         steps:
             - name: Checkout code
@@ -26,6 +27,9 @@ jobs:
                   php-version: ${{ matrix.php }}
                   extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
                   coverage: none
+
+            - name: Livewire version
+              run: composer require livewire/livewire:^${{ matrix.livewire }} --no-update
 
             - name: Install dependencies
               run: composer install --prefer-dist --no-interaction --no-progress
