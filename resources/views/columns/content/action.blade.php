@@ -31,8 +31,10 @@
                                     :label="$action->label()"
                                     wire:key="{{ $action->code() }}"
                                     x-bind:disabled="selected.length === 0"
-                                    wire:click="executeItemAction({{ Js::from($action->code()) }}, item)"
-                                    x-on:click="close"
+                                    x-on:click="
+                                        $wire.executeItemAction({{ Js::from($action->code()) }}, item)
+                                        close()
+                                    "
                                 />
                             @endif
                         @endforeach
