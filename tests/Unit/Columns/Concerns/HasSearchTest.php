@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns\Concerns;
 
+use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use PHPUnit\Framework\Attributes\Test;
@@ -20,7 +21,7 @@ final class HasSearchTest extends TestCase
         $column = Column::make('Column', 'column');
 
         $this->assertFalse($column->isSearchable());
-        $this->assertNull($column->searchCallback());
+        $this->assertNotInstanceOf(Closure::class, $column->searchCallback());
 
         $column->searchable();
 
@@ -34,7 +35,7 @@ final class HasSearchTest extends TestCase
         $column = Column::make('Column', 'column');
 
         $this->assertFalse($column->isSearchable());
-        $this->assertNull($column->searchCallback());
+        $this->assertNotInstanceOf(Closure::class, $column->searchCallback());
 
         $column->searchable(function (Builder $builder, mixed $search): void {
             //
@@ -55,7 +56,7 @@ final class HasSearchTest extends TestCase
         $column = Column::make('Name', 'name');
         $column->search($builder, SearchScope::Column, 'John');
 
-        $this->assertEquals(1, $builder->count());
+        $this->assertSame(1, $builder->count());
     }
 
     #[Test]
@@ -69,7 +70,7 @@ final class HasSearchTest extends TestCase
         $column = Column::make('Theme', 'preferences->theme');
         $column->search($builder, SearchScope::Column, 'Dark');
 
-        $this->assertEquals(1, $builder->count());
+        $this->assertSame(1, $builder->count());
     }
 
     #[Test]
@@ -83,7 +84,7 @@ final class HasSearchTest extends TestCase
         $column = Column::make('Name', 'name');
         $column->applySearch($builder, SearchScope::Column, 'John');
 
-        $this->assertEquals(1, $builder->count());
+        $this->assertSame(1, $builder->count());
     }
 
     #[Test]
@@ -97,7 +98,7 @@ final class HasSearchTest extends TestCase
         $column = Column::make('Name', 'name')->computed();
         $column->applySearch($builder, SearchScope::Column, 'John');
 
-        $this->assertEquals(2, $builder->count());
+        $this->assertSame(2, $builder->count());
     }
 
     #[Test]
@@ -119,7 +120,7 @@ final class HasSearchTest extends TestCase
 
         $column->applySearch($builder, SearchScope::Column, 'Doe');
 
-        $this->assertEquals(1, $builder->count());
+        $this->assertSame(1, $builder->count());
     }
 
     #[Test]

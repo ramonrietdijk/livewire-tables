@@ -19,6 +19,6 @@ final class HasFormatTest extends TestCase
 
         $column->format('Y-m-d');
 
-        $this->assertEquals('Y-m-d', $column->getFormat());
+        $this->assertSame('Y-m-d', $column->getFormat());
     }
 }

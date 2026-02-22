@@ -22,7 +22,7 @@ final class HasSessionTest extends TestCase
 
         $value = session()->get($sessionKey);
 
-        $this->assertEquals([
+        $this->assertSame([
             'columns' => [
                 'title',
             ],

@@ -26,6 +26,6 @@ final class DateFilterTest extends TestCase
             'to' => now()->addWeek()->format('Y-m-d'),
         ]);
 
-        $this->assertEquals(1, $builder->count());
+        $this->assertSame(1, $builder->count());
     }
 }

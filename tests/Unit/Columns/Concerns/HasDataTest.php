@@ -23,7 +23,7 @@ final class HasDataTest extends TestCase
         /** @var View $view */
         $view = $column->resolveValue($user);
 
-        $this->assertEquals('value', $view['key']);
+        $this->assertSame('value', $view['key']);
     }
 
     #[Test]
@@ -37,6 +37,6 @@ final class HasDataTest extends TestCase
         /** @var View $view */
         $view = $column->resolveValue($user);
 
-        $this->assertEquals('value', $view['key']);
+        $this->assertSame('value', $view['key']);
     }
 }

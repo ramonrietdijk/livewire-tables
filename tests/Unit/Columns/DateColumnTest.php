@@ -34,7 +34,7 @@ final class DateColumnTest extends TestCase
 
         $value = $column->resolveValue($user);
 
-        $this->assertEquals($value, '25-02-2023');
+        $this->assertSame('25-02-2023', $value);
     }
 
     #[Test]
@@ -47,7 +47,7 @@ final class DateColumnTest extends TestCase
 
         $value = $column->resolveValue($user);
 
-        $this->assertEquals($value, '2023-02-25 12:00:00');
+        $this->assertSame('2023-02-25 12:00:00', $value);
     }
 
     #[Test]
@@ -62,6 +62,6 @@ final class DateColumnTest extends TestCase
 
         $value = $column->resolveValue($user);
 
-        $this->assertEquals($value, 'Display Using');
+        $this->assertSame('Display Using', $value);
     }
 }

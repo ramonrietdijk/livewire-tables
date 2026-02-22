@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Tests\Integration\Concerns;
 
+use Iterator;
 use Livewire\Livewire;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
@@ -47,58 +48,56 @@ final class HasReorderingTest extends TestCase
             ->assertSeeTextInOrder($result);
     }
 
-    /** @return array<string, mixed> */
-    public static function cases(): array
+    /** @return Iterator<string, mixed> */
+    public static function cases(): Iterator
     {
-        return [
-            'From 2 to 4, below the row' => [
-                'from' => '2',
-                'to' => '4',
-                'above' => false,
-                'result' => ['Banana', 'Pear', 'Mango', 'Apple', 'Strawberry'],
-            ],
-            'From 4 to 2, below the row' => [
-                'from' => '4',
-                'to' => '2',
-                'above' => false,
-                'result' => ['Banana', 'Apple', 'Mango', 'Pear', 'Strawberry'],
-            ],
-            'From 2 to 4, above the row' => [
-                'from' => '2',
-                'to' => '4',
-                'above' => true,
-                'result' => ['Banana', 'Pear', 'Apple', 'Mango', 'Strawberry'],
-            ],
-            'From 4 to 2, above the row' => [
-                'from' => '4',
-                'to' => '2',
-                'above' => true,
-                'result' => ['Banana', 'Mango', 'Apple', 'Pear', 'Strawberry'],
-            ],
-            'From 1 to 5, below the row' => [
-                'from' => '1',
-                'to' => '5',
-                'above' => false,
-                'result' => ['Apple', 'Pear', 'Mango', 'Strawberry', 'Banana'],
-            ],
-            'From 5 to 1, above the row' => [
-                'from' => '5',
-                'to' => '1',
-                'above' => true,
-                'result' => ['Strawberry', 'Banana', 'Apple', 'Pear', 'Mango'],
-            ],
-            'From 1 to 1, above the row, does not change the order' => [
-                'from' => '1',
-                'to' => '1',
-                'above' => true,
-                'result' => ['Banana', 'Apple', 'Pear', 'Mango', 'Strawberry'],
-            ],
-            'From 1 to 2, above the row, does not change the order' => [
-                'from' => '1',
-                'to' => '2',
-                'above' => true,
-                'result' => ['Banana', 'Apple', 'Pear', 'Mango', 'Strawberry'],
-            ],
+        yield 'From 2 to 4, below the row' => [
+            'from' => '2',
+            'to' => '4',
+            'above' => false,
+            'result' => ['Banana', 'Pear', 'Mango', 'Apple', 'Strawberry'],
+        ];
+        yield 'From 4 to 2, below the row' => [
+            'from' => '4',
+            'to' => '2',
+            'above' => false,
+            'result' => ['Banana', 'Apple', 'Mango', 'Pear', 'Strawberry'],
+        ];
+        yield 'From 2 to 4, above the row' => [
+            'from' => '2',
+            'to' => '4',
+            'above' => true,
+            'result' => ['Banana', 'Pear', 'Apple', 'Mango', 'Strawberry'],
+        ];
+        yield 'From 4 to 2, above the row' => [
+            'from' => '4',
+            'to' => '2',
+            'above' => true,
+            'result' => ['Banana', 'Mango', 'Apple', 'Pear', 'Strawberry'],
+        ];
+        yield 'From 1 to 5, below the row' => [
+            'from' => '1',
+            'to' => '5',
+            'above' => false,
+            'result' => ['Apple', 'Pear', 'Mango', 'Strawberry', 'Banana'],
+        ];
+        yield 'From 5 to 1, above the row' => [
+            'from' => '5',
+            'to' => '1',
+            'above' => true,
+            'result' => ['Strawberry', 'Banana', 'Apple', 'Pear', 'Mango'],
+        ];
+        yield 'From 1 to 1, above the row, does not change the order' => [
+            'from' => '1',
+            'to' => '1',
+            'above' => true,
+            'result' => ['Banana', 'Apple', 'Pear', 'Mango', 'Strawberry'],
+        ];
+        yield 'From 1 to 2, above the row, does not change the order' => [
+            'from' => '1',
+            'to' => '2',
+            'above' => true,
+            'result' => ['Banana', 'Apple', 'Pear', 'Mango', 'Strawberry'],
         ];
     }
 }

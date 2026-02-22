@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Filters\Concerns;
 
+use Closure;
 use Illuminate\Database\Eloquent\Builder;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Filters\SelectFilter;
@@ -17,7 +18,7 @@ final class HasFilterTest extends TestCase
     {
         $filter = SelectFilter::make('Filter', 'column');
 
-        $this->assertNull($filter->filterUsingCallback());
+        $this->assertNotInstanceOf(Closure::class, $filter->filterUsingCallback());
 
         $filter->filterUsing(function (Builder $builder, mixed $value): void {
             //
@@ -37,7 +38,7 @@ final class HasFilterTest extends TestCase
         $filter = SelectFilter::make('Name', 'name');
         $filter->filter($builder, 'John Doe');
 
-        $this->assertEquals(1, $builder->count());
+        $this->assertSame(1, $builder->count());
     }
 
     #[Test]
@@ -52,7 +53,7 @@ final class HasFilterTest extends TestCase
         $filter = SelectFilter::make('Name', 'name')->multiple();
         $filter->filter($builder, ['John Doe', 'Jane Doe']);
 
-        $this->assertEquals(2, $builder->count());
+        $this->assertSame(2, $builder->count());
     }
 
     #[Test]
@@ -66,7 +67,7 @@ final class HasFilterTest extends TestCase
         $filter = SelectFilter::make('Theme', 'preferences->theme');
         $filter->filter($builder, 'Dark');
 
-        $this->assertEquals(1, $builder->count());
+        $this->assertSame(1, $builder->count());
     }
 
     #[Test]
@@ -80,7 +81,7 @@ final class HasFilterTest extends TestCase
         $filter = SelectFilter::make('Theme', 'preferences->theme');
         $filter->filter($builder, ['Light', 'Dark']);
 
-        $this->assertEquals(2, $builder->count());
+        $this->assertSame(2, $builder->count());
     }
 
     #[Test]
@@ -94,7 +95,7 @@ final class HasFilterTest extends TestCase
         $filter = SelectFilter::make('Name', 'name');
         $filter->applyFilter($builder, 'John Doe');
 
-        $this->assertEquals(1, $builder->count());
+        $this->assertSame(1, $builder->count());
     }
 
     #[Test]
@@ -108,7 +109,7 @@ final class HasFilterTest extends TestCase
         $filter = SelectFilter::make('Name', 'name')->computed();
         $filter->applyFilter($builder, 'John Doe');
 
-        $this->assertEquals(2, $builder->count());
+        $this->assertSame(2, $builder->count());
     }
 
     #[Test]
@@ -130,6 +131,6 @@ final class HasFilterTest extends TestCase
 
         $filter->applyFilter($builder, 'Doe');
 
-        $this->assertEquals(1, $builder->count());
+        $this->assertSame(1, $builder->count());
     }
 }

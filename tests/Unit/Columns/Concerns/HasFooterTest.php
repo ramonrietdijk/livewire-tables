@@ -22,7 +22,7 @@ final class HasFooterTest extends TestCase
         $column->footer(fn (): string => 'footer');
 
         $this->assertTrue($column->hasFooter());
-        $this->assertEquals('footer', $column->getFooterContent());
+        $this->assertSame('footer', $column->getFooterContent());
     }
 
     #[Test]

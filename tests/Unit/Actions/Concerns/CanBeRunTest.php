@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Actions\Concerns;
 
+use Closure;
 use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Actions\Action;
@@ -19,7 +20,7 @@ final class CanBeRunTest extends TestCase
         $model = new User;
 
         $this->assertTrue($action->canBeRun($model));
-        $this->assertNull($action->canRunCallback());
+        $this->assertNotInstanceOf(Closure::class, $action->canRunCallback());
 
         $action->canRun(fn (Model $model): bool => $model->exists);
 

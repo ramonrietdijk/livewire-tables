@@ -22,6 +22,6 @@ final class BooleanFilterTest extends TestCase
         $filter = BooleanFilter::make('Admin', 'is_admin');
         $filter->applyFilter($builder, true);
 
-        $this->assertEquals(1, $builder->count());
+        $this->assertSame(1, $builder->count());
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns;
 
+use Closure;
 use Illuminate\Contracts\View\View;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
@@ -17,9 +18,9 @@ final class ColumnTest extends TestCase
     {
         $column = Column::make('Company', 'author.company.name');
 
-        $this->assertEquals('Company', $column->label());
-        $this->assertEquals('author.company.name', $column->column());
-        $this->assertEquals('author_company_name', $column->code());
+        $this->assertSame('Company', $column->label());
+        $this->assertSame('author.company.name', $column->column());
+        $this->assertSame('author_company_name', $column->code());
     }
 
     #[Test]
@@ -28,8 +29,8 @@ final class ColumnTest extends TestCase
         $column = Column::make('Company', fn (): string => '');
 
         $this->assertNull($column->column());
-        $this->assertEquals(md5('Company'), $column->code());
-        $this->assertNotNull($column->displayUsingCallback());
+        $this->assertSame(md5('Company'), $column->code());
+        $this->assertInstanceOf(Closure::class, $column->displayUsingCallback());
         $this->assertTrue($column->isComputed());
     }
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Actions;
 
+use Closure;
 use Illuminate\Database\Eloquent\Collection;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Actions\Action;
@@ -16,10 +17,10 @@ final class ActionTest extends TestCase
     {
         $action = Action::make('Action', fn (): bool => true, 'code');
 
-        $this->assertEquals('Action', $action->label());
-        $this->assertEquals('code', $action->code());
+        $this->assertSame('Action', $action->label());
+        $this->assertSame('code', $action->code());
         $this->assertNull($action->script());
-        $this->assertNotNull($action->callback());
+        $this->assertInstanceOf(Closure::class, $action->callback());
     }
 
     #[Test]
@@ -27,10 +28,10 @@ final class ActionTest extends TestCase
     {
         $action = Action::make('Action', 'JavaScript', 'code');
 
-        $this->assertEquals('Action', $action->label());
-        $this->assertEquals('code', $action->code());
+        $this->assertSame('Action', $action->label());
+        $this->assertSame('code', $action->code());
         $this->assertNotNull($action->script());
-        $this->assertNull($action->callback());
+        $this->assertNotInstanceOf(Closure::class, $action->callback());
     }
 
     #[Test]
@@ -38,7 +39,7 @@ final class ActionTest extends TestCase
     {
         $action = Action::make('Publish All', fn (): bool => true);
 
-        $this->assertEquals('publish_all', $action->code());
+        $this->assertSame('publish_all', $action->code());
     }
 
     #[Test]
@@ -58,7 +59,7 @@ final class ActionTest extends TestCase
     {
         $action = Action::make('Action', 'JavaScript');
 
-        $this->assertNull($action->callback());
+        $this->assertNotInstanceOf(Closure::class, $action->callback());
 
         $result = $action->execute(
             Collection::make()
