@@ -13,7 +13,7 @@ use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Company;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class LivewireTableTest extends TestCase
+final class LivewireTableTest extends TestCase
 {
     #[Test]
     public function it_can_instantiate_an_empty_livewire_table(): void

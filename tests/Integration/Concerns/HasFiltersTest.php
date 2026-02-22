@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasFiltersTest extends TestCase
+final class HasFiltersTest extends TestCase
 {
     #[Test]
     public function it_removes_empty_filters(): void

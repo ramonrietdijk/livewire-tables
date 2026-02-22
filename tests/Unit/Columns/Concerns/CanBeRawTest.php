@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class CanBeRawTest extends TestCase
+final class CanBeRawTest extends TestCase
 {
     #[Test]
     public function it_can_be_raw(): void

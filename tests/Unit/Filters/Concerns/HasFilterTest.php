@@ -10,7 +10,7 @@ use RamonRietdijk\LivewireTables\Filters\SelectFilter;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasFilterTest extends TestCase
+final class HasFilterTest extends TestCase
 {
     #[Test]
     public function it_can_have_a_filter_using_callback(): void

@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasSelectionTest extends TestCase
+final class HasSelectionTest extends TestCase
 {
     #[Test]
     public function it_can_keep_the_selection(): void

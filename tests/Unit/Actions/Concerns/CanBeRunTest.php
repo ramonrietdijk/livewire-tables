@@ -10,7 +10,7 @@ use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class CanBeRunTest extends TestCase
+final class CanBeRunTest extends TestCase
 {
     #[Test]
     public function it_can_be_run(): void

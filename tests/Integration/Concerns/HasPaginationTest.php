@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasPaginationTest extends TestCase
+final class HasPaginationTest extends TestCase
 {
     #[Test]
     public function it_can_reset_selecting_the_page(): void

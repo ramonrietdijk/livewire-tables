@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\ImageColumn;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasSizeTest extends TestCase
+final class HasSizeTest extends TestCase
 {
     #[Test]
     public function it_can_set_a_size(): void

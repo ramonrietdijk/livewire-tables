@@ -10,7 +10,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasColumnsTest extends TestCase
+final class HasColumnsTest extends TestCase
 {
     #[Test]
     public function it_can_select_all_columns(): void

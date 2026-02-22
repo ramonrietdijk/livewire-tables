@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\SessionBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasSessionTest extends TestCase
+final class HasSessionTest extends TestCase
 {
     #[Test]
     public function it_can_store_sessions(): void

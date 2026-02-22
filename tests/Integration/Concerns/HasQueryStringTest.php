@@ -11,7 +11,7 @@ use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\DisabledQueryStringBlogLiv
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\QueryStringPrefixedBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasQueryStringTest extends TestCase
+final class HasQueryStringTest extends TestCase
 {
     #[Test]
     public function it_has_query_string_parameters(): void

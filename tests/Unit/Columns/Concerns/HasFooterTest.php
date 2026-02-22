@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasFooterTest extends TestCase
+final class HasFooterTest extends TestCase
 {
     #[Test]
     public function it_can_have_a_footer(): void

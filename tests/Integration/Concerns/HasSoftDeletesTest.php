@@ -13,7 +13,7 @@ use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasSoftDeletesTest extends TestCase
+final class HasSoftDeletesTest extends TestCase
 {
     #[Test]
     public function it_can_see_without_trashed(): void

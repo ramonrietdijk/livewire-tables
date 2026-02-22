@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasMetadataTest extends TestCase
+final class HasMetadataTest extends TestCase
 {
     #[Test]
     public function it_can_interact_with_metadata(): void

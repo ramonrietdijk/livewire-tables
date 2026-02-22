@@ -9,7 +9,7 @@ use RamonRietdijk\LivewireTables\Columns\DateColumn;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class DateColumnTest extends TestCase
+final class DateColumnTest extends TestCase
 {
     #[Test]
     public function it_can_resolve_nullable_values(): void

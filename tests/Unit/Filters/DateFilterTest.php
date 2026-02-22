@@ -9,7 +9,7 @@ use RamonRietdijk\LivewireTables\Filters\DateFilter;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class DateFilterTest extends TestCase
+final class DateFilterTest extends TestCase
 {
     #[Test]
     public function it_can_apply_filters(): void

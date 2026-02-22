@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class ActionTest extends TestCase
+final class ActionTest extends TestCase
 {
     #[Test]
     public function it_can_be_created_with_a_callback(): void

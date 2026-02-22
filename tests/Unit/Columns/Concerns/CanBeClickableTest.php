@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class CanBeClickableTest extends TestCase
+final class CanBeClickableTest extends TestCase
 {
     #[Test]
     public function it_can_be_clickable(): void

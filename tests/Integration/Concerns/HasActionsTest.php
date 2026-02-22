@@ -10,7 +10,7 @@ use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasActionsTest extends TestCase
+final class HasActionsTest extends TestCase
 {
     #[Test]
     public function it_can_execute_actions(): void

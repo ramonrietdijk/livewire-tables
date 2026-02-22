@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class CanBeCopiedTest extends TestCase
+final class CanBeCopiedTest extends TestCase
 {
     #[Test]
     public function it_can_be_copied(): void

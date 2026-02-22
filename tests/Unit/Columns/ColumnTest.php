@@ -10,7 +10,7 @@ use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class ColumnTest extends TestCase
+final class ColumnTest extends TestCase
 {
     #[Test]
     public function it_can_get_the_label_and_column_and_code(): void
