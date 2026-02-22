@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns\Concerns;
 
+use Closure;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
@@ -18,7 +19,7 @@ final class HasValueTest extends TestCase
     {
         $column = Column::make('Column', 'column');
 
-        $this->assertNull($column->displayUsingCallback());
+        $this->assertNotInstanceOf(Closure::class, $column->displayUsingCallback());
 
         $column->displayUsing(fn (): string => '');
 
@@ -38,7 +39,7 @@ final class HasValueTest extends TestCase
 
         $value = $column->getValue($user);
 
-        $this->assertEquals('Company', $value);
+        $this->assertSame('Company', $value);
     }
 
     #[Test]
@@ -51,7 +52,7 @@ final class HasValueTest extends TestCase
 
         $value = $column->getValue($user);
 
-        $this->assertEquals($user, $value);
+        $this->assertSame($user, $value);
     }
 
     #[Test]
@@ -64,7 +65,7 @@ final class HasValueTest extends TestCase
 
         $value = $column->getValue($user);
 
-        $this->assertEquals('Light', $value);
+        $this->assertSame('Light', $value);
     }
 
     #[Test]
@@ -79,7 +80,7 @@ final class HasValueTest extends TestCase
 
         $value = $column->resolveValue($user);
 
-        $this->assertEquals('Blog, Blog, Blog', $value);
+        $this->assertSame('Blog, Blog, Blog', $value);
     }
 
     #[Test]
@@ -92,7 +93,7 @@ final class HasValueTest extends TestCase
 
         $value = $column->resolveValue($user);
 
-        $this->assertEquals('John Doe', $value);
+        $this->assertSame('John Doe', $value);
     }
 
     #[Test]
@@ -114,7 +115,7 @@ final class HasValueTest extends TestCase
 
         $value = $column->resolveValue($user);
 
-        $this->assertEquals('Red, Green, Blue', $value);
+        $this->assertSame('Red, Green, Blue', $value);
     }
 
     #[Test]
@@ -128,6 +129,6 @@ final class HasValueTest extends TestCase
 
         $value = $column->resolveValue($user);
 
-        $this->assertEquals('JOHN DOE', $value);
+        $this->assertSame('JOHN DOE', $value);
     }
 }

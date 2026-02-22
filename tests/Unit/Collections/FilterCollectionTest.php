@@ -20,8 +20,8 @@ final class FilterCollectionTest extends TestCase
 
         $collection = FilterCollection::make($items);
 
-        $this->assertEquals(1, $collection->computed()->count());
-        $this->assertEquals(0, $collection->computed(false)->count());
+        $this->assertCount(1, $collection->computed());
+        $this->assertCount(0, $collection->computed(false));
     }
 
     #[Test]
@@ -33,7 +33,7 @@ final class FilterCollectionTest extends TestCase
 
         $collection = FilterCollection::make($items);
 
-        $this->assertEquals([
+        $this->assertSame([
             'column',
         ], $collection->columns());
     }

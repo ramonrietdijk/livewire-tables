@@ -24,6 +24,6 @@ final class HasOptionsTest extends TestCase
 
         $column->options($options);
 
-        $this->assertEquals($options, $column->getOptions());
+        $this->assertSame($options, $column->getOptions());
     }
 }

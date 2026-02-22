@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Columns\Concerns;
 
+use Closure;
 use Illuminate\Database\Eloquent\Builder;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
@@ -19,7 +20,7 @@ final class HasSortingTest extends TestCase
         $column = Column::make('Column', 'column');
 
         $this->assertFalse($column->isSortable());
-        $this->assertNull($column->sortCallback());
+        $this->assertNotInstanceOf(Closure::class, $column->sortCallback());
 
         $column->sortable();
 
@@ -33,7 +34,7 @@ final class HasSortingTest extends TestCase
         $column = Column::make('Column', 'column');
 
         $this->assertFalse($column->isSortable());
-        $this->assertNull($column->sortCallback());
+        $this->assertNotInstanceOf(Closure::class, $column->sortCallback());
 
         $column->sortable(function (Builder $builder, Direction $direction): void {
             //
@@ -57,7 +58,7 @@ final class HasSortingTest extends TestCase
         /** @var User $user */
         $user = $builder->first();
 
-        $this->assertEquals('Jane Doe', $user->name);
+        $this->assertSame('Jane Doe', $user->name);
     }
 
     #[Test]
@@ -74,7 +75,7 @@ final class HasSortingTest extends TestCase
         /** @var User $user */
         $user = $builder->first();
 
-        $this->assertEquals('Jane Doe', $user->name);
+        $this->assertSame('Jane Doe', $user->name);
     }
 
     #[Test]
@@ -91,7 +92,7 @@ final class HasSortingTest extends TestCase
         /** @var User $user */
         $user = $builder->first();
 
-        $this->assertEquals('John Doe', $user->name);
+        $this->assertSame('John Doe', $user->name);
     }
 
     #[Test]
@@ -112,6 +113,6 @@ final class HasSortingTest extends TestCase
         /** @var User $user */
         $user = $builder->first();
 
-        $this->assertEquals('John Doe', $user->name);
+        $this->assertSame('John Doe', $user->name);
     }
 }

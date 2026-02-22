@@ -16,7 +16,7 @@ final class ColumnTest extends TestCase
     {
         $column = Column::make('author.company.name');
 
-        $this->assertEquals('author.company.name', $column->column()->toString());
+        $this->assertSame('author.company.name', $column->column()->toString());
     }
 
     #[Test]
@@ -24,7 +24,7 @@ final class ColumnTest extends TestCase
     {
         $column = Column::make('author.company.name');
 
-        $this->assertEquals('name', $column->name());
+        $this->assertSame('name', $column->name());
     }
 
     #[Test]
@@ -44,7 +44,7 @@ final class ColumnTest extends TestCase
     {
         $column = Column::make('author.company.name');
 
-        $this->assertEquals('author.company', $column->relation());
+        $this->assertSame('author.company', $column->relation());
     }
 
     #[Test]
@@ -52,7 +52,7 @@ final class ColumnTest extends TestCase
     {
         $column = Column::make('author.company.name');
 
-        $this->assertEquals('author_company', $column->alias());
+        $this->assertSame('author_company', $column->alias());
     }
 
     #[Test]
@@ -62,7 +62,7 @@ final class ColumnTest extends TestCase
 
         $column = Column::make('title');
 
-        $this->assertEquals('blogs.title', $column->qualify($builder));
+        $this->assertSame('blogs.title', $column->qualify($builder));
     }
 
     #[Test]
@@ -72,7 +72,7 @@ final class ColumnTest extends TestCase
 
         $column = Column::make('author.company.name');
 
-        $this->assertEquals('author_company.name', $column->qualify($builder));
+        $this->assertSame('author_company.name', $column->qualify($builder));
     }
 
     #[Test]
@@ -80,7 +80,7 @@ final class ColumnTest extends TestCase
     {
         $column = Column::make('author.company.name');
 
-        $this->assertEquals([
+        $this->assertSame([
             'author',
             'company',
             'name',

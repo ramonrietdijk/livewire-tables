@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Filters;
 
+use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use PHPUnit\Framework\Attributes\Test;
@@ -17,9 +18,9 @@ final class FilterTest extends TestCase
     {
         $filter = SelectFilter::make('Company', 'author.company.id');
 
-        $this->assertEquals('Company', $filter->label());
-        $this->assertEquals('author.company.id', $filter->column());
-        $this->assertEquals('author_company_id', $filter->code());
+        $this->assertSame('Company', $filter->label());
+        $this->assertSame('author.company.id', $filter->column());
+        $this->assertSame('author_company_id', $filter->code());
     }
 
     #[Test]
@@ -30,8 +31,8 @@ final class FilterTest extends TestCase
         });
 
         $this->assertNull($filter->column());
-        $this->assertEquals(md5('Company'), $filter->code());
-        $this->assertNotNull($filter->filterUsingCallback());
+        $this->assertSame(md5('Company'), $filter->code());
+        $this->assertInstanceOf(Closure::class, $filter->filterUsingCallback());
         $this->assertTrue($filter->isComputed());
     }
 

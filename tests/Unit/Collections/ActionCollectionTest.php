@@ -24,8 +24,8 @@ final class ActionCollectionTest extends TestCase
 
         $collection = ActionCollection::make($items);
 
-        $this->assertEquals(1, $collection->bulk()->count());
-        $this->assertEquals(0, $collection->bulk(false)->count());
+        $this->assertCount(1, $collection->bulk());
+        $this->assertCount(0, $collection->bulk(false));
     }
 
     #[Test]
@@ -39,8 +39,8 @@ final class ActionCollectionTest extends TestCase
 
         $collection = ActionCollection::make($items);
 
-        $this->assertEquals(1, $collection->standalone()->count());
-        $this->assertEquals(0, $collection->standalone(false)->count());
+        $this->assertCount(1, $collection->standalone());
+        $this->assertCount(0, $collection->standalone(false));
     }
 
     #[Test]
@@ -54,8 +54,8 @@ final class ActionCollectionTest extends TestCase
 
         $collection = ActionCollection::make($items);
 
-        $this->assertEquals(1, $collection->record()->count());
-        $this->assertEquals(0, $collection->record(false)->count());
+        $this->assertCount(1, $collection->record());
+        $this->assertCount(0, $collection->record(false));
     }
 
     #[Test]
@@ -71,7 +71,7 @@ final class ActionCollectionTest extends TestCase
 
         $model = new User;
 
-        $this->assertEquals(1, $collection->count());
-        $this->assertEquals(0, $collection->canBeRun($model)->count());
+        $this->assertCount(1, $collection);
+        $this->assertCount(0, $collection->canBeRun($model));
     }
 }

@@ -20,4 +20,5 @@ return RectorConfig::configure()
         earlyReturn: true,
         carbon: true,
         rectorPreset: true,
+        phpunitCodeQuality: true,
     );

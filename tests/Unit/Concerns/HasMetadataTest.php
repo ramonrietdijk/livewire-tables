@@ -15,6 +15,6 @@ final class HasMetadataTest extends TestCase
     {
         $column = Column::make('Label', 'code')->setMeta('key', 'value');
 
-        $this->assertEquals('value', $column->getMeta('key'));
+        $this->assertSame('value', $column->getMeta('key'));
     }
 }

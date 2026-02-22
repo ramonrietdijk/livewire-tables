@@ -23,7 +23,7 @@ final class SelectColumnTest extends TestCase
         $column = SelectColumn::make('Name', 'name');
         $column->search($builder, SearchScope::Column, 'Alex');
 
-        $this->assertEquals(1, $builder->count());
+        $this->assertSame(1, $builder->count());
     }
 
     #[Test]
@@ -37,6 +37,6 @@ final class SelectColumnTest extends TestCase
         $column = SelectColumn::make('Name', 'name');
         $column->search($builder, SearchScope::Global, 'Alex');
 
-        $this->assertEquals(2, $builder->count());
+        $this->assertSame(2, $builder->count());
     }
 }

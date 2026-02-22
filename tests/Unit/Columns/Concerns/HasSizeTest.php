@@ -15,13 +15,13 @@ final class HasSizeTest extends TestCase
     {
         $column = ImageColumn::make('Image', 'image');
 
-        $this->assertEquals(32, $column->getWidth());
-        $this->assertEquals(32, $column->getHeight());
+        $this->assertSame(32, $column->getWidth());
+        $this->assertSame(32, $column->getHeight());
 
         $column->size(200, 100);
 
-        $this->assertEquals(200, $column->getWidth());
-        $this->assertEquals(100, $column->getHeight());
+        $this->assertSame(200, $column->getWidth());
+        $this->assertSame(100, $column->getHeight());
     }
 
     #[Test]
@@ -29,11 +29,11 @@ final class HasSizeTest extends TestCase
     {
         $column = ImageColumn::make('Image', 'image');
 
-        $this->assertEquals(32, $column->getWidth());
+        $this->assertSame(32, $column->getWidth());
 
         $column->width(100);
 
-        $this->assertEquals(100, $column->getWidth());
+        $this->assertSame(100, $column->getWidth());
     }
 
     #[Test]
@@ -41,10 +41,10 @@ final class HasSizeTest extends TestCase
     {
         $column = ImageColumn::make('Image', 'image');
 
-        $this->assertEquals(32, $column->getHeight());
+        $this->assertSame(32, $column->getHeight());
 
         $column->height(100);
 
-        $this->assertEquals(100, $column->getHeight());
+        $this->assertSame(100, $column->getHeight());
     }
 }

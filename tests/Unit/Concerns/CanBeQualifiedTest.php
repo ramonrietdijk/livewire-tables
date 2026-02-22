@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RamonRietdijk\LivewireTables\Tests\Unit\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
+use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
@@ -33,7 +34,7 @@ final class CanBeQualifiedTest extends TestCase
 
         $column = Column::make('Name', 'name');
 
-        $this->assertEquals('users.name', $column->qualify($builder));
+        $this->assertSame('users.name', $column->qualify($builder));
     }
 
     #[Test]
@@ -61,28 +62,26 @@ final class CanBeQualifiedTest extends TestCase
                 $value = $column;
             });
 
-        $this->assertEquals($expected, $value);
+        $this->assertSame($expected, $value);
     }
 
-    /** @return array<string, array<string, mixed>> */
-    public static function qualifyQueries(): array
+    /** @return Iterator<string, array<string, mixed>> */
+    public static function qualifyQueries(): Iterator
     {
-        return [
-            'Default' => [
-                'column' => 'name',
-                'alias' => false,
-                'expected' => 'users.name',
-            ],
-            'Relation via whereHas' => [
-                'column' => 'company.name',
-                'alias' => false,
-                'expected' => 'companies.name',
-            ],
-            'Joined relation' => [
-                'column' => 'author.company.name',
-                'alias' => true,
-                'expected' => 'author_company.name',
-            ],
+        yield 'Default' => [
+            'column' => 'name',
+            'alias' => false,
+            'expected' => 'users.name',
+        ];
+        yield 'Relation via whereHas' => [
+            'column' => 'company.name',
+            'alias' => false,
+            'expected' => 'companies.name',
+        ];
+        yield 'Joined relation' => [
+            'column' => 'author.company.name',
+            'alias' => true,
+            'expected' => 'author_company.name',
         ];
     }
 
