@@ -11,7 +11,7 @@ use RamonRietdijk\LivewireTables\Collections\ActionCollection;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class ActionCollectionTest extends TestCase
+final class ActionCollectionTest extends TestCase
 {
     #[Test]
     public function it_can_get_bulk_actions(): void

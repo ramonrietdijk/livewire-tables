@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Filters\SelectFilter;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class CanBeMultipleTest extends TestCase
+final class CanBeMultipleTest extends TestCase
 {
     #[Test]
     public function it_can_be_multiple(): void

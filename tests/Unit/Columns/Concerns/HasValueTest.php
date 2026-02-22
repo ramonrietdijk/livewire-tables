@@ -11,7 +11,7 @@ use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Company;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasValueTest extends TestCase
+final class HasValueTest extends TestCase
 {
     #[Test]
     public function it_can_have_a_display_callback(): void

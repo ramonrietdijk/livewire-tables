@@ -11,7 +11,7 @@ use RamonRietdijk\LivewireTables\Enums\Direction;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasSortingTest extends TestCase
+final class HasSortingTest extends TestCase
 {
     #[Test]
     public function it_can_be_sortable(): void

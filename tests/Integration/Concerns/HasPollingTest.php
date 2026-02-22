@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\PollingBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasPollingTest extends TestCase
+final class HasPollingTest extends TestCase
 {
     #[Test]
     public function it_can_poll(): void

@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class CanBeComputedTest extends TestCase
+final class CanBeComputedTest extends TestCase
 {
     #[Test]
     public function it_can_be_computed(): void

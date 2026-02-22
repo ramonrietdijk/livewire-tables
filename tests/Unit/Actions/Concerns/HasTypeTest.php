@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasTypeTest extends TestCase
+final class HasTypeTest extends TestCase
 {
     #[Test]
     public function it_can_be_a_bulk_action(): void

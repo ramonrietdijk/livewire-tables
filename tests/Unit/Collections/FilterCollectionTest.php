@@ -9,7 +9,7 @@ use RamonRietdijk\LivewireTables\Collections\FilterCollection;
 use RamonRietdijk\LivewireTables\Filters\SelectFilter;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class FilterCollectionTest extends TestCase
+final class FilterCollectionTest extends TestCase
 {
     #[Test]
     public function it_can_get_computed_filters(): void

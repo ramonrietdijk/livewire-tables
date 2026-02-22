@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasInitializationTest extends TestCase
+final class HasInitializationTest extends TestCase
 {
     #[Test]
     public function it_can_be_initialized(): void

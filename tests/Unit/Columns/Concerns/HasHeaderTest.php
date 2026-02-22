@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasHeaderTest extends TestCase
+final class HasHeaderTest extends TestCase
 {
     #[Test]
     public function it_can_render_the_header(): void

@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\BlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasSearchTest extends TestCase
+final class HasSearchTest extends TestCase
 {
     #[Test]
     public function it_can_reset_the_page_when_searching_globally(): void

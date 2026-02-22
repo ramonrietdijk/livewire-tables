@@ -10,7 +10,7 @@ use RamonRietdijk\LivewireTables\Enums\SearchScope;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class SelectColumnTest extends TestCase
+final class SelectColumnTest extends TestCase
 {
     #[Test]
     public function it_can_search_scoped_column(): void

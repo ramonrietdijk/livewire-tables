@@ -12,7 +12,7 @@ use RamonRietdijk\LivewireTables\Enums\SearchScope;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasSearchTest extends TestCase
+final class HasSearchTest extends TestCase
 {
     #[Test]
     public function it_can_be_searchable(): void

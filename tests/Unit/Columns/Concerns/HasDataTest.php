@@ -10,7 +10,7 @@ use RamonRietdijk\LivewireTables\Columns\ViewColumn;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasDataTest extends TestCase
+final class HasDataTest extends TestCase
 {
     #[Test]
     public function it_can_pass_data_as_an_array(): void

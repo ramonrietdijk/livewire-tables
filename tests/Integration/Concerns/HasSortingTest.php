@@ -11,7 +11,7 @@ use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\ReorderingBlogLivewireTabl
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasSortingTest extends TestCase
+final class HasSortingTest extends TestCase
 {
     #[Test]
     public function it_can_sort(): void

@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\DeferredLoadingBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasDeferredLoadingTest extends TestCase
+final class HasDeferredLoadingTest extends TestCase
 {
     #[Test]
     public function it_can_defer_loading(): void

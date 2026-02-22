@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasVisibilityTest extends TestCase
+final class HasVisibilityTest extends TestCase
 {
     #[Test]
     public function it_can_be_hidden(): void

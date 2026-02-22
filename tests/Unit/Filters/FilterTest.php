@@ -10,7 +10,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Filters\SelectFilter;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class FilterTest extends TestCase
+final class FilterTest extends TestCase
 {
     #[Test]
     public function it_can_get_the_label_and_column_and_code(): void

@@ -11,7 +11,7 @@ use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\ReorderingBlogLivewireTabl
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasReorderingTest extends TestCase
+final class HasReorderingTest extends TestCase
 {
     #[Test]
     public function it_can_reset_the_selection(): void

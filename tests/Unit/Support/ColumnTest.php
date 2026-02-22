@@ -9,7 +9,7 @@ use RamonRietdijk\LivewireTables\Support\Column;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class ColumnTest extends TestCase
+final class ColumnTest extends TestCase
 {
     #[Test]
     public function it_can_get_the_column(): void

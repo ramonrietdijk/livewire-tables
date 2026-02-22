@@ -11,7 +11,7 @@ use RamonRietdijk\LivewireTables\Tests\Fakes\Livewire\EmptyBlogLivewireTable;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Blog;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasSelectionTest extends TestCase
+final class HasSelectionTest extends TestCase
 {
     #[Test]
     public function it_can_clear_the_selection(): void

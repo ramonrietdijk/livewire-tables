@@ -12,7 +12,7 @@ use RamonRietdijk\LivewireTables\Exceptions\ColumnException;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class CanBeQualifiedTest extends TestCase
+final class CanBeQualifiedTest extends TestCase
 {
     #[Test]
     public function it_can_qualify_using_aliases(): void

@@ -9,7 +9,7 @@ use RamonRietdijk\LivewireTables\Filters\BooleanFilter;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class BooleanFilterTest extends TestCase
+final class BooleanFilterTest extends TestCase
 {
     #[Test]
     public function it_can_apply_filters(): void

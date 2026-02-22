@@ -10,7 +10,7 @@ use RamonRietdijk\LivewireTables\Columns\ViewColumn;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class ViewColumnTest extends TestCase
+final class ViewColumnTest extends TestCase
 {
     #[Test]
     public function it_can_resolve_views(): void

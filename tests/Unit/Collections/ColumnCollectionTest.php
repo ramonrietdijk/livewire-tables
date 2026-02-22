@@ -9,7 +9,7 @@ use RamonRietdijk\LivewireTables\Collections\ColumnCollection;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class ColumnCollectionTest extends TestCase
+final class ColumnCollectionTest extends TestCase
 {
     #[Test]
     public function it_can_get_searchable_columns(): void

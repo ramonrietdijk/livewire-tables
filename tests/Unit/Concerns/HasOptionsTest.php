@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use RamonRietdijk\LivewireTables\Columns\SelectColumn;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasOptionsTest extends TestCase
+final class HasOptionsTest extends TestCase
 {
     #[Test]
     public function it_can_have_options(): void

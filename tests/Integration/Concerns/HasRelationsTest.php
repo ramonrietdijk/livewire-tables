@@ -14,7 +14,7 @@ use RamonRietdijk\LivewireTables\Tests\Fakes\Models\Tag;
 use RamonRietdijk\LivewireTables\Tests\Fakes\Models\User;
 use RamonRietdijk\LivewireTables\Tests\TestCase;
 
-class HasRelationsTest extends TestCase
+final class HasRelationsTest extends TestCase
 {
     #[Test]
     public function it_can_load_different_types_of_relations(): void
