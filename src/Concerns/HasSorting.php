@@ -72,9 +72,7 @@ trait HasSorting
         $direction = Direction::tryFrom($this->sortDirection);
 
         /** @var ?BaseColumn $column */
-        $column = $this->resolveColumns()->first(function (BaseColumn $column): bool {
-            return $column->isSortable() && $this->sortColumn === $column->code();
-        });
+        $column = $this->resolveColumns()->first(fn (BaseColumn $column): bool => $column->isSortable() && $this->sortColumn === $column->code());
 
         if ($column !== null && $direction !== null) {
             $column->applySorting($builder, $direction);

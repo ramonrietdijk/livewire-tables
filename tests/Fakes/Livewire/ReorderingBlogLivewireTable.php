@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RamonRietdijk\LivewireTables\Tests\Fakes\Livewire;
 
 use Illuminate\Database\Eloquent\Collection;
+use Override;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Columns\Column;
 use RamonRietdijk\LivewireTables\Livewire\LivewireTable;
@@ -16,6 +17,7 @@ class ReorderingBlogLivewireTable extends LivewireTable
 
     protected bool $useReordering = true;
 
+    #[Override]
     protected function columns(): array
     {
         return [
@@ -25,6 +27,7 @@ class ReorderingBlogLivewireTable extends LivewireTable
         ];
     }
 
+    #[Override]
     protected function actions(): array
     {
         return [

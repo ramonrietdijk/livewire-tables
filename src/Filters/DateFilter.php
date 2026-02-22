@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace RamonRietdijk\LivewireTables\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use Override;
 
 class DateFilter extends BaseFilter
 {
     protected string $view = 'livewire-table::filters.date';
 
+    #[Override]
     public function filter(Builder $builder, mixed $value): void
     {
         /** @var array<string, string> $value */
