@@ -18,4 +18,5 @@ return RectorConfig::configure()
         privatization: true,
         instanceOf: true,
         earlyReturn: true,
+        carbon: true,
     );
