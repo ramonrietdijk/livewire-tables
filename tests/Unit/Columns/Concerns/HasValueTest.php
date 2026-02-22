@@ -20,7 +20,7 @@ class HasValueTest extends TestCase
 
         $this->assertNull($column->displayUsingCallback());
 
-        $column->displayUsing(fn () => '');
+        $column->displayUsing(fn (): string => '');
 
         $this->assertNotNull($column->displayUsingCallback());
     }
