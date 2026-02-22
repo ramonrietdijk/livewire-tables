@@ -80,7 +80,7 @@ trait HasSearch
 
         $builder->where(function (Builder $builder) use ($columns): void {
             $columns->each(function (BaseColumn $column) use ($builder): void {
-                $builder->orWhere(function (Builder $builder) use ($column) {
+                $builder->orWhere(function (Builder $builder) use ($column): void {
                     $column->applySearch($builder, SearchScope::Global, $this->globalSearch);
                 });
             });
@@ -102,7 +102,7 @@ trait HasSearch
 
         $builder->where(function (Builder $builder) use ($columns): void {
             $columns->each(function (BaseColumn $column) use ($builder): void {
-                $builder->where(function (Builder $builder) use ($column) {
+                $builder->where(function (Builder $builder) use ($column): void {
                     $search = $this->search[$column->code()] ?? null;
 
                     if (! blank($search)) {
