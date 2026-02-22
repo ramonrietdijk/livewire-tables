@@ -40,13 +40,11 @@ trait HasSorting
         if (! $isEqual) {
             $this->sortColumn = $column;
             $this->sortDirection = Direction::Ascending->value;
+        } elseif ($isAscending) {
+            $this->sortDirection = Direction::Descending->value;
         } else {
-            if ($isAscending) {
-                $this->sortDirection = Direction::Descending->value;
-            } else {
-                $this->sortColumn = '';
-                $this->sortDirection = '';
-            }
+            $this->sortColumn = '';
+            $this->sortDirection = '';
         }
 
         $this->updateSession();

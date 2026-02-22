@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Columns;
 
+use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Override;
@@ -21,7 +22,7 @@ class DateColumn extends BaseColumn
         /** @var string|Carbon|null $value */
         $value = $this->getValue($model);
 
-        if (($callback = $this->displayUsingCallback()) !== null) {
+        if (($callback = $this->displayUsingCallback()) instanceof Closure) {
             return call_user_func($callback, $value, $model);
         }
 

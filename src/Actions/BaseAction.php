@@ -72,7 +72,7 @@ abstract class BaseAction
     /** @param  Collection<int, covariant Model>  $models */
     public function execute(Collection $models): mixed
     {
-        if (($callback = $this->callback()) !== null) {
+        if (($callback = $this->callback()) instanceof Closure) {
             return call_user_func($callback, $models);
         }
 
