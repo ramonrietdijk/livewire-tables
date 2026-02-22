@@ -74,9 +74,7 @@ trait HasSearch
             return $this;
         }
 
-        $columns = $this->resolveColumns()->searchable()->filter(function (BaseColumn $column): bool {
-            return in_array($column->code(), $this->columns, true);
-        });
+        $columns = $this->resolveColumns()->searchable()->filter(fn (BaseColumn $column): bool => in_array($column->code(), $this->columns, true));
 
         $builder->where(function (Builder $builder) use ($columns): void {
             $columns->each(function (BaseColumn $column) use ($builder): void {
@@ -96,9 +94,7 @@ trait HasSearch
             return $this;
         }
 
-        $columns = $this->resolveColumns()->searchable()->filter(function (BaseColumn $column): bool {
-            return in_array($column->code(), $this->columns, true);
-        });
+        $columns = $this->resolveColumns()->searchable()->filter(fn (BaseColumn $column): bool => in_array($column->code(), $this->columns, true));
 
         $builder->where(function (Builder $builder) use ($columns): void {
             $columns->each(function (BaseColumn $column) use ($builder): void {

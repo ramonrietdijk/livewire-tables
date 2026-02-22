@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RamonRietdijk\LivewireTables\Columns;
 
 use Illuminate\Database\Eloquent\Model;
+use Override;
 use RamonRietdijk\LivewireTables\Columns\Concerns\HasData;
 
 class ViewColumn extends BaseColumn
@@ -15,6 +16,7 @@ class ViewColumn extends BaseColumn
 
     protected bool $computed = true;
 
+    #[Override]
     public function resolveValue(Model $model): mixed
     {
         $view = $this->column();

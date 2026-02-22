@@ -59,12 +59,10 @@ trait HasFilters
 
     protected function resolveFilters(): FilterCollection
     {
-        return once(function (): FilterCollection {
-            return collect($this->filters())
-                ->filter(fn (BaseFilter $filter): bool => $filter->canBeSeen())
-                ->values()
-                ->pipeInto(FilterCollection::class);
-        });
+        return once(fn (): FilterCollection => collect($this->filters())
+            ->filter(fn (BaseFilter $filter): bool => $filter->canBeSeen())
+            ->values()
+            ->pipeInto(FilterCollection::class));
     }
 
     /** @param  Builder<covariant Model>  $builder */

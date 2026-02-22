@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RamonRietdijk\LivewireTables\Tests\Fakes\Livewire;
 
 use Illuminate\Database\Eloquent\Collection;
+use Override;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Columns\ActionColumn;
 use RamonRietdijk\LivewireTables\Columns\BooleanColumn;
@@ -24,6 +25,7 @@ class BlogLivewireTable extends LivewireTable
 {
     protected string $model = Blog::class;
 
+    #[Override]
     protected function columns(): array
     {
         return [
@@ -59,6 +61,7 @@ class BlogLivewireTable extends LivewireTable
         ];
     }
 
+    #[Override]
     protected function filters(): array
     {
         return [
@@ -78,6 +81,7 @@ class BlogLivewireTable extends LivewireTable
         ];
     }
 
+    #[Override]
     protected function actions(): array
     {
         return [

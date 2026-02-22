@@ -6,6 +6,7 @@ namespace RamonRietdijk\LivewireTables\Columns;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Override;
 use RamonRietdijk\LivewireTables\Columns\Concerns\HasFormat;
 
 class DateColumn extends BaseColumn
@@ -14,6 +15,7 @@ class DateColumn extends BaseColumn
 
     protected string $searchView = 'livewire-table::columns.search.date';
 
+    #[Override]
     public function resolveValue(Model $model): mixed
     {
         /** @var string|Carbon|null $value */
