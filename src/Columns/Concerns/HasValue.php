@@ -63,7 +63,7 @@ trait HasValue
         }
 
         if (is_array($value)) {
-            $value = implode(', ', $value);
+            return implode(', ', $value);
         }
 
         return $value;
