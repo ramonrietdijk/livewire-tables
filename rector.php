@@ -12,4 +12,5 @@ return RectorConfig::configure()
     ->withPhpSets()
     ->withPreparedSets(
         deadCode: true,
+        codeQuality: true,
     );

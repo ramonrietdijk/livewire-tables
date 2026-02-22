@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Columns;
 
+use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Override;
 use RamonRietdijk\LivewireTables\Columns\Concerns\HasData;
@@ -21,7 +22,7 @@ class ViewColumn extends BaseColumn
     {
         $view = $this->column();
 
-        if (($callback = $this->displayUsingCallback()) !== null) {
+        if (($callback = $this->displayUsingCallback()) instanceof Closure) {
             $view = call_user_func($callback, $model, $model);
         }
 

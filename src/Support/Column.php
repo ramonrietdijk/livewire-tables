@@ -49,7 +49,7 @@ class Column
         $name = $this->name();
         $alias = $this->alias();
 
-        return strlen($alias) > 0
+        return $alias !== ''
             ? $alias.'.'.$name
             : $builder->qualifyColumn($name);
     }

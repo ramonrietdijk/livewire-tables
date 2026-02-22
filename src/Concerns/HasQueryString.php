@@ -12,7 +12,7 @@ trait HasQueryString
 
     protected function getQueryStringName(string $name): string
     {
-        if (strlen($this->queryStringPrefix) > 0) {
+        if ($this->queryStringPrefix !== '') {
             return $this->queryStringPrefix.'_'.$name;
         }
 
