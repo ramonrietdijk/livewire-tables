@@ -33,7 +33,7 @@ trait HasActions
         /** @var BaseAction $action */
         $action = $this->resolveActions()->firstOrFail(fn (BaseAction $action): bool => $code === $action->code());
 
-        if (! $action->isStandalone() && count($items) > 0) {
+        if (! $action->isStandalone() && $items !== []) {
             $models = $this->queryWithTrashed()->whereIn($this->model()->getQualifiedKeyName(), $items)->get();
         } else {
             $models = Collection::make();
