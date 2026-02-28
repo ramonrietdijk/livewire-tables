@@ -119,6 +119,24 @@ final class HasValueTest extends TestCase
     }
 
     #[Test]
+    public function it_can_resolve_empty_arrays_as_null(): void
+    {
+        /** @var User $user */
+        $user = User::factory()->create([
+            'name' => 'John Doe',
+            'preferences' => [
+                'colors' => [],
+            ],
+        ]);
+
+        $column = Column::make('Colors', 'preferences->colors');
+
+        $value = $column->resolveValue($user);
+
+        $this->assertNull($value);
+    }
+
+    #[Test]
     public function it_can_resolve_values_with_a_callback(): void
     {
         /** @var User $user */
