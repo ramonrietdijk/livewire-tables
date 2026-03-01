@@ -41,10 +41,12 @@
     "scripts": {
         "test": "phpunit",
         "analyse": "phpstan --memory-limit=256M",
+        "rector": "rector process --dry-run",
         "style": "pint --test",
         "quality": [
             "@test",
             "@analyse",
+            "@rector",
             "@style"
         ]
     },
