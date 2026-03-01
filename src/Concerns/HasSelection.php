@@ -55,7 +55,7 @@ trait HasSelection
 
         $page = collect($items)->map(function (Model $model): string {
             /** @var int|string $key */
-            $key = $model->getKey();
+            $key = $this->getModelKey($model);
 
             return (string) $key;
         });
@@ -80,7 +80,7 @@ trait HasSelection
 
         $table = $this->appliedQuery()->get()->map(function (Model $model): string {
             /** @var int|string $key */
-            $key = $model->getKey();
+            $key = $this->getModelKey($model);
 
             return (string) $key;
         });

@@ -57,12 +57,12 @@
         @else
             @forelse($paginator->items() as $item)
                 <tr
-                    x-data="@js(['item' => (string) $item->getKey()])"
+                    x-data="@js(['item' => (string) $this->getModelKey($item)])"
                     x-bind:class="~selected.indexOf(item)
                         ? 'bg-blue-100 dark:bg-blue-900 hover:bg-blue-200 dark:hover:bg-blue-800 transition'
                         : 'bg-gray-100 dark:bg-gray-800 odd:bg-gray-50 dark:odd:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition'
                     "
-                    wire:key="row-{{ $item->getKey() }}"
+                    wire:key="row-{{ $this->getModelKey($item) }}"
 
                     @if($this->isReordering())
                         draggable="true"
@@ -80,7 +80,7 @@
                 >
                     @if($this->canSelect())
                         <x-livewire-table::table.td class="px-3">
-                            <x-livewire-table::form.checkbox x-ref="checkbox" wire:model="selected" value="{{ $item->getKey() }}" />
+                            <x-livewire-table::form.checkbox x-ref="checkbox" wire:model="selected" value="{{ $this->getModelKey($item) }}" />
                         </x-livewire-table::table.td>
                     @endif
                     @foreach($columns as $column)
