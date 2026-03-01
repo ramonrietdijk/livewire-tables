@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Concerns;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator as ConcreteLengthAwarePaginator;
+
 trait HasPagination
 {
     public int $perPage = 15;
@@ -65,5 +69,15 @@ trait HasPagination
     protected function paginationData(): array
     {
         return $this->paginationData;
+    }
+
+    /** @return LengthAwarePaginator<int, covariant Model> */
+    protected function paginate(): LengthAwarePaginator
+    {
+        if ($this->deferLoading && ! $this->initialized) {
+            return new ConcreteLengthAwarePaginator([], 0, $this->perPage());
+        }
+
+        return $this->appliedQuery()->paginate($this->perPage());
     }
 }

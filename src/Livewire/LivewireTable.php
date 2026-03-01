@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Livewire;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Pagination\LengthAwarePaginator as ConcreteLengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
 use RamonRietdijk\LivewireTables\Concerns\HasActions;
@@ -20,6 +16,7 @@ use RamonRietdijk\LivewireTables\Concerns\HasLink;
 use RamonRietdijk\LivewireTables\Concerns\HasModel;
 use RamonRietdijk\LivewireTables\Concerns\HasPagination;
 use RamonRietdijk\LivewireTables\Concerns\HasPolling;
+use RamonRietdijk\LivewireTables\Concerns\HasQuery;
 use RamonRietdijk\LivewireTables\Concerns\HasQueryString;
 use RamonRietdijk\LivewireTables\Concerns\HasRelations;
 use RamonRietdijk\LivewireTables\Concerns\HasReordering;
@@ -42,6 +39,7 @@ class LivewireTable extends Component
     use HasModel;
     use HasPagination;
     use HasPolling;
+    use HasQuery;
     use HasQueryString;
     use HasRelations;
     use HasReordering;
@@ -55,51 +53,6 @@ class LivewireTable extends Component
 
     /** @phpstan-var view-string */
     protected string $view = 'livewire-table::livewire.livewire-table';
-
-    /** @return Builder<covariant Model> */
-    protected function query(): Builder
-    {
-        return $this->model()->query();
-    }
-
-    /** @return Builder<covariant Model> */
-    protected function queryWithTrashed(): Builder
-    {
-        $query = $this->query();
-
-        if ($this->hasSoftDeletes()) {
-            $query->withTrashed(); // @phpstan-ignore-line
-        }
-
-        return $query;
-    }
-
-    /** @return Builder<covariant Model> */
-    protected function appliedQuery(): Builder
-    {
-        $query = $this->query();
-
-        $this
-            ->applySelect($query)
-            ->applySoftDeletes($query)
-            ->applyRelations($query)
-            ->applyGlobalSearch($query)
-            ->applyColumnSearch($query)
-            ->applyFilters($query)
-            ->applySorting($query);
-
-        return $query;
-    }
-
-    /** @return LengthAwarePaginator<int, covariant Model> */
-    protected function paginate(): LengthAwarePaginator
-    {
-        if ($this->deferLoading && ! $this->initialized) {
-            return new ConcreteLengthAwarePaginator([], 0, $this->perPage());
-        }
-
-        return $this->appliedQuery()->paginate($this->perPage());
-    }
 
     public function render(): mixed
     {
