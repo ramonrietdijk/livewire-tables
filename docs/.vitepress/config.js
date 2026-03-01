@@ -101,6 +101,10 @@ export default {
                         link: '/configuration/defer-loading'
                     },
                     {
+                        text: 'Pagination',
+                        link: '/configuration/pagination'
+                    },
+                    {
                         text: 'Polling',
                         link: '/configuration/polling'
                     },

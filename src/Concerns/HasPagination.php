@@ -17,6 +17,9 @@ trait HasPagination
         100,
     ];
 
+    /** @var array<string, mixed> */
+    protected array $paginationData = [];
+
     /** @return array<string, mixed> */
     protected function queryStringHasPagination(): array
     {
@@ -56,5 +59,11 @@ trait HasPagination
     protected function perPageOptions(): array
     {
         return $this->perPageOptions;
+    }
+
+    /** @return array<string, mixed> */
+    protected function paginationData(): array
+    {
+        return $this->paginationData;
     }
 }
