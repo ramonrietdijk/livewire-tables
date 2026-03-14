@@ -11,7 +11,7 @@
             </x-livewire-table::notification.button>
         </x-livewire-table::notification>
     @else
-        <template x-if="$wire.selected.length > 0">
+        <template x-if="$wire.selected.length > 0" wire:replace.self>
             <x-livewire-table::notification icon="check-circle">
                 <x-slot:label>
                     <template x-if="$wire.selected.length === 1">
