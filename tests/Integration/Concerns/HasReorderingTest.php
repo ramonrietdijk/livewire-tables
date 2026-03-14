@@ -28,7 +28,7 @@ final class HasReorderingTest extends TestCase
     }
 
     /**
-     * @param  array<int, string>  $result
+     * @param  list<string>  $result
      */
     #[Test]
     #[DataProvider('cases')]
