@@ -16,15 +16,15 @@
     ],
     "require": {
         "php": "^8.3",
-        "laravel/framework": "^12.0",
+        "laravel/framework": "^12.0|^13.0",
         "livewire/livewire": "^3.0|^4.0"
     },
     "require-dev": {
-        "larastan/larastan": "^3.8",
-        "laravel/pint": "^1.26",
-        "orchestra/testbench": "^10.8",
+        "larastan/larastan": "^3.9",
+        "laravel/pint": "^1.29",
+        "orchestra/testbench": "^10.11|^11.0",
         "phpstan/phpstan-strict-rules": "^2.0",
-        "phpunit/phpunit": "^12.5",
+        "phpunit/phpunit": "^13.0",
         "rector/rector": "^2.3"
     },
     "autoload": {
