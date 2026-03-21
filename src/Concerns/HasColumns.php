@@ -57,7 +57,7 @@ trait HasColumns
 
         array_splice($columnOrder, $newOrder, 0, $removedColumn);
 
-        $this->columnOrder = array_values($columnOrder);
+        $this->columnOrder = $columnOrder;
 
         $this->updateSession();
     }
