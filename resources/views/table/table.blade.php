@@ -57,7 +57,7 @@
         @else
             @forelse($paginator->items() as $item)
                 <tr
-                    x-data="@js(['item' => (string) $this->getModelKey($item)])"
+                    x-data="LivewireTableRow(@js(['item' => (string) $this->getModelKey($item)]), $wire)"
                     x-bind:class="~selected.indexOf(item)
                         ? 'bg-blue-100 dark:bg-blue-900 hover:bg-blue-200 dark:hover:bg-blue-800 transition'
                         : 'bg-gray-100 dark:bg-gray-800 odd:bg-gray-50 dark:odd:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition'
@@ -66,16 +66,9 @@
 
                     @if($this->isReordering())
                         draggable="true"
-                        x-on:dragstart="e => e.dataTransfer.setData('key', item)"
+                        x-on:dragstart="dragstart"
                         x-on:dragover.prevent=""
-                        x-on:drop="e => {
-                            $wire.call(
-                                'reorderItem',
-                                e.dataTransfer.getData('key'),
-                                item,
-                                e.target.offsetHeight / 2 > e.offsetY
-                            )
-                        }"
+                        x-on:drop="drop"
                     @endif
                 >
                     @if($this->canSelect())

@@ -5,21 +5,14 @@
     <x-livewire-table::dropdown.content>
         <x-livewire-table::dropdown.menu>
             @foreach($columns as $column)
-                <li>
+                <li wire:key="{{ $column->code() }}">
                     <label
-                        wire:key="{{ $column->code() }}"
+                        x-data="LivewireTableColumn(@js(['code' => $column->code()]), $wire)"
                         class="flex items-center gap-2 px-4 py-1 cursor-grab text-gray-700 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition"
                         draggable="true"
-                        x-on:dragstart="e => e.dataTransfer.setData('code', @js($column->code()))"
+                        x-on:dragstart="dragstart"
                         x-on:dragover.prevent=""
-                        x-on:drop="e => {
-                            $wire.call(
-                                'reorderColumn',
-                                e.dataTransfer.getData('code'),
-                                @js($column->code()),
-                                e.target.offsetHeight / 2 > e.offsetY
-                            )
-                        }"
+                        x-on:drop="drop"
                     >
                         <x-livewire-table::form.checkbox value="{{ $column->code() }}" wire:model.live="columns" />
                         <span class="flex-1 truncate" title="{{ $column->label() }}">{{ $column->label() }}</span>

@@ -2,15 +2,7 @@
 
 <div
     {{ $attributes }}
-    x-data="{
-        open: false,
-        toggle() {
-            this.open = ! this.open;
-        },
-        close() {
-            this.open = false;
-        },
-    }"
+    x-data="LivewireTableDropdown"
     x-on:click.away="close"
     x-on:keydown.escape.window="close"
 >
