@@ -22,7 +22,8 @@
                         }"
                     >
                         <x-livewire-table::form.checkbox value="{{ $column->code() }}" wire:model.live="columns" />
-                        <span class="truncate" title="{{ $column->label() }}">{{ $column->label() }}</span>
+                        <span class="flex-1 truncate" title="{{ $column->label() }}">{{ $column->label() }}</span>
+                        <x-livewire-table::icon class="size-5" icon="arrows-up-down" />
                     </label>
                 </li>
             @endforeach
