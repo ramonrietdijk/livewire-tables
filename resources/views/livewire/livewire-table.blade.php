@@ -1,4 +1,5 @@
 <div
+    x-data="LivewireTable"
     class="flex flex-col gap-3 relative"
     @if($this->deferLoading) wire:init="init" @endif
     @if(strlen($polling = $this->polling()) > 0) wire:poll.{{ $polling }} @endif
@@ -11,3 +12,5 @@
     </div>
     {{ $paginator->links('livewire-table::pagination.pagination', $this->paginationData()) }}
 </div>
+
+@include('livewire-table::livewire.assets')
