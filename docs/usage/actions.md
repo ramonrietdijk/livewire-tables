@@ -91,6 +91,47 @@ Action::make(__('Publish'), function (Collection $models): void {
 })->keepSelection(),
 ```
 
+## Confirmation
+
+Some actions may be destructive and irreversible. A confirmation modal can avoid disruptions. The method `confirmation` can be used to enable confirmations for your actions.
+
+```php
+Action::make(__('Unpublish'), function (Collection $models): void {
+    //
+})->confirmation(),
+```
+
+Additional data can be set to customize the modal.
+
+```php
+Action::make(__('Unpublish'), function (Collection $models): void {
+    //
+})->confirmation(
+    title: __('Unpublish posts'),
+    body: __('Are you sure you wish to unpublish the selected posts?'),
+    cancel: __('Close'),
+    run: __('Unpublish')
+),
+```
+
+## Variants
+
+Actions can be of different variants. By default, actions will be of variant `info`.
+
+::: info
+Variants currently only affect confirmation modals.
+:::
+
+You can make use of the method `danger` to change the variant of the action.
+
+```php
+Action::make(__('Delete'), function (Collection $models): void {
+    //
+})
+    ->confirmation()
+    ->danger(),
+```
+
 ## JavaScript
 
 Some actions may only require the execution of JavaScript, like triggering a modal for example. In these cases, there is no point in sending a request to Livewire. If a callback is not supplied to an action, it will be treated like a JavaScript action. You'll have access to the [$wire](https://livewire.laravel.com/docs/javascript#the-wire-object) property.

@@ -9,9 +9,11 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use RamonRietdijk\LivewireTables\Actions\Concerns\CanBeRun;
+use RamonRietdijk\LivewireTables\Actions\Concerns\HasConfirmation;
 use RamonRietdijk\LivewireTables\Actions\Concerns\HasKind;
 use RamonRietdijk\LivewireTables\Actions\Concerns\HasSelection;
 use RamonRietdijk\LivewireTables\Actions\Concerns\HasType;
+use RamonRietdijk\LivewireTables\Actions\Concerns\HasVariant;
 use RamonRietdijk\LivewireTables\Concerns\CanBeSeen;
 use RamonRietdijk\LivewireTables\Concerns\HasMetadata;
 use RamonRietdijk\LivewireTables\Concerns\Makeable;
@@ -21,10 +23,12 @@ abstract class BaseAction
 {
     use CanBeRun;
     use CanBeSeen;
+    use HasConfirmation;
     use HasKind;
     use HasMetadata;
     use HasSelection;
     use HasType;
+    use HasVariant;
     use Makeable;
 
     protected string $code;
