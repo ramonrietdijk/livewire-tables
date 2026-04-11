@@ -30,7 +30,6 @@ class DateColumn extends BaseColumn
             return null;
         }
 
-        /** @var Carbon $date */
         $date = Carbon::parse($value);
 
         return $this->format === null
