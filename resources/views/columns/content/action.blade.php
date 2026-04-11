@@ -16,27 +16,17 @@
                 <x-livewire-table::dropdown.content>
                     <x-livewire-table::dropdown.menu x-data="{ selected: [item] }">
                         @foreach($actions as $action)
-                            @if($action->isScript())
-                                <x-livewire-table::dropdown.menu.item
-                                    :label="$action->label()"
-                                    wire:key="{{ $action->code() }}"
-                                    x-bind:disabled="selected.length === 0"
-                                    x-on:click="
-                                        {{ $action->script() }}
-                                        close()
-                                    "
-                                />
-                            @else
-                                <x-livewire-table::dropdown.menu.item
-                                    :label="$action->label()"
-                                    wire:key="{{ $action->code() }}"
-                                    x-bind:disabled="selected.length === 0"
-                                    x-on:click="
-                                        $wire.executeItemAction({{ Js::from($action->code()) }}, item)
-                                        close()
-                                    "
-                                />
-                            @endif
+                            <x-livewire-table::dropdown.menu.item
+                                :label="$action->label()"
+                                wire:key="{{ $action->code() }}"
+                                x-data="LivewireTableAction({{ Js::from(['code' => $action->code(), 'confirmation' => $action->hasConfirmation() ? $action->getConfirmationData() : null]) }})"
+                                x-on:click="
+                                    execute(() => {
+                                        {{ $action->isScript() ? $action->script() : '$wire.executeItemAction(code, item)' }}
+                                    })
+                                    close()
+                                "
+                            />
                         @endforeach
                     </x-livewire-table::dropdown.menu>
                 </x-livewire-table::dropdown.content>

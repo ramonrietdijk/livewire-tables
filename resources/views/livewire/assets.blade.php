@@ -2,7 +2,54 @@
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.data('LivewireTable', () => ({
-            //
+            modals: [],
+
+            addModal (options) {
+                const id = Math.random().toString(36).substring(2)
+
+                this.modals.push({ ...options, id })
+            }
+        }))
+
+        Alpine.data('LivewireTableAction', (options) => ({
+            execute (callback) {
+                if (options.confirmation) {
+                    this.addModal({ ...options.confirmation, callback })
+                } else {
+                    callback()
+                }
+            },
+
+            ...options,
+        }))
+
+        Alpine.data('LivewireTableModal', (options) => ({
+            open: false,
+
+            init () {
+                this.$nextTick(() => this.show())
+            },
+            show () {
+                this.open = true
+            },
+            close () {
+                this.open = false
+
+                setTimeout(() => {
+                    const index = this.modals.findIndex(modal => modal.id === options.id)
+
+                    if (index >= 0) {
+                        this.modals.splice(index, 1)
+                    }
+                }, 1000)
+            },
+            execute () {
+                options.callback()
+
+                this.close()
+            },
+
+            ...options,
         }))
 
         Alpine.data('LivewireTableDropdown', () => ({
