@@ -5,9 +5,10 @@ The selection of records in the table is enabled when non-standalone [actions](/
 If the selection state is more complex, the `canSelect` method can be overridden.
 
 ```php
+#[Override]
 protected function canSelect(): bool
 {
-    // ...
+    //
 
     return false;
 }

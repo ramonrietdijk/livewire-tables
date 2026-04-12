@@ -27,6 +27,7 @@ class OrdersTable extends LivewireTable
     public int $userId;
 
     /** @return Builder<covariant Model> */
+    #[Override]
     protected function query(): Builder
     {
         return $this->model()->query()->where('user_id', '=', $this->userId);

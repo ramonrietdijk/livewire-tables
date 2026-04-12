@@ -87,7 +87,9 @@ class BlogLivewireTable extends LivewireTable
         return [
             Action::make(__('Publish All'), function (): void {
                 Blog::query()->update(['published' => true]);
-            })->standalone(),
+            })
+                ->standalone()
+                ->confirmation(),
 
             Action::make(__('Publish'), function (Collection $models): void {
                 /** @var Collection<int, Blog> $models */
@@ -103,7 +105,9 @@ class BlogLivewireTable extends LivewireTable
                     $model->published = false;
                     $model->save();
                 }
-            })->canRun(fn (Blog $blog): bool => $blog->published),
+            })
+                ->canRun(fn (Blog $blog): bool => $blog->published)
+                ->confirmation(),
 
             Action::make(__('Delete'), function (Collection $models): void {
                 /** @var Collection<int, Blog> $models */
@@ -112,7 +116,9 @@ class BlogLivewireTable extends LivewireTable
                 }
             })
                 ->canRun(fn (Blog $blog): bool => ! $blog->trashed())
-                ->record(),
+                ->record()
+                ->danger()
+                ->confirmation(),
 
             Action::make(__('Restore'), function (Collection $models): void {
                 /** @var Collection<int, Blog> $models */

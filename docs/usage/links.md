@@ -3,7 +3,8 @@
 By default, clicking on a row will select it. Most times, you want to be redirected to the edit page of a model. You can achieve this by overriding the `link` method of the Livewire Table.
 
 ```php
-public function link(Model $model): ?string
+#[Override]
+protected function link(Model $model): ?string
 {
     return route('model.edit', ['model' => $model]);
 }

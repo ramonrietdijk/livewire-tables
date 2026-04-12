@@ -3,6 +3,7 @@
 Actions can be defined on your table to perform certain tasks on the selected records. They can be registered in the `actions` method of your Livewire Table.
 
 ```php
+#[Override]
 protected function actions(): array
 {
     return [

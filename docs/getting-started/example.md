@@ -14,6 +14,7 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Override;
 use RamonRietdijk\LivewireTables\Actions\Action;
 use RamonRietdijk\LivewireTables\Columns\ActionColumn;
 use RamonRietdijk\LivewireTables\Columns\BooleanColumn;
@@ -30,6 +31,7 @@ class BlogTable extends LivewireTable
 {
     protected string $model = Blog::class;
 
+    #[Override]
     protected function columns(): array
     {
         return [
@@ -65,6 +67,7 @@ class BlogTable extends LivewireTable
         ];
     }
 
+    #[Override]
     protected function filters(): array
     {
         return [
@@ -84,12 +87,15 @@ class BlogTable extends LivewireTable
         ];
     }
 
+    #[Override]
     protected function actions(): array
     {
         return [
             Action::make(__('Publish All'), function (): void {
                 Blog::query()->update(['published' => true]);
-            })->standalone(),
+            })
+                ->standalone()
+                ->confirmation(),
 
             Action::make(__('Publish'), function (Collection $models): void {
                 foreach ($models as $model) {
@@ -103,7 +109,9 @@ class BlogTable extends LivewireTable
                     $model->published = false;
                     $model->save();
                 }
-            })->canRun(fn (Blog $blog): bool => $blog->published),
+            })
+                ->canRun(fn (Blog $blog): bool => $blog->published)
+                ->confirmation(),
 
             Action::make(__('Delete'), function (Collection $models): void {
                 foreach ($models as $model) {
@@ -111,7 +119,9 @@ class BlogTable extends LivewireTable
                 }
             })
                 ->canRun(fn (Blog $blog): bool => ! $blog->trashed())
-                ->record(),
+                ->record()
+                ->danger()
+                ->confirmation(),
 
             Action::make(__('Restore'), function (Collection $models): void {
                 foreach ($models as $model) {

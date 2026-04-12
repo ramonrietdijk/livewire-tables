@@ -5,6 +5,7 @@ To display your records you need to add columns to your table. You can specify w
 Columns can be registered in the `columns` method of your Livewire Table.
 
 ```php
+#[Override]
 protected function columns(): array
 {
     return [
