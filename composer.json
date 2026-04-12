@@ -43,11 +43,13 @@
         "analyse": "phpstan --memory-limit=256M",
         "rector": "rector process --dry-run",
         "style": "pint --test",
+        "coverage": "phpunit --coverage-text --only-summary-for-coverage-text | grep -c \"100.00%\" | grep -q \"^3$\" && exit 0 || exit 1",
         "quality": [
             "@test",
             "@analyse",
             "@rector",
-            "@style"
+            "@style",
+            "@coverage"
         ]
     },
     "extra": {
