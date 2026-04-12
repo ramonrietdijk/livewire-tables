@@ -43,7 +43,7 @@ final class HasConfirmationTest extends TestCase
             title: '::title::',
             body: '::body::',
             cancel: '::cancel::',
-            run: '::run::',
+            run: '::run::'
         );
 
         $this->assertSame([

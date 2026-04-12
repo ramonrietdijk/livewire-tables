@@ -9,6 +9,7 @@ The example below makes use of [maatwebsite/excel](https://laravel-excel.com/). 
 Start by adding an action to your table. This example will make use of a [standalone](/usage/actions#standalone) action. By doing so, all records that are available in the table will be included in the export while respecting all filters and sortings.
 
 ```php
+#[Override]
 protected function actions(): array
 {
     return [
@@ -26,6 +27,7 @@ protected function actions(): array
 You can also use a regular action, only exporting records that have been selected.
 
 ```php
+#[Override]
 protected function actions(): array
 {
     return [

@@ -5,6 +5,7 @@ Filters are a very simple way to quickly show the records that you are looking f
 They can be registered in the `filters` method of your Livewire Table.
 
 ```php
+#[Override]
 protected function filters(): array
 {
     return [

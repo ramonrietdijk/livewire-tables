@@ -9,6 +9,7 @@ Livewire Tables supports soft deletes out of the box. If your model has the `Sof
 If your model has the `SoftDeletes` trait, but you do not want the functionalities that come with it, you can disable it by overriding the `hasSoftDeletes` method in your Livewire Table.
 
 ```php
+#[Override]
 protected function hasSoftDeletes(): bool
 {
     return false;

@@ -13,6 +13,7 @@ class BlogTable extends LivewireTable
 {
     protected string $model = Blog::class;
 
+    #[Override]
     protected function columns(): array
     {
         return [
@@ -34,7 +35,9 @@ In this case, we could count the amount of blogs beforehand, preventing a lot of
 
 ```php
 use Illuminate\Database\Eloquent\Builder;
+use Override;
 
+#[Override]
 protected function applySelect(Builder $builder): static
 {
     parent::applySelect($builder);

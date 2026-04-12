@@ -17,6 +17,7 @@ use App\Models\Order;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Livewire\Attributes\Locked;
+use Override;
 use RamonRietdijk\LivewireTables\Livewire\LivewireTable;
 
 class OrdersTable extends LivewireTable
@@ -27,6 +28,7 @@ class OrdersTable extends LivewireTable
     public int $userId;
 
     /** @return Builder<covariant Model> */
+    #[Override]
     protected function query(): Builder
     {
         return $this->model()->query()->where('user_id', '=', $this->userId);
