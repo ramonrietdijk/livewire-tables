@@ -95,10 +95,12 @@ trait HasColumns
 
     protected function resolveColumns(): ColumnCollection
     {
-        return once(fn (): ColumnCollection => collect($this->columns())
-            ->filter(fn (BaseColumn $column): bool => $column->canBeSeen())
-            ->sortBy(fn (BaseColumn $column): int => (int) array_search($column->code(), $this->columnOrder, true))
-            ->values()
-            ->pipeInto(ColumnCollection::class));
+        return once(function (): ColumnCollection {
+            return collect($this->columns())
+                ->filter(fn (BaseColumn $column): bool => $column->canBeSeen())
+                ->sortBy(fn (BaseColumn $column): int => (int) array_search($column->code(), $this->columnOrder, true))
+                ->values()
+                ->pipeInto(ColumnCollection::class);
+        });
     }
 }
