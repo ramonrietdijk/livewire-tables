@@ -21,10 +21,12 @@ trait HasActions
 
     protected function resolveActions(): ActionCollection
     {
-        return once(fn (): ActionCollection => collect($this->actions())
-            ->filter(fn (BaseAction $action): bool => $action->canBeSeen())
-            ->values()
-            ->pipeInto(ActionCollection::class));
+        return once(function (): ActionCollection {
+            return collect($this->actions())
+                ->filter(fn (BaseAction $action): bool => $action->canBeSeen())
+                ->values()
+                ->pipeInto(ActionCollection::class);
+        });
     }
 
     /** @param array<int, string> $items */
