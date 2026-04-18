@@ -15,4 +15,4 @@
     {{ $paginator->links('livewire-table::pagination.pagination', $this->paginationData()) }}
 </div>
 
-@include('livewire-table::livewire.assets')
+@include('livewire-table::livewire.script')
