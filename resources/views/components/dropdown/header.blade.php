@@ -1,3 +1,5 @@
+@use('Illuminate\Support\Js')
+
 @props(['label', 'icon', 'navigate' => null])
 
 <header class="flex items-center border-b border-gray-200 dark:border-gray-700 transition">

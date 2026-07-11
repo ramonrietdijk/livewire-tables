@@ -1,3 +1,5 @@
+@use('Illuminate\Support\Js')
+
 @props(['section'])
 
 <section
