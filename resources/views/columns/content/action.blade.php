@@ -1,3 +1,5 @@
+@use('Illuminate\Support\Js')
+
 @php($actions = $this->resolveActions()->standalone(false)->canBeRun($model))
 
 <div class="px-3 py-1">

@@ -1,3 +1,5 @@
+@use('Illuminate\Support\Js')
+
 @php($actions = $this->resolveActions())
 
 <x-livewire-table::dropdown current="actions">

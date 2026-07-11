@@ -1,3 +1,5 @@
+@use('Illuminate\Support\Js')
+
 @props(['label', 'icon' => null, 'navigate' => null, 'dot' => false])
 
 <li>
