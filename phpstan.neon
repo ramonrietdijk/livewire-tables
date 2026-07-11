@@ -6,6 +6,8 @@ parameters:
     paths:
         - src
         - tests
+    stubFiles:
+        - stubs/MakesAssertions.stub
     level: 9
     ignoreErrors:
         - identifier: staticMethod.dynamicCall

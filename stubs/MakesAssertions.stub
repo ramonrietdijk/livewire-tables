@@ -1,0 +1,8 @@
+<?php
+
+namespace Livewire\Features\SupportTesting;
+
+/**
+ * @method $this assertSeeTextInOrder(list<string> $values, bool $escape = true)
+ */
+trait MakesAssertions {}
