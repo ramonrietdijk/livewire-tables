@@ -46,7 +46,7 @@ trait HasSearch
     {
         $this->qualifyQuery($builder, function (Builder $builder, string $column) use ($search): void {
             if (is_string($search)) {
-                $builder->where($column, 'LIKE', '%'.$search.'%');
+                $builder->whereLike($column, '%'.$search.'%');
             }
         });
     }
