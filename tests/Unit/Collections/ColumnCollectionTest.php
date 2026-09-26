@@ -25,6 +25,19 @@ final class ColumnCollectionTest extends TestCase
     }
 
     #[Test]
+    public function it_can_get_sortable_columns(): void
+    {
+        $items = [
+            Column::make('Column', 'column')->sortable(),
+        ];
+
+        $collection = ColumnCollection::make($items);
+
+        $this->assertCount(1, $collection->sortable());
+        $this->assertCount(0, $collection->sortable(false));
+    }
+
+    #[Test]
     public function it_can_get_computed_columns(): void
     {
         $items = [
