@@ -16,6 +16,11 @@ class ColumnCollection extends BaseCollection
         return $this->filter(fn (BaseColumn $column): bool => $column->isSearchable() === $searchable);
     }
 
+    public function sortable(bool $sortable = true): static
+    {
+        return $this->filter(fn (BaseColumn $column): bool => $column->isSortable() === $sortable);
+    }
+
     public function computed(bool $computed = true): static
     {
         return $this->filter(fn (BaseColumn $column): bool => $column->isComputed() === $computed);
