@@ -10,9 +10,14 @@ trait HasKind
 {
     protected ActionKind $kind = ActionKind::Callback;
 
+    public function getKind(): ActionKind
+    {
+        return $this->kind;
+    }
+
     public function isKind(ActionKind $kind): bool
     {
-        return $this->kind === $kind;
+        return $this->getKind() === $kind;
     }
 
     public function isCallback(): bool

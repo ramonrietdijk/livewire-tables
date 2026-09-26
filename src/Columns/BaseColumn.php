@@ -57,8 +57,8 @@ abstract class BaseColumn
         } else {
             $this->column = null;
             $this->code = $code ?? md5($label);
-            $this->displayUsing = $column;
-            $this->computed = true;
+            $this->displayUsing($column);
+            $this->computed();
         }
     }
 
