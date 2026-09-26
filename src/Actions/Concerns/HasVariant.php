@@ -17,9 +17,14 @@ trait HasVariant
         return $this;
     }
 
+    public function getVariant(): ActionVariant
+    {
+        return $this->variant;
+    }
+
     public function isVariant(ActionVariant $variant): bool
     {
-        return $this->variant === $variant;
+        return $this->getVariant() === $variant;
     }
 
     public function info(): static
@@ -40,10 +45,5 @@ trait HasVariant
     public function isDanger(): bool
     {
         return $this->isVariant(ActionVariant::Danger);
-    }
-
-    public function getVariant(): ActionVariant
-    {
-        return $this->variant;
     }
 }

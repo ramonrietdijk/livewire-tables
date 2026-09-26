@@ -40,8 +40,8 @@ abstract class BaseFilter
         } else {
             $this->column = null;
             $this->code = $code ?? md5($label);
-            $this->filterUsing = $column;
-            $this->computed = true;
+            $this->filterUsing($column);
+            $this->computed();
         }
     }
 
