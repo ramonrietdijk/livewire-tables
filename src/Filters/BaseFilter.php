@@ -43,6 +43,13 @@ abstract class BaseFilter
             $this->filterUsing($column);
             $this->computed();
         }
+
+        $this->configure();
+    }
+
+    protected function configure(): void
+    {
+        //
     }
 
     public function label(): string
