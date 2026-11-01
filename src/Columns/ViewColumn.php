@@ -13,9 +13,15 @@ class ViewColumn extends BaseColumn
 {
     use HasData;
 
-    protected bool $raw = true;
+    #[Override]
+    protected function configure(): void
+    {
+        parent::configure();
 
-    protected bool $computed = true;
+        $this
+            ->asHtml()
+            ->computed();
+    }
 
     #[Override]
     public function resolveValue(Model $model): mixed

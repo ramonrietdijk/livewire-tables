@@ -4,13 +4,20 @@ declare(strict_types=1);
 
 namespace RamonRietdijk\LivewireTables\Columns;
 
+use Override;
+
 class ActionColumn extends BaseColumn
 {
     protected string $view = 'livewire-table::columns.content.action';
 
-    protected bool $header = false;
+    #[Override]
+    protected function configure(): void
+    {
+        parent::configure();
 
-    protected bool $computed = true;
-
-    protected bool $clickable = false;
+        $this
+            ->header(false)
+            ->computed()
+            ->clickable(false);
+    }
 }

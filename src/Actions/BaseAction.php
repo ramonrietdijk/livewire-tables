@@ -51,6 +51,13 @@ abstract class BaseAction
         }
 
         $this->code = $code ?? Str::snake($label);
+
+        $this->configure();
+    }
+
+    protected function configure(): void
+    {
+        //
     }
 
     public function label(): string

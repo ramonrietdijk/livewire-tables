@@ -60,6 +60,13 @@ abstract class BaseColumn
             $this->displayUsing($column);
             $this->computed();
         }
+
+        $this->configure();
+    }
+
+    protected function configure(): void
+    {
+        //
     }
 
     public function label(): string
